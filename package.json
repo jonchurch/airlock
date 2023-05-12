@@ -4,6 +4,7 @@
   "description": "Spacetraders.io api client built with typescript, generated via openapi-generator-cli",
   "main": "index.js",
   "scripts": {
+    "generate": "openapi-generator-cli generate -i https://raw.githubusercontent.com/SpaceTradersAPI/api-docs/main/reference/SpaceTraders.json -g typescript -o ./src --type-mappings=Date=string",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["spacetraders", "openapi", "typescript", "fetch"],
