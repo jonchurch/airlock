@@ -1,6 +1,6 @@
 {
   "name": "@spacejunk/airlock",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Spacetraders.io api client built with typescript, generated via openapi-generator-cli",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
