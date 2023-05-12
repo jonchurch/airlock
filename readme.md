@@ -4,6 +4,40 @@ Spacetraders.io API client built with TypeScript, generated via openapi-generato
 
 🌐 [Spacetraders Homepage](https://spacetraders.io/) | 📚 [Getting Started Guide](https://docs.spacetraders.io/) | 🔧 [API Playground](https://spacetraders.stoplight.io/docs/spacetraders/8e768e6831f6c-getting-started)
 
+## Prerequisites
+
+If you're using this in the Browser, you don't need to setup anything!
+
+However, if you're using it serverside with Node.js, this package requires Node.js v18 or higher. Node 18 is the first version to support native fetch. To install Node.js v18, we recommend using [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm). Follow the instructions below based on your operating system:
+
+### macOS
+
+To install nvm on macOS, run the following command in your terminal:
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+```
+
+Restart your terminal and run the following command to install Node.js v18:
+
+```sh
+nvm install 18
+# then, set your version to Node 18 via use
+nvm use 18
+```
+
+### Windows
+
+To install nvm on Windows, download and run the installer from the [nvm-windows GitHub repository](https://github.com/coreybutler/nvm-windows/releases).
+
+Once installed, open a new Command Prompt or PowerShell window and run the following command to install Node.js v18:
+
+```sh
+nvm install 18
+# then, set your version to Node 18 via use
+nvm use 18
+```
+
 ## Installation
 
 ```sh
