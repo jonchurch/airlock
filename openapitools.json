@@ -12,6 +12,7 @@
           "Date": "string"
         },
         "additional-properties": {
+          "useSingleRequestParameter": false,
           "withSeparateModelsAndApi": true,
           "apiPackage": "api",
           "modelsPackage": "models"

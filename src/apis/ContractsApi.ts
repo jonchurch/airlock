@@ -99,8 +99,8 @@ export class ContractsApi extends runtime.BaseAPI {
      * Accept a contract.
      * Accept Contract
      */
-    async acceptContract(requestParameters: AcceptContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AcceptContract200Response> {
-        const response = await this.acceptContractRaw(requestParameters, initOverrides);
+    async acceptContract(contractId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AcceptContract200Response> {
+        const response = await this.acceptContractRaw({ contractId: contractId }, initOverrides);
         return await response.value();
     }
 
@@ -142,8 +142,8 @@ export class ContractsApi extends runtime.BaseAPI {
      * Deliver cargo on a given contract.
      * Deliver Contract
      */
-    async deliverContract(requestParameters: DeliverContractOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeliverContract200Response> {
-        const response = await this.deliverContractRaw(requestParameters, initOverrides);
+    async deliverContract(contractId: string, deliverContractRequest?: DeliverContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeliverContract200Response> {
+        const response = await this.deliverContractRaw({ contractId: contractId, deliverContractRequest: deliverContractRequest }, initOverrides);
         return await response.value();
     }
 
@@ -182,8 +182,8 @@ export class ContractsApi extends runtime.BaseAPI {
      * Fulfill a contract
      * Fulfill Contract
      */
-    async fulfillContract(requestParameters: FulfillContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillContract200Response> {
-        const response = await this.fulfillContractRaw(requestParameters, initOverrides);
+    async fulfillContract(contractId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillContract200Response> {
+        const response = await this.fulfillContractRaw({ contractId: contractId }, initOverrides);
         return await response.value();
     }
 
@@ -222,8 +222,8 @@ export class ContractsApi extends runtime.BaseAPI {
      * Get the details of a contract by ID.
      * Get Contract
      */
-    async getContract(requestParameters: GetContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContract200Response> {
-        const response = await this.getContractRaw(requestParameters, initOverrides);
+    async getContract(contractId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContract200Response> {
+        const response = await this.getContractRaw({ contractId: contractId }, initOverrides);
         return await response.value();
     }
 
@@ -266,8 +266,8 @@ export class ContractsApi extends runtime.BaseAPI {
      * List all of your contracts.
      * List Contracts
      */
-    async getContracts(requestParameters: GetContractsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContracts200Response> {
-        const response = await this.getContractsRaw(requestParameters, initOverrides);
+    async getContracts(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContracts200Response> {
+        const response = await this.getContractsRaw({ page: page, limit: limit }, initOverrides);
         return await response.value();
     }
 

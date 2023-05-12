@@ -262,8 +262,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Command a ship to chart the current waypoint.  Waypoints in the universe are uncharted by default. These locations will not show up in the API until they have been charted by a ship.  Charting a location will record your agent as the one who created the chart.
      * Create Chart
      */
-    async createChart(requestParameters: CreateChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateChart201Response> {
-        const response = await this.createChartRaw(requestParameters, initOverrides);
+    async createChart(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateChart201Response> {
+        const response = await this.createChartRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -302,8 +302,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Activate your ship\'s sensor arrays to scan for ship information.
      * Scan Ships
      */
-    async createShipShipScan(requestParameters: CreateShipShipScanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipShipScan201Response> {
-        const response = await this.createShipShipScanRaw(requestParameters, initOverrides);
+    async createShipShipScan(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipShipScan201Response> {
+        const response = await this.createShipShipScanRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -342,8 +342,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Activate your ship\'s sensor arrays to scan for system information.
      * Scan Systems
      */
-    async createShipSystemScan(requestParameters: CreateShipSystemScanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipSystemScan201Response> {
-        const response = await this.createShipSystemScanRaw(requestParameters, initOverrides);
+    async createShipSystemScan(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipSystemScan201Response> {
+        const response = await this.createShipSystemScanRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -382,8 +382,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Activate your ship\'s sensor arrays to scan for waypoint information.
      * Scan Waypoints
      */
-    async createShipWaypointScan(requestParameters: CreateShipWaypointScanRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipWaypointScan201Response> {
-        const response = await this.createShipWaypointScanRaw(requestParameters, initOverrides);
+    async createShipWaypointScan(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateShipWaypointScan201Response> {
+        const response = await this.createShipWaypointScanRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -422,8 +422,8 @@ export class FleetApi extends runtime.BaseAPI {
      * If you want to target specific yields for an extraction, you can survey a waypoint, such as an asteroid field, and send the survey in the body of the extract request. Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown between consecutive survey requests. Surveys will eventually expire after a period of time. Multiple ships can use the same survey for extraction.
      * Create Survey
      */
-    async createSurvey(requestParameters: CreateSurveyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSurvey201Response> {
-        const response = await this.createSurveyRaw(requestParameters, initOverrides);
+    async createSurvey(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSurvey201Response> {
+        const response = await this.createSurveyRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -462,8 +462,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Attempt to dock your ship at it\'s current location. Docking will only succeed if the waypoint is a dockable location, and your ship is capable of docking at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
      * Dock Ship
      */
-    async dockShip(requestParameters: DockShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DockShip200Response> {
-        const response = await this.dockShipRaw(requestParameters, initOverrides);
+    async dockShip(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DockShip200Response> {
+        const response = await this.dockShipRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -505,8 +505,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Extract resources from the waypoint into your ship. Send an optional survey as the payload to target specific yields.
      * Extract Resources
      */
-    async extractResources(requestParameters: ExtractResourcesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtractResources201Response> {
-        const response = await this.extractResourcesRaw(requestParameters, initOverrides);
+    async extractResources(shipSymbol: string, extractResourcesRequest?: ExtractResourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtractResources201Response> {
+        const response = await this.extractResourcesRaw({ shipSymbol: shipSymbol, extractResourcesRequest: extractResourcesRequest }, initOverrides);
         return await response.value();
     }
 
@@ -545,8 +545,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Retrieve the details of your ship.
      * Get Ship
      */
-    async getMyShip(requestParameters: GetMyShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShip200Response> {
-        const response = await this.getMyShipRaw(requestParameters, initOverrides);
+    async getMyShip(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShip200Response> {
+        const response = await this.getMyShipRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -585,8 +585,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Retrieve the cargo of your ship.
      * Get Ship Cargo
      */
-    async getMyShipCargo(requestParameters: GetMyShipCargoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShipCargo200Response> {
-        const response = await this.getMyShipCargoRaw(requestParameters, initOverrides);
+    async getMyShipCargo(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShipCargo200Response> {
+        const response = await this.getMyShipCargoRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -629,8 +629,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Retrieve all of your ships.
      * List Ships
      */
-    async getMyShips(requestParameters: GetMyShipsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShips200Response> {
-        const response = await this.getMyShipsRaw(requestParameters, initOverrides);
+    async getMyShips(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyShips200Response> {
+        const response = await this.getMyShipsRaw({ page: page, limit: limit }, initOverrides);
         return await response.value();
     }
 
@@ -669,8 +669,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Retrieve the details of your ship\'s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
      * Get Ship Cooldown
      */
-    async getShipCooldown(requestParameters: GetShipCooldownRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipCooldown200Response> {
-        const response = await this.getShipCooldownRaw(requestParameters, initOverrides);
+    async getShipCooldown(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipCooldown200Response> {
+        const response = await this.getShipCooldownRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -709,8 +709,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Get the current nav status of a ship.
      * Get Ship Nav
      */
-    async getShipNav(requestParameters: GetShipNavRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipNav200Response> {
-        const response = await this.getShipNavRaw(requestParameters, initOverrides);
+    async getShipNav(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipNav200Response> {
+        const response = await this.getShipNavRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -752,8 +752,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Jettison cargo from your ship\'s cargo hold.
      * Jettison Cargo
      */
-    async jettison(requestParameters: JettisonOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Jettison200Response> {
-        const response = await this.jettisonRaw(requestParameters, initOverrides);
+    async jettison(shipSymbol: string, jettisonRequest?: JettisonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Jettison200Response> {
+        const response = await this.jettisonRaw({ shipSymbol: shipSymbol, jettisonRequest: jettisonRequest }, initOverrides);
         return await response.value();
     }
 
@@ -795,8 +795,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
      * Jump Ship
      */
-    async jumpShip(requestParameters: JumpShipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JumpShip200Response> {
-        const response = await this.jumpShipRaw(requestParameters, initOverrides);
+    async jumpShip(shipSymbol: string, jumpShipRequest?: JumpShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JumpShip200Response> {
+        const response = await this.jumpShipRaw({ shipSymbol: shipSymbol, jumpShipRequest: jumpShipRequest }, initOverrides);
         return await response.value();
     }
 
@@ -838,8 +838,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Navigate to a target destination. The destination must be located within the same system as the ship. Navigating will consume the necessary fuel and supplies from the ship\'s manifest, and will pay out crew wages from the agent\'s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it\'s destination.  To travel between systems, see the ship\'s warp or jump actions.
      * Navigate Ship
      */
-    async navigateShip(requestParameters: NavigateShipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NavigateShip200Response> {
-        const response = await this.navigateShipRaw(requestParameters, initOverrides);
+    async navigateShip(shipSymbol: string, navigateShipRequest?: NavigateShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NavigateShip200Response> {
+        const response = await this.navigateShipRaw({ shipSymbol: shipSymbol, navigateShipRequest: navigateShipRequest }, initOverrides);
         return await response.value();
     }
 
@@ -878,8 +878,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Attempt to move your ship into orbit at it\'s current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
      * Orbit Ship
      */
-    async orbitShip(requestParameters: OrbitShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrbitShip200Response> {
-        const response = await this.orbitShipRaw(requestParameters, initOverrides);
+    async orbitShip(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrbitShip200Response> {
+        const response = await this.orbitShipRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -921,8 +921,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Update the nav data of a ship, such as the flight mode.
      * Patch Ship Nav
      */
-    async patchShipNav(requestParameters: PatchShipNavOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipNav200Response> {
-        const response = await this.patchShipNavRaw(requestParameters, initOverrides);
+    async patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipNav200Response> {
+        const response = await this.patchShipNavRaw({ shipSymbol: shipSymbol, patchShipNavRequest: patchShipNavRequest }, initOverrides);
         return await response.value();
     }
 
@@ -964,8 +964,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Purchase cargo.
      * Purchase Cargo
      */
-    async purchaseCargo(requestParameters: PurchaseCargoOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseCargo201Response> {
-        const response = await this.purchaseCargoRaw(requestParameters, initOverrides);
+    async purchaseCargo(shipSymbol: string, purchaseCargoRequest?: PurchaseCargoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseCargo201Response> {
+        const response = await this.purchaseCargoRaw({ shipSymbol: shipSymbol, purchaseCargoRequest: purchaseCargoRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1003,8 +1003,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Purchase a ship
      * Purchase Ship
      */
-    async purchaseShip(requestParameters: PurchaseShipOperationRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseShip201Response> {
-        const response = await this.purchaseShipRaw(requestParameters, initOverrides);
+    async purchaseShip(purchaseShipRequest?: PurchaseShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PurchaseShip201Response> {
+        const response = await this.purchaseShipRaw({ purchaseShipRequest: purchaseShipRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1043,8 +1043,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Refuel your ship from the local market.
      * Refuel Ship
      */
-    async refuelShip(requestParameters: RefuelShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefuelShip200Response> {
-        const response = await this.refuelShipRaw(requestParameters, initOverrides);
+    async refuelShip(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefuelShip200Response> {
+        const response = await this.refuelShipRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -1086,8 +1086,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Sell cargo.
      * Sell Cargo
      */
-    async sellCargo(requestParameters: SellCargoOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SellCargo201Response> {
-        const response = await this.sellCargoRaw(requestParameters, initOverrides);
+    async sellCargo(shipSymbol: string, sellCargoRequest?: SellCargoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SellCargo201Response> {
+        const response = await this.sellCargoRaw({ shipSymbol: shipSymbol, sellCargoRequest: sellCargoRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1129,8 +1129,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request.
      * Ship Refine
      */
-    async shipRefine(requestParameters: ShipRefineOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipRefine200Response> {
-        const response = await this.shipRefineRaw(requestParameters, initOverrides);
+    async shipRefine(shipSymbol: string, shipRefineRequest?: ShipRefineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipRefine200Response> {
+        const response = await this.shipRefineRaw({ shipSymbol: shipSymbol, shipRefineRequest: shipRefineRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1172,8 +1172,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Transfer cargo between ships.
      * Transfer Cargo
      */
-    async transferCargo(requestParameters: TransferCargoOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransferCargo200Response> {
-        const response = await this.transferCargoRaw(requestParameters, initOverrides);
+    async transferCargo(shipSymbol: string, transferCargoRequest?: TransferCargoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TransferCargo200Response> {
+        const response = await this.transferCargoRaw({ shipSymbol: shipSymbol, transferCargoRequest: transferCargoRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1215,8 +1215,8 @@ export class FleetApi extends runtime.BaseAPI {
      * Warp your ship to a target destination in another system. Warping will consume the necessary fuel and supplies from the ship\'s manifest, and will pay out crew wages from the agent\'s account.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it\'s destination.
      * Warp Ship
      */
-    async warpShip(requestParameters: WarpShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NavigateShip200Response> {
-        const response = await this.warpShipRaw(requestParameters, initOverrides);
+    async warpShip(shipSymbol: string, navigateShipRequest?: NavigateShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NavigateShip200Response> {
+        const response = await this.warpShipRaw({ shipSymbol: shipSymbol, navigateShipRequest: navigateShipRequest }, initOverrides);
         return await response.value();
     }
 

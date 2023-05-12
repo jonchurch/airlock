@@ -119,8 +119,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Get jump gate details for a waypoint.
      * Get Jump Gate
      */
-    async getJumpGate(requestParameters: GetJumpGateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetJumpGate200Response> {
-        const response = await this.getJumpGateRaw(requestParameters, initOverrides);
+    async getJumpGate(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetJumpGate200Response> {
+        const response = await this.getJumpGateRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -163,8 +163,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
      * Get Market
      */
-    async getMarket(requestParameters: GetMarketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMarket200Response> {
-        const response = await this.getMarketRaw(requestParameters, initOverrides);
+    async getMarket(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMarket200Response> {
+        const response = await this.getMarketRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -207,8 +207,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
      * Get Shipyard
      */
-    async getShipyard(requestParameters: GetShipyardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipyard200Response> {
-        const response = await this.getShipyardRaw(requestParameters, initOverrides);
+    async getShipyard(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipyard200Response> {
+        const response = await this.getShipyardRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -247,8 +247,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Get the details of a system.
      * Get System
      */
-    async getSystem(requestParameters: GetSystemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystem200Response> {
-        const response = await this.getSystemRaw(requestParameters, initOverrides);
+    async getSystem(systemSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystem200Response> {
+        const response = await this.getSystemRaw({ systemSymbol: systemSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -295,8 +295,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
      * List Waypoints
      */
-    async getSystemWaypoints(requestParameters: GetSystemWaypointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystemWaypoints200Response> {
-        const response = await this.getSystemWaypointsRaw(requestParameters, initOverrides);
+    async getSystemWaypoints(systemSymbol: string, page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystemWaypoints200Response> {
+        const response = await this.getSystemWaypointsRaw({ systemSymbol: systemSymbol, page: page, limit: limit }, initOverrides);
         return await response.value();
     }
 
@@ -339,8 +339,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Return a list of all systems.
      * List Systems
      */
-    async getSystems(requestParameters: GetSystemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystems200Response> {
-        const response = await this.getSystemsRaw(requestParameters, initOverrides);
+    async getSystems(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystems200Response> {
+        const response = await this.getSystemsRaw({ page: page, limit: limit }, initOverrides);
         return await response.value();
     }
 
@@ -383,8 +383,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * View the details of a waypoint.
      * Get Waypoint
      */
-    async getWaypoint(requestParameters: GetWaypointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWaypoint200Response> {
-        const response = await this.getWaypointRaw(requestParameters, initOverrides);
+    async getWaypoint(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWaypoint200Response> {
+        const response = await this.getWaypointRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
         return await response.value();
     }
 

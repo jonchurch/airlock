@@ -74,8 +74,8 @@ export class FactionsApi extends runtime.BaseAPI {
      * View the details of a faction.
      * Get Faction
      */
-    async getFaction(requestParameters: GetFactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFaction200Response> {
-        const response = await this.getFactionRaw(requestParameters, initOverrides);
+    async getFaction(factionSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFaction200Response> {
+        const response = await this.getFactionRaw({ factionSymbol: factionSymbol }, initOverrides);
         return await response.value();
     }
 
@@ -118,8 +118,8 @@ export class FactionsApi extends runtime.BaseAPI {
      * List all discovered factions in the game.
      * List Factions
      */
-    async getFactions(requestParameters: GetFactionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFactions200Response> {
-        const response = await this.getFactionsRaw(requestParameters, initOverrides);
+    async getFactions(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFactions200Response> {
+        const response = await this.getFactionsRaw({ page: page, limit: limit }, initOverrides);
         return await response.value();
     }
 
