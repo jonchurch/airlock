@@ -2,6 +2,22 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "6.6.0"
+    "version": "6.6.0",
+    "generators": {
+      "v2.0" : {
+        "generatorName": "typescript-fetch",
+        "output": "./src",
+        "inputSpec": "https://raw.githubusercontent.com/SpaceTradersAPI/api-docs/main/reference/SpaceTraders.json",
+        "typeMappings": {
+          "Date": "string"
+        },
+        "additional-properties": {
+          "useSingleRequestParameter": true,
+          "withSeparateModelsAndApi": true,
+          "apiPackage": "api",
+          "modelsPackage": "models"
+        }
+      }
+    }
   }
 }
