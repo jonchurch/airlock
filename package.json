@@ -1,13 +1,13 @@
 {
   "name": "airlock",
   "version": "1.0.0",
-  "description": "",
+  "description": "Spacetraders.io api client built with typescript, generated via openapi-generator-cli",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["spacetraders", "openapi", "typescript", "fetch"],
+  "author": "jonchurch",
   "license": "ISC",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.6.0",
