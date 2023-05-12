@@ -2,16 +2,33 @@
   "name": "airlock",
   "version": "1.0.0",
   "description": "Spacetraders.io api client built with typescript, generated via openapi-generator-cli",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "generate": "openapi-generator-cli generate",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "watch": "npm run build -- --watch src",
+    "prepublishOnly": "npm run build"
   },
-  "keywords": ["spacetraders", "openapi", "typescript", "fetch"],
+  "keywords": [
+    "spacetraders",
+    "openapi",
+    "typescript",
+    "fetch"
+  ],
   "author": "jonchurch",
   "license": "ISC",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.6.0",
-    "tsup": "^6.7.0"
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
   }
 }
