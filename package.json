@@ -29,6 +29,10 @@
   ],
   "author": "jonchurch",
   "license": "ISC",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/jonchurch/airlock.git"
+  },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.6.0",
     "tsup": "^6.7.0",
