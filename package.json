@@ -12,6 +12,9 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "generate": "openapi-generator-cli generate",
     "build": "npm run generate && tsup src/index.ts --format cjs,esm --dts --clean",
