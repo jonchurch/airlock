@@ -27,6 +27,7 @@
     "typescript",
     "fetch"
   ],
+  "namespace": "spacejunk",
   "author": "jonchurch",
   "license": "ISC",
   "repository": {
