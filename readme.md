@@ -1,6 +1,6 @@
 # 🚀📦 @spacejunk/airlock ✨
 
-Spacetraders.io API client built with TypeScript, generated via openapi-generator-cli.
+Spacetraders.io API client built with TypeScript, generated via openapi-generator-cli. See options for generator type [`typescript-fetch`](https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/typescript-fetch.md)
 
 🌐 [Spacetraders Homepage](https://spacetraders.io/) | 📚 [Getting Started Guide](https://docs.spacetraders.io/) | 🔧 [API Playground](https://spacetraders.stoplight.io/docs/spacetraders/8e768e6831f6c-getting-started)
 
