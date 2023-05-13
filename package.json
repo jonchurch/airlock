@@ -20,7 +20,7 @@
   },
   "scripts": {
     "generate": "openapi-generator-cli generate",
-    "build": "npm run generate && tsup src/index.ts --format cjs,esm --dts --clean",
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
     "watch": "npm run build -- --watch src",
     "prepublishOnly": "npm run build",
     "test": ""
