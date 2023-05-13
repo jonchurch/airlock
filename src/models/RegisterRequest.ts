@@ -31,6 +31,12 @@ export interface RegisterRequest {
      * @memberof RegisterRequest
      */
     symbol: string;
+    /**
+     * Your email address. This is used if you reserved your call sign between resets.
+     * @type {string}
+     * @memberof RegisterRequest
+     */
+    email?: string;
 }
 
 
@@ -70,6 +76,7 @@ export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'faction': json['faction'],
         'symbol': json['symbol'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
     };
 }
 
@@ -84,6 +91,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
         
         'faction': value.faction,
         'symbol': value.symbol,
+        'email': value.email,
     };
 }
 
