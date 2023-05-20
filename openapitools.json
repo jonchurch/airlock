@@ -5,7 +5,7 @@
     "version": "6.6.0",
     "generators": {
       "v2.0" : {
-        "generatorName": "typescript-fetch",
+        "generatorName": "typescript-axios",
         "output": "./src",
         "inputSpec": "https://raw.githubusercontent.com/SpaceTradersAPI/api-docs/main/reference/SpaceTraders.json",
         "typeMappings": {
