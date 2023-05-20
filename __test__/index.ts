@@ -4,6 +4,8 @@ export const config = new Configuration({
   accessToken: "NO_TOKEN"
 });
 
+/** Fails if there is NO_TOKEN, but also fails with real token bc the shipsymbol is nonsense
+ */
 const badRequest = async () => {
   const fleet = new FleetApi(config);
   const res = await fleet.getShipCooldown('asdfasdfasa');
