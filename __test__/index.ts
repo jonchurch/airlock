@@ -1,4 +1,4 @@
-import { Configuration, FleetApi } from '../dist'
+import { Configuration, FleetApi, ResponseError } from '../dist'
 
 export const config = new Configuration({
   accessToken: "NO_TOKEN"
@@ -14,4 +14,11 @@ const badRequest = async () => {
 };
 
 
-badRequest().then((result) => console.log('Result from fulfilled promise:', result)).catch((err) => console.error('ERROR:', err))
+badRequest()
+  .then((result) => console.log('Result from fulfilled promise:', result))
+  .catch(async (err: ResponseError) => {
+    const { response } = err
+    console.log('Full response', response)
+    console.log('JSON body:', await response.json())
+    console.log('status:', response.status)
+  })
