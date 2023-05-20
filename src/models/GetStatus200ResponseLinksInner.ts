@@ -16,74 +16,50 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Agent
+ * @interface GetStatus200ResponseLinksInner
  */
-export interface Agent {
+export interface GetStatus200ResponseLinksInner {
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLinksInner
      */
-    accountId: string;
+    name: string;
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLinksInner
      */
-    symbol: string;
-    /**
-     * The headquarters of the agent.
-     * @type {string}
-     * @memberof Agent
-     */
-    headquarters: string;
-    /**
-     * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
-     * @type {number}
-     * @memberof Agent
-     */
-    credits: number;
-    /**
-     * The faction the agent started with.
-     * @type {string}
-     * @memberof Agent
-     */
-    startingFaction: string;
+    url: string;
 }
 
 /**
- * Check if a given object implements the Agent interface.
+ * Check if a given object implements the GetStatus200ResponseLinksInner interface.
  */
-export function instanceOfAgent(value: object): boolean {
+export function instanceOfGetStatus200ResponseLinksInner(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "credits" in value;
-    isInstance = isInstance && "startingFaction" in value;
+    isInstance = isInstance && "name" in value;
+    isInstance = isInstance && "url" in value;
 
     return isInstance;
 }
 
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
+export function GetStatus200ResponseLinksInnerFromJSON(json: any): GetStatus200ResponseLinksInner {
+    return GetStatus200ResponseLinksInnerFromJSONTyped(json, false);
 }
 
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
+export function GetStatus200ResponseLinksInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseLinksInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
-        'credits': json['credits'],
-        'startingFaction': json['startingFaction'],
+        'name': json['name'],
+        'url': json['url'],
     };
 }
 
-export function AgentToJSON(value?: Agent | null): any {
+export function GetStatus200ResponseLinksInnerToJSON(value?: GetStatus200ResponseLinksInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -92,11 +68,8 @@ export function AgentToJSON(value?: Agent | null): any {
     }
     return {
         
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
-        'credits': value.credits,
-        'startingFaction': value.startingFaction,
+        'name': value.name,
+        'url': value.url,
     };
 }
 

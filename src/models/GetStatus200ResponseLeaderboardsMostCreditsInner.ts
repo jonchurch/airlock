@@ -16,74 +16,50 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Agent
+ * @interface GetStatus200ResponseLeaderboardsMostCreditsInner
  */
-export interface Agent {
+export interface GetStatus200ResponseLeaderboardsMostCreditsInner {
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLeaderboardsMostCreditsInner
      */
-    accountId: string;
+    agentSymbol: string;
     /**
      * 
-     * @type {string}
-     * @memberof Agent
-     */
-    symbol: string;
-    /**
-     * The headquarters of the agent.
-     * @type {string}
-     * @memberof Agent
-     */
-    headquarters: string;
-    /**
-     * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
      * @type {number}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLeaderboardsMostCreditsInner
      */
     credits: number;
-    /**
-     * The faction the agent started with.
-     * @type {string}
-     * @memberof Agent
-     */
-    startingFaction: string;
 }
 
 /**
- * Check if a given object implements the Agent interface.
+ * Check if a given object implements the GetStatus200ResponseLeaderboardsMostCreditsInner interface.
  */
-export function instanceOfAgent(value: object): boolean {
+export function instanceOfGetStatus200ResponseLeaderboardsMostCreditsInner(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
+    isInstance = isInstance && "agentSymbol" in value;
     isInstance = isInstance && "credits" in value;
-    isInstance = isInstance && "startingFaction" in value;
 
     return isInstance;
 }
 
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
+export function GetStatus200ResponseLeaderboardsMostCreditsInnerFromJSON(json: any): GetStatus200ResponseLeaderboardsMostCreditsInner {
+    return GetStatus200ResponseLeaderboardsMostCreditsInnerFromJSONTyped(json, false);
 }
 
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
+export function GetStatus200ResponseLeaderboardsMostCreditsInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseLeaderboardsMostCreditsInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
+        'agentSymbol': json['agentSymbol'],
         'credits': json['credits'],
-        'startingFaction': json['startingFaction'],
     };
 }
 
-export function AgentToJSON(value?: Agent | null): any {
+export function GetStatus200ResponseLeaderboardsMostCreditsInnerToJSON(value?: GetStatus200ResponseLeaderboardsMostCreditsInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -92,11 +68,8 @@ export function AgentToJSON(value?: Agent | null): any {
     }
     return {
         
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
+        'agentSymbol': value.agentSymbol,
         'credits': value.credits,
-        'startingFaction': value.startingFaction,
     };
 }
 

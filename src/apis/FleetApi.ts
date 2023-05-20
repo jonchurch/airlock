@@ -34,6 +34,7 @@ import type {
   JumpShipRequest,
   NavigateShip200Response,
   NavigateShipRequest,
+  NegotiateContract200Response,
   OrbitShip200Response,
   PatchShipNavRequest,
   PurchaseCargo201Response,
@@ -87,6 +88,8 @@ import {
     NavigateShip200ResponseToJSON,
     NavigateShipRequestFromJSON,
     NavigateShipRequestToJSON,
+    NegotiateContract200ResponseFromJSON,
+    NegotiateContract200ResponseToJSON,
     OrbitShip200ResponseFromJSON,
     OrbitShip200ResponseToJSON,
     PatchShipNavRequestFromJSON,
@@ -178,6 +181,11 @@ export interface JumpShipOperationRequest {
 export interface NavigateShipOperationRequest {
     shipSymbol: string;
     navigateShipRequest?: NavigateShipRequest;
+}
+
+export interface NegotiateContractRequest {
+    shipSymbol: string;
+    body?: any | null;
 }
 
 export interface OrbitShipRequest {
@@ -840,6 +848,49 @@ export class FleetApi extends runtime.BaseAPI {
      */
     async navigateShip(shipSymbol: string, navigateShipRequest?: NavigateShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NavigateShip200Response> {
         const response = await this.navigateShipRaw({ shipSymbol: shipSymbol, navigateShipRequest: navigateShipRequest }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * 
+     * Negotiate Contract
+     */
+    async negotiateContractRaw(requestParameters: NegotiateContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NegotiateContract200Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling negotiateContract.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/negotiate/contract`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: requestParameters.body as any,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => NegotiateContract200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * 
+     * Negotiate Contract
+     */
+    async negotiateContract(shipSymbol: string, body?: any | null, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NegotiateContract200Response> {
+        const response = await this.negotiateContractRaw({ shipSymbol: shipSymbol, body: body }, initOverrides);
         return await response.value();
     }
 

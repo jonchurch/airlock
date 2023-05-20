@@ -16,74 +16,50 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Agent
+ * @interface GetStatus200ResponseLeaderboardsMostSubmittedChartsInner
  */
-export interface Agent {
+export interface GetStatus200ResponseLeaderboardsMostSubmittedChartsInner {
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLeaderboardsMostSubmittedChartsInner
      */
-    accountId: string;
+    agentSymbol: string;
     /**
      * 
-     * @type {string}
-     * @memberof Agent
-     */
-    symbol: string;
-    /**
-     * The headquarters of the agent.
-     * @type {string}
-     * @memberof Agent
-     */
-    headquarters: string;
-    /**
-     * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
      * @type {number}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseLeaderboardsMostSubmittedChartsInner
      */
-    credits: number;
-    /**
-     * The faction the agent started with.
-     * @type {string}
-     * @memberof Agent
-     */
-    startingFaction: string;
+    chartCount: number;
 }
 
 /**
- * Check if a given object implements the Agent interface.
+ * Check if a given object implements the GetStatus200ResponseLeaderboardsMostSubmittedChartsInner interface.
  */
-export function instanceOfAgent(value: object): boolean {
+export function instanceOfGetStatus200ResponseLeaderboardsMostSubmittedChartsInner(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "credits" in value;
-    isInstance = isInstance && "startingFaction" in value;
+    isInstance = isInstance && "agentSymbol" in value;
+    isInstance = isInstance && "chartCount" in value;
 
     return isInstance;
 }
 
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
+export function GetStatus200ResponseLeaderboardsMostSubmittedChartsInnerFromJSON(json: any): GetStatus200ResponseLeaderboardsMostSubmittedChartsInner {
+    return GetStatus200ResponseLeaderboardsMostSubmittedChartsInnerFromJSONTyped(json, false);
 }
 
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
+export function GetStatus200ResponseLeaderboardsMostSubmittedChartsInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseLeaderboardsMostSubmittedChartsInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
-        'credits': json['credits'],
-        'startingFaction': json['startingFaction'],
+        'agentSymbol': json['agentSymbol'],
+        'chartCount': json['chartCount'],
     };
 }
 
-export function AgentToJSON(value?: Agent | null): any {
+export function GetStatus200ResponseLeaderboardsMostSubmittedChartsInnerToJSON(value?: GetStatus200ResponseLeaderboardsMostSubmittedChartsInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -92,11 +68,8 @@ export function AgentToJSON(value?: Agent | null): any {
     }
     return {
         
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
-        'credits': value.credits,
-        'startingFaction': value.startingFaction,
+        'agentSymbol': value.agentSymbol,
+        'chartCount': value.chartCount,
     };
 }
 

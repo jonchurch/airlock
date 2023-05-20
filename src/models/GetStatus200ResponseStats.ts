@@ -16,74 +16,66 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Agent
+ * @interface GetStatus200ResponseStats
  */
-export interface Agent {
+export interface GetStatus200ResponseStats {
     /**
      * 
-     * @type {string}
-     * @memberof Agent
-     */
-    accountId: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Agent
-     */
-    symbol: string;
-    /**
-     * The headquarters of the agent.
-     * @type {string}
-     * @memberof Agent
-     */
-    headquarters: string;
-    /**
-     * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
      * @type {number}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseStats
      */
-    credits: number;
+    agents: number;
     /**
-     * The faction the agent started with.
-     * @type {string}
-     * @memberof Agent
+     * 
+     * @type {number}
+     * @memberof GetStatus200ResponseStats
      */
-    startingFaction: string;
+    ships: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetStatus200ResponseStats
+     */
+    systems: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetStatus200ResponseStats
+     */
+    waypoints: number;
 }
 
 /**
- * Check if a given object implements the Agent interface.
+ * Check if a given object implements the GetStatus200ResponseStats interface.
  */
-export function instanceOfAgent(value: object): boolean {
+export function instanceOfGetStatus200ResponseStats(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "credits" in value;
-    isInstance = isInstance && "startingFaction" in value;
+    isInstance = isInstance && "agents" in value;
+    isInstance = isInstance && "ships" in value;
+    isInstance = isInstance && "systems" in value;
+    isInstance = isInstance && "waypoints" in value;
 
     return isInstance;
 }
 
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
+export function GetStatus200ResponseStatsFromJSON(json: any): GetStatus200ResponseStats {
+    return GetStatus200ResponseStatsFromJSONTyped(json, false);
 }
 
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
+export function GetStatus200ResponseStatsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseStats {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
-        'credits': json['credits'],
-        'startingFaction': json['startingFaction'],
+        'agents': json['agents'],
+        'ships': json['ships'],
+        'systems': json['systems'],
+        'waypoints': json['waypoints'],
     };
 }
 
-export function AgentToJSON(value?: Agent | null): any {
+export function GetStatus200ResponseStatsToJSON(value?: GetStatus200ResponseStats | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -92,11 +84,10 @@ export function AgentToJSON(value?: Agent | null): any {
     }
     return {
         
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
-        'credits': value.credits,
-        'startingFaction': value.startingFaction,
+        'agents': value.agents,
+        'ships': value.ships,
+        'systems': value.systems,
+        'waypoints': value.waypoints,
     };
 }
 

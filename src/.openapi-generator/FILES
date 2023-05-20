@@ -51,6 +51,14 @@ models/GetMyShips200Response.ts
 models/GetShipCooldown200Response.ts
 models/GetShipNav200Response.ts
 models/GetShipyard200Response.ts
+models/GetStatus200Response.ts
+models/GetStatus200ResponseAnnouncementsInner.ts
+models/GetStatus200ResponseLeaderboards.ts
+models/GetStatus200ResponseLeaderboardsMostCreditsInner.ts
+models/GetStatus200ResponseLeaderboardsMostSubmittedChartsInner.ts
+models/GetStatus200ResponseLinksInner.ts
+models/GetStatus200ResponseServerResets.ts
+models/GetStatus200ResponseStats.ts
 models/GetSystem200Response.ts
 models/GetSystemWaypoints200Response.ts
 models/GetSystems200Response.ts
@@ -69,6 +77,8 @@ models/Meta.ts
 models/NavigateShip200Response.ts
 models/NavigateShip200ResponseData.ts
 models/NavigateShipRequest.ts
+models/NegotiateContract200Response.ts
+models/NegotiateContract200ResponseData.ts
 models/OrbitShip200Response.ts
 models/OrbitShip200ResponseData.ts
 models/PatchShipNavRequest.ts

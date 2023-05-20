@@ -63,11 +63,18 @@ export interface Contract {
      */
     fulfilled: boolean;
     /**
-     * The time at which the contract expires
+     * Deprecated in favor of deadlineToAccept
+     * @type {string}
+     * @memberof Contract
+     * @deprecated
+     */
+    expiration: string;
+    /**
+     * The time at which the contract is no longer available to be accepted
      * @type {string}
      * @memberof Contract
      */
-    expiration: string;
+    deadlineToAccept?: string;
 }
 
 
@@ -115,6 +122,7 @@ export function ContractFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'accepted': json['accepted'],
         'fulfilled': json['fulfilled'],
         'expiration': json['expiration'],
+        'deadlineToAccept': !exists(json, 'deadlineToAccept') ? undefined : json['deadlineToAccept'],
     };
 }
 
@@ -134,6 +142,7 @@ export function ContractToJSON(value?: Contract | null): any {
         'accepted': value.accepted,
         'fulfilled': value.fulfilled,
         'expiration': value.expiration,
+        'deadlineToAccept': value.deadlineToAccept,
     };
 }
 

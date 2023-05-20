@@ -15,10 +15,13 @@
 
 import * as runtime from '../runtime';
 import type {
+  GetStatus200Response,
   Register201Response,
   RegisterRequest,
 } from '../models';
 import {
+    GetStatus200ResponseFromJSON,
+    GetStatus200ResponseToJSON,
     Register201ResponseFromJSON,
     Register201ResponseToJSON,
     RegisterRequestFromJSON,
@@ -33,6 +36,42 @@ export interface RegisterOperationRequest {
  * 
  */
 export class DefaultApi extends runtime.BaseAPI {
+
+    /**
+     * Return the status of the game server.
+     * Get Status
+     */
+    async getStatusRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetStatus200Response>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetStatus200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Return the status of the game server.
+     * Get Status
+     */
+    async getStatus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetStatus200Response> {
+        const response = await this.getStatusRaw(initOverrides);
+        return await response.value();
+    }
 
     /**
      * Creates a new agent and ties it to a temporary Account.  The agent symbol is a 3-14 character string that will represent your agent. This symbol will prefix the symbol of every ship you own. Agent symbols will be cast to all uppercase characters.  A new agent will be granted an authorization token, a contract with their starting faction, a command ship with a jump drive, and one hundred thousand credits.  > #### Keep your token safe and secure > > Save your token during the alpha phase. There is no way to regenerate this token without starting a new agent. In the future you will be able to generate and manage your tokens from the SpaceTraders website.  You can accept your contract using the `/my/contracts/{contractId}/accept` endpoint. You will want to navigate your command ship to a nearby asteroid field and execute the `/my/ships/{shipSymbol}/extract` endpoint to mine various types of ores and minerals.  Return to the contract destination and execute the `/my/ships/{shipSymbol}/deliver` endpoint to deposit goods into the contract.  When your contract is fulfilled, you can call `/my/contracts/{contractId}/fulfill` to retrieve payment.

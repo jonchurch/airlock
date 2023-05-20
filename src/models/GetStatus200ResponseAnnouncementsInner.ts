@@ -16,74 +16,50 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface Agent
+ * @interface GetStatus200ResponseAnnouncementsInner
  */
-export interface Agent {
+export interface GetStatus200ResponseAnnouncementsInner {
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseAnnouncementsInner
      */
-    accountId: string;
+    title: string;
     /**
      * 
      * @type {string}
-     * @memberof Agent
+     * @memberof GetStatus200ResponseAnnouncementsInner
      */
-    symbol: string;
-    /**
-     * The headquarters of the agent.
-     * @type {string}
-     * @memberof Agent
-     */
-    headquarters: string;
-    /**
-     * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
-     * @type {number}
-     * @memberof Agent
-     */
-    credits: number;
-    /**
-     * The faction the agent started with.
-     * @type {string}
-     * @memberof Agent
-     */
-    startingFaction: string;
+    body: string;
 }
 
 /**
- * Check if a given object implements the Agent interface.
+ * Check if a given object implements the GetStatus200ResponseAnnouncementsInner interface.
  */
-export function instanceOfAgent(value: object): boolean {
+export function instanceOfGetStatus200ResponseAnnouncementsInner(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "credits" in value;
-    isInstance = isInstance && "startingFaction" in value;
+    isInstance = isInstance && "title" in value;
+    isInstance = isInstance && "body" in value;
 
     return isInstance;
 }
 
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
+export function GetStatus200ResponseAnnouncementsInnerFromJSON(json: any): GetStatus200ResponseAnnouncementsInner {
+    return GetStatus200ResponseAnnouncementsInnerFromJSONTyped(json, false);
 }
 
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
+export function GetStatus200ResponseAnnouncementsInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseAnnouncementsInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
-        'credits': json['credits'],
-        'startingFaction': json['startingFaction'],
+        'title': json['title'],
+        'body': json['body'],
     };
 }
 
-export function AgentToJSON(value?: Agent | null): any {
+export function GetStatus200ResponseAnnouncementsInnerToJSON(value?: GetStatus200ResponseAnnouncementsInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -92,11 +68,8 @@ export function AgentToJSON(value?: Agent | null): any {
     }
     return {
         
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
-        'credits': value.credits,
-        'startingFaction': value.startingFaction,
+        'title': value.title,
+        'body': value.body,
     };
 }
 

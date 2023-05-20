@@ -56,6 +56,12 @@ export interface Faction {
      * @memberof Faction
      */
     traits: Array<FactionTrait>;
+    /**
+     * Whether or not the faction is currently recruiting new agents.
+     * @type {boolean}
+     * @memberof Faction
+     */
+    isRecruiting: boolean;
 }
 
 /**
@@ -68,6 +74,7 @@ export function instanceOfFaction(value: object): boolean {
     isInstance = isInstance && "description" in value;
     isInstance = isInstance && "headquarters" in value;
     isInstance = isInstance && "traits" in value;
+    isInstance = isInstance && "isRecruiting" in value;
 
     return isInstance;
 }
@@ -87,6 +94,7 @@ export function FactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): F
         'description': json['description'],
         'headquarters': json['headquarters'],
         'traits': ((json['traits'] as Array<any>).map(FactionTraitFromJSON)),
+        'isRecruiting': json['isRecruiting'],
     };
 }
 
@@ -104,6 +112,7 @@ export function FactionToJSON(value?: Faction | null): any {
         'description': value.description,
         'headquarters': value.headquarters,
         'traits': ((value.traits as Array<any>).map(FactionTraitToJSON)),
+        'isRecruiting': value.isRecruiting,
     };
 }
 

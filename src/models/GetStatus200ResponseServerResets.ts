@@ -14,67 +14,52 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * A cooldown is a period of time in which a ship cannot perform certain actions.
+ * 
  * @export
- * @interface Cooldown
+ * @interface GetStatus200ResponseServerResets
  */
-export interface Cooldown {
+export interface GetStatus200ResponseServerResets {
     /**
-     * The symbol of the ship that is on cooldown
+     * The date and time when the game server will reset.
      * @type {string}
-     * @memberof Cooldown
+     * @memberof GetStatus200ResponseServerResets
      */
-    shipSymbol: string;
+    next: string;
     /**
-     * The total duration of the cooldown in seconds
-     * @type {number}
-     * @memberof Cooldown
-     */
-    totalSeconds: number;
-    /**
-     * The remaining duration of the cooldown in seconds
-     * @type {number}
-     * @memberof Cooldown
-     */
-    remainingSeconds: number;
-    /**
-     * The date and time when the cooldown expires in ISO 8601 format
+     * How often we intend to reset the game server.
      * @type {string}
-     * @memberof Cooldown
+     * @memberof GetStatus200ResponseServerResets
      */
-    expiration?: string;
+    frequency: string;
 }
 
 /**
- * Check if a given object implements the Cooldown interface.
+ * Check if a given object implements the GetStatus200ResponseServerResets interface.
  */
-export function instanceOfCooldown(value: object): boolean {
+export function instanceOfGetStatus200ResponseServerResets(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "shipSymbol" in value;
-    isInstance = isInstance && "totalSeconds" in value;
-    isInstance = isInstance && "remainingSeconds" in value;
+    isInstance = isInstance && "next" in value;
+    isInstance = isInstance && "frequency" in value;
 
     return isInstance;
 }
 
-export function CooldownFromJSON(json: any): Cooldown {
-    return CooldownFromJSONTyped(json, false);
+export function GetStatus200ResponseServerResetsFromJSON(json: any): GetStatus200ResponseServerResets {
+    return GetStatus200ResponseServerResetsFromJSONTyped(json, false);
 }
 
-export function CooldownFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cooldown {
+export function GetStatus200ResponseServerResetsFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetStatus200ResponseServerResets {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'shipSymbol': json['shipSymbol'],
-        'totalSeconds': json['totalSeconds'],
-        'remainingSeconds': json['remainingSeconds'],
-        'expiration': !exists(json, 'expiration') ? undefined : json['expiration'],
+        'next': json['next'],
+        'frequency': json['frequency'],
     };
 }
 
-export function CooldownToJSON(value?: Cooldown | null): any {
+export function GetStatus200ResponseServerResetsToJSON(value?: GetStatus200ResponseServerResets | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -83,10 +68,8 @@ export function CooldownToJSON(value?: Cooldown | null): any {
     }
     return {
         
-        'shipSymbol': value.shipSymbol,
-        'totalSeconds': value.totalSeconds,
-        'remainingSeconds': value.remainingSeconds,
-        'expiration': value.expiration,
+        'next': value.next,
+        'frequency': value.frequency,
     };
 }
 

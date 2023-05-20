@@ -19,6 +19,12 @@ import {
     AgentFromJSONTyped,
     AgentToJSON,
 } from './Agent';
+import type { MarketTransaction } from './MarketTransaction';
+import {
+    MarketTransactionFromJSON,
+    MarketTransactionFromJSONTyped,
+    MarketTransactionToJSON,
+} from './MarketTransaction';
 import type { ShipFuel } from './ShipFuel';
 import {
     ShipFuelFromJSON,
@@ -44,6 +50,12 @@ export interface RefuelShip200ResponseData {
      * @memberof RefuelShip200ResponseData
      */
     fuel: ShipFuel;
+    /**
+     * 
+     * @type {MarketTransaction}
+     * @memberof RefuelShip200ResponseData
+     */
+    transaction: MarketTransaction;
 }
 
 /**
@@ -53,6 +65,7 @@ export function instanceOfRefuelShip200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "agent" in value;
     isInstance = isInstance && "fuel" in value;
+    isInstance = isInstance && "transaction" in value;
 
     return isInstance;
 }
@@ -69,6 +82,7 @@ export function RefuelShip200ResponseDataFromJSONTyped(json: any, ignoreDiscrimi
         
         'agent': AgentFromJSON(json['agent']),
         'fuel': ShipFuelFromJSON(json['fuel']),
+        'transaction': MarketTransactionFromJSON(json['transaction']),
     };
 }
 
@@ -83,6 +97,7 @@ export function RefuelShip200ResponseDataToJSON(value?: RefuelShip200ResponseDat
         
         'agent': AgentToJSON(value.agent),
         'fuel': ShipFuelToJSON(value.fuel),
+        'transaction': MarketTransactionToJSON(value.transaction),
     };
 }
 
