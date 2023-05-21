@@ -12,67 +12,37 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ShipCargo } from './ShipCargo';
-import {
-    ShipCargoFromJSON,
-    ShipCargoFromJSONTyped,
-    ShipCargoToJSON,
-} from './ShipCargo';
-import type { ShipCrew } from './ShipCrew';
-import {
-    ShipCrewFromJSON,
-    ShipCrewFromJSONTyped,
-    ShipCrewToJSON,
-} from './ShipCrew';
-import type { ShipEngine } from './ShipEngine';
-import {
-    ShipEngineFromJSON,
-    ShipEngineFromJSONTyped,
-    ShipEngineToJSON,
-} from './ShipEngine';
-import type { ShipFrame } from './ShipFrame';
-import {
-    ShipFrameFromJSON,
-    ShipFrameFromJSONTyped,
-    ShipFrameToJSON,
-} from './ShipFrame';
-import type { ShipFuel } from './ShipFuel';
-import {
-    ShipFuelFromJSON,
-    ShipFuelFromJSONTyped,
-    ShipFuelToJSON,
-} from './ShipFuel';
-import type { ShipModule } from './ShipModule';
-import {
-    ShipModuleFromJSON,
-    ShipModuleFromJSONTyped,
-    ShipModuleToJSON,
-} from './ShipModule';
-import type { ShipMount } from './ShipMount';
-import {
-    ShipMountFromJSON,
-    ShipMountFromJSONTyped,
-    ShipMountToJSON,
-} from './ShipMount';
-import type { ShipNav } from './ShipNav';
-import {
-    ShipNavFromJSON,
-    ShipNavFromJSONTyped,
-    ShipNavToJSON,
-} from './ShipNav';
-import type { ShipReactor } from './ShipReactor';
-import {
-    ShipReactorFromJSON,
-    ShipReactorFromJSONTyped,
-    ShipReactorToJSON,
-} from './ShipReactor';
-import type { ShipRegistration } from './ShipRegistration';
-import {
-    ShipRegistrationFromJSON,
-    ShipRegistrationFromJSONTyped,
-    ShipRegistrationToJSON,
-} from './ShipRegistration';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipCargo } from './ship-cargo';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipCrew } from './ship-crew';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipEngine } from './ship-engine';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipFrame } from './ship-frame';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipFuel } from './ship-fuel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipModule } from './ship-module';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipMount } from './ship-mount';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipNav } from './ship-nav';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipReactor } from './ship-reactor';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipRegistration } from './ship-registration';
 
 /**
  * A ship
@@ -85,133 +55,66 @@ export interface Ship {
      * @type {string}
      * @memberof Ship
      */
-    symbol: string;
+    'symbol': string;
     /**
      * 
      * @type {ShipRegistration}
      * @memberof Ship
      */
-    registration: ShipRegistration;
+    'registration': ShipRegistration;
     /**
      * 
      * @type {ShipNav}
      * @memberof Ship
      */
-    nav: ShipNav;
+    'nav': ShipNav;
     /**
      * 
      * @type {ShipCrew}
      * @memberof Ship
      */
-    crew: ShipCrew;
+    'crew': ShipCrew;
     /**
      * 
      * @type {ShipFrame}
      * @memberof Ship
      */
-    frame: ShipFrame;
+    'frame': ShipFrame;
     /**
      * 
      * @type {ShipReactor}
      * @memberof Ship
      */
-    reactor: ShipReactor;
+    'reactor': ShipReactor;
     /**
      * 
      * @type {ShipEngine}
      * @memberof Ship
      */
-    engine: ShipEngine;
+    'engine': ShipEngine;
     /**
      * 
      * @type {Array<ShipModule>}
      * @memberof Ship
      */
-    modules: Array<ShipModule>;
+    'modules': Array<ShipModule>;
     /**
      * 
      * @type {Array<ShipMount>}
      * @memberof Ship
      */
-    mounts: Array<ShipMount>;
+    'mounts': Array<ShipMount>;
     /**
      * 
      * @type {ShipCargo}
      * @memberof Ship
      */
-    cargo: ShipCargo;
+    'cargo': ShipCargo;
     /**
      * 
      * @type {ShipFuel}
      * @memberof Ship
      */
-    fuel: ShipFuel;
-}
-
-/**
- * Check if a given object implements the Ship interface.
- */
-export function instanceOfShip(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "registration" in value;
-    isInstance = isInstance && "nav" in value;
-    isInstance = isInstance && "crew" in value;
-    isInstance = isInstance && "frame" in value;
-    isInstance = isInstance && "reactor" in value;
-    isInstance = isInstance && "engine" in value;
-    isInstance = isInstance && "modules" in value;
-    isInstance = isInstance && "mounts" in value;
-    isInstance = isInstance && "cargo" in value;
-    isInstance = isInstance && "fuel" in value;
-
-    return isInstance;
-}
-
-export function ShipFromJSON(json: any): Ship {
-    return ShipFromJSONTyped(json, false);
-}
-
-export function ShipFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ship {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-        'registration': ShipRegistrationFromJSON(json['registration']),
-        'nav': ShipNavFromJSON(json['nav']),
-        'crew': ShipCrewFromJSON(json['crew']),
-        'frame': ShipFrameFromJSON(json['frame']),
-        'reactor': ShipReactorFromJSON(json['reactor']),
-        'engine': ShipEngineFromJSON(json['engine']),
-        'modules': ((json['modules'] as Array<any>).map(ShipModuleFromJSON)),
-        'mounts': ((json['mounts'] as Array<any>).map(ShipMountFromJSON)),
-        'cargo': ShipCargoFromJSON(json['cargo']),
-        'fuel': ShipFuelFromJSON(json['fuel']),
-    };
-}
-
-export function ShipToJSON(value?: Ship | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-        'registration': ShipRegistrationToJSON(value.registration),
-        'nav': ShipNavToJSON(value.nav),
-        'crew': ShipCrewToJSON(value.crew),
-        'frame': ShipFrameToJSON(value.frame),
-        'reactor': ShipReactorToJSON(value.reactor),
-        'engine': ShipEngineToJSON(value.engine),
-        'modules': ((value.modules as Array<any>).map(ShipModuleToJSON)),
-        'mounts': ((value.mounts as Array<any>).map(ShipMountToJSON)),
-        'cargo': ShipCargoToJSON(value.cargo),
-        'fuel': ShipFuelToJSON(value.fuel),
-    };
+    'fuel': ShipFuel;
 }
 

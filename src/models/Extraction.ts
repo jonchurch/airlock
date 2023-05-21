@@ -12,13 +12,10 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ExtractionYield } from './ExtractionYield';
-import {
-    ExtractionYieldFromJSON,
-    ExtractionYieldFromJSONTyped,
-    ExtractionYieldToJSON,
-} from './ExtractionYield';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { ExtractionYield } from './extraction-yield';
 
 /**
  * 
@@ -31,52 +28,12 @@ export interface Extraction {
      * @type {string}
      * @memberof Extraction
      */
-    shipSymbol: string;
+    'shipSymbol': string;
     /**
      * 
      * @type {ExtractionYield}
      * @memberof Extraction
      */
-    _yield: ExtractionYield;
-}
-
-/**
- * Check if a given object implements the Extraction interface.
- */
-export function instanceOfExtraction(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "shipSymbol" in value;
-    isInstance = isInstance && "_yield" in value;
-
-    return isInstance;
-}
-
-export function ExtractionFromJSON(json: any): Extraction {
-    return ExtractionFromJSONTyped(json, false);
-}
-
-export function ExtractionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Extraction {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'shipSymbol': json['shipSymbol'],
-        '_yield': ExtractionYieldFromJSON(json['yield']),
-    };
-}
-
-export function ExtractionToJSON(value?: Extraction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'shipSymbol': value.shipSymbol,
-        'yield': ExtractionYieldToJSON(value._yield),
-    };
+    'yield': ExtractionYield;
 }
 

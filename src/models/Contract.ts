@@ -12,13 +12,10 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ContractTerms } from './ContractTerms';
-import {
-    ContractTermsFromJSON,
-    ContractTermsFromJSONTyped,
-    ContractTermsToJSON,
-} from './ContractTerms';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { ContractTerms } from './contract-terms';
 
 /**
  * 
@@ -31,109 +28,58 @@ export interface Contract {
      * @type {string}
      * @memberof Contract
      */
-    id: string;
+    'id': string;
     /**
      * The symbol of the faction that this contract is for.
      * @type {string}
      * @memberof Contract
      */
-    factionSymbol: string;
+    'factionSymbol': string;
     /**
      * 
      * @type {string}
      * @memberof Contract
      */
-    type: ContractTypeEnum;
+    'type': ContractTypeEnum;
     /**
      * 
      * @type {ContractTerms}
      * @memberof Contract
      */
-    terms: ContractTerms;
+    'terms': ContractTerms;
     /**
      * Whether the contract has been accepted by the agent
      * @type {boolean}
      * @memberof Contract
      */
-    accepted: boolean;
+    'accepted': boolean;
     /**
      * Whether the contract has been fulfilled
      * @type {boolean}
      * @memberof Contract
      */
-    fulfilled: boolean;
+    'fulfilled': boolean;
     /**
-     * The time at which the contract expires
+     * Deprecated in favor of deadlineToAccept
+     * @type {string}
+     * @memberof Contract
+     * @deprecated
+     */
+    'expiration': string;
+    /**
+     * The time at which the contract is no longer available to be accepted
      * @type {string}
      * @memberof Contract
      */
-    expiration: string;
+    'deadlineToAccept'?: string;
 }
 
-
-/**
- * @export
- */
 export const ContractTypeEnum = {
     Procurement: 'PROCUREMENT',
     Transport: 'TRANSPORT',
     Shuttle: 'SHUTTLE'
 } as const;
+
 export type ContractTypeEnum = typeof ContractTypeEnum[keyof typeof ContractTypeEnum];
 
-
-/**
- * Check if a given object implements the Contract interface.
- */
-export function instanceOfContract(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "id" in value;
-    isInstance = isInstance && "factionSymbol" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "terms" in value;
-    isInstance = isInstance && "accepted" in value;
-    isInstance = isInstance && "fulfilled" in value;
-    isInstance = isInstance && "expiration" in value;
-
-    return isInstance;
-}
-
-export function ContractFromJSON(json: any): Contract {
-    return ContractFromJSONTyped(json, false);
-}
-
-export function ContractFromJSONTyped(json: any, ignoreDiscriminator: boolean): Contract {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'id': json['id'],
-        'factionSymbol': json['factionSymbol'],
-        'type': json['type'],
-        'terms': ContractTermsFromJSON(json['terms']),
-        'accepted': json['accepted'],
-        'fulfilled': json['fulfilled'],
-        'expiration': json['expiration'],
-    };
-}
-
-export function ContractToJSON(value?: Contract | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'id': value.id,
-        'factionSymbol': value.factionSymbol,
-        'type': value.type,
-        'terms': ContractTermsToJSON(value.terms),
-        'accepted': value.accepted,
-        'fulfilled': value.fulfilled,
-        'expiration': value.expiration,
-    };
-}
 

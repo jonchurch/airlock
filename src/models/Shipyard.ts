@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { ShipyardShip } from './ShipyardShip';
-import {
-    ShipyardShipFromJSON,
-    ShipyardShipFromJSONTyped,
-    ShipyardShipToJSON,
-} from './ShipyardShip';
-import type { ShipyardShipTypesInner } from './ShipyardShipTypesInner';
-import {
-    ShipyardShipTypesInnerFromJSON,
-    ShipyardShipTypesInnerFromJSONTyped,
-    ShipyardShipTypesInnerToJSON,
-} from './ShipyardShipTypesInner';
-import type { ShipyardTransaction } from './ShipyardTransaction';
-import {
-    ShipyardTransactionFromJSON,
-    ShipyardTransactionFromJSONTyped,
-    ShipyardTransactionToJSON,
-} from './ShipyardTransaction';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipyardShip } from './shipyard-ship';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipyardShipTypesInner } from './shipyard-ship-types-inner';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipyardTransaction } from './shipyard-transaction';
 
 /**
  * 
@@ -43,68 +34,24 @@ export interface Shipyard {
      * @type {string}
      * @memberof Shipyard
      */
-    symbol: string;
+    'symbol': string;
     /**
      * The list of ship types available for purchase at this shipyard.
      * @type {Array<ShipyardShipTypesInner>}
      * @memberof Shipyard
      */
-    shipTypes: Array<ShipyardShipTypesInner>;
+    'shipTypes': Array<ShipyardShipTypesInner>;
     /**
      * The list of recent transactions at this shipyard.
      * @type {Array<ShipyardTransaction>}
      * @memberof Shipyard
      */
-    transactions?: Array<ShipyardTransaction>;
+    'transactions'?: Array<ShipyardTransaction>;
     /**
      * The ships that are currently available for purchase at the shipyard.
      * @type {Array<ShipyardShip>}
      * @memberof Shipyard
      */
-    ships?: Array<ShipyardShip>;
-}
-
-/**
- * Check if a given object implements the Shipyard interface.
- */
-export function instanceOfShipyard(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "shipTypes" in value;
-
-    return isInstance;
-}
-
-export function ShipyardFromJSON(json: any): Shipyard {
-    return ShipyardFromJSONTyped(json, false);
-}
-
-export function ShipyardFromJSONTyped(json: any, ignoreDiscriminator: boolean): Shipyard {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-        'shipTypes': ((json['shipTypes'] as Array<any>).map(ShipyardShipTypesInnerFromJSON)),
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(ShipyardTransactionFromJSON)),
-        'ships': !exists(json, 'ships') ? undefined : ((json['ships'] as Array<any>).map(ShipyardShipFromJSON)),
-    };
-}
-
-export function ShipyardToJSON(value?: Shipyard | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-        'shipTypes': ((value.shipTypes as Array<any>).map(ShipyardShipTypesInnerToJSON)),
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(ShipyardTransactionToJSON)),
-        'ships': value.ships === undefined ? undefined : ((value.ships as Array<any>).map(ShipyardShipToJSON)),
-    };
+    'ships'?: Array<ShipyardShip>;
 }
 

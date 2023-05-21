@@ -12,7 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+
+
 /**
  * 
  * @export
@@ -24,70 +25,30 @@ export interface Agent {
      * @type {string}
      * @memberof Agent
      */
-    accountId: string;
+    'accountId': string;
     /**
      * 
      * @type {string}
      * @memberof Agent
      */
-    symbol: string;
+    'symbol': string;
     /**
      * The headquarters of the agent.
      * @type {string}
      * @memberof Agent
      */
-    headquarters: string;
+    'headquarters': string;
     /**
      * The number of credits the agent has available. Credits can be negative if funds have been overdrawn.
      * @type {number}
      * @memberof Agent
      */
-    credits: number;
-}
-
-/**
- * Check if a given object implements the Agent interface.
- */
-export function instanceOfAgent(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "credits" in value;
-
-    return isInstance;
-}
-
-export function AgentFromJSON(json: any): Agent {
-    return AgentFromJSONTyped(json, false);
-}
-
-export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Agent {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'accountId': json['accountId'],
-        'symbol': json['symbol'],
-        'headquarters': json['headquarters'],
-        'credits': json['credits'],
-    };
-}
-
-export function AgentToJSON(value?: Agent | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'accountId': value.accountId,
-        'symbol': value.symbol,
-        'headquarters': value.headquarters,
-        'credits': value.credits,
-    };
+    'credits': number;
+    /**
+     * The faction the agent started with.
+     * @type {string}
+     * @memberof Agent
+     */
+    'startingFaction': string;
 }
 

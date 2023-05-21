@@ -12,7 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+
+
 /**
  * 
  * @export
@@ -24,61 +25,18 @@ export interface Meta {
      * @type {number}
      * @memberof Meta
      */
-    total: number;
+    'total': number;
     /**
      * 
      * @type {number}
      * @memberof Meta
      */
-    page: number;
+    'page': number;
     /**
      * 
      * @type {number}
      * @memberof Meta
      */
-    limit: number;
-}
-
-/**
- * Check if a given object implements the Meta interface.
- */
-export function instanceOfMeta(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "total" in value;
-    isInstance = isInstance && "page" in value;
-    isInstance = isInstance && "limit" in value;
-
-    return isInstance;
-}
-
-export function MetaFromJSON(json: any): Meta {
-    return MetaFromJSONTyped(json, false);
-}
-
-export function MetaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Meta {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'total': json['total'],
-        'page': json['page'],
-        'limit': json['limit'],
-    };
-}
-
-export function MetaToJSON(value?: Meta | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'total': value.total,
-        'page': value.page,
-        'limit': value.limit,
-    };
+    'limit': number;
 }
 

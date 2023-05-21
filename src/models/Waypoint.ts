@@ -12,37 +12,22 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { Chart } from './Chart';
-import {
-    ChartFromJSON,
-    ChartFromJSONTyped,
-    ChartToJSON,
-} from './Chart';
-import type { WaypointFaction } from './WaypointFaction';
-import {
-    WaypointFactionFromJSON,
-    WaypointFactionFromJSONTyped,
-    WaypointFactionToJSON,
-} from './WaypointFaction';
-import type { WaypointOrbital } from './WaypointOrbital';
-import {
-    WaypointOrbitalFromJSON,
-    WaypointOrbitalFromJSONTyped,
-    WaypointOrbitalToJSON,
-} from './WaypointOrbital';
-import type { WaypointTrait } from './WaypointTrait';
-import {
-    WaypointTraitFromJSON,
-    WaypointTraitFromJSONTyped,
-    WaypointTraitToJSON,
-} from './WaypointTrait';
-import type { WaypointType } from './WaypointType';
-import {
-    WaypointTypeFromJSON,
-    WaypointTypeFromJSONTyped,
-    WaypointTypeToJSON,
-} from './WaypointType';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { Chart } from './chart';
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointFaction } from './waypoint-faction';
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointOrbital } from './waypoint-orbital';
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointTrait } from './waypoint-trait';
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointType } from './waypoint-type';
 
 /**
  * A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
@@ -55,113 +40,56 @@ export interface Waypoint {
      * @type {string}
      * @memberof Waypoint
      */
-    symbol: string;
+    'symbol': string;
     /**
      * 
      * @type {WaypointType}
      * @memberof Waypoint
      */
-    type: WaypointType;
+    'type': WaypointType;
     /**
      * 
      * @type {string}
      * @memberof Waypoint
      */
-    systemSymbol: string;
+    'systemSymbol': string;
     /**
      * 
      * @type {number}
      * @memberof Waypoint
      */
-    x: number;
+    'x': number;
     /**
      * 
      * @type {number}
      * @memberof Waypoint
      */
-    y: number;
+    'y': number;
     /**
      * 
      * @type {Array<WaypointOrbital>}
      * @memberof Waypoint
      */
-    orbitals: Array<WaypointOrbital>;
+    'orbitals': Array<WaypointOrbital>;
     /**
      * 
      * @type {WaypointFaction}
      * @memberof Waypoint
      */
-    faction?: WaypointFaction;
+    'faction'?: WaypointFaction;
     /**
      * The traits of the waypoint.
      * @type {Array<WaypointTrait>}
      * @memberof Waypoint
      */
-    traits: Array<WaypointTrait>;
+    'traits': Array<WaypointTrait>;
     /**
      * 
      * @type {Chart}
      * @memberof Waypoint
      */
-    chart?: Chart;
+    'chart'?: Chart;
 }
 
-/**
- * Check if a given object implements the Waypoint interface.
- */
-export function instanceOfWaypoint(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "systemSymbol" in value;
-    isInstance = isInstance && "x" in value;
-    isInstance = isInstance && "y" in value;
-    isInstance = isInstance && "orbitals" in value;
-    isInstance = isInstance && "traits" in value;
 
-    return isInstance;
-}
-
-export function WaypointFromJSON(json: any): Waypoint {
-    return WaypointFromJSONTyped(json, false);
-}
-
-export function WaypointFromJSONTyped(json: any, ignoreDiscriminator: boolean): Waypoint {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-        'type': WaypointTypeFromJSON(json['type']),
-        'systemSymbol': json['systemSymbol'],
-        'x': json['x'],
-        'y': json['y'],
-        'orbitals': ((json['orbitals'] as Array<any>).map(WaypointOrbitalFromJSON)),
-        'faction': !exists(json, 'faction') ? undefined : WaypointFactionFromJSON(json['faction']),
-        'traits': ((json['traits'] as Array<any>).map(WaypointTraitFromJSON)),
-        'chart': !exists(json, 'chart') ? undefined : ChartFromJSON(json['chart']),
-    };
-}
-
-export function WaypointToJSON(value?: Waypoint | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-        'type': WaypointTypeToJSON(value.type),
-        'systemSymbol': value.systemSymbol,
-        'x': value.x,
-        'y': value.y,
-        'orbitals': ((value.orbitals as Array<any>).map(WaypointOrbitalToJSON)),
-        'faction': WaypointFactionToJSON(value.faction),
-        'traits': ((value.traits as Array<any>).map(WaypointTraitToJSON)),
-        'chart': ChartToJSON(value.chart),
-    };
-}
 

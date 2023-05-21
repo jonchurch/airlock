@@ -12,7 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+
+
 /**
  * The chart of a system or waypoint, which makes the location visible to other agents.
  * @export
@@ -24,58 +25,18 @@ export interface Chart {
      * @type {string}
      * @memberof Chart
      */
-    waypointSymbol?: string;
+    'waypointSymbol'?: string;
     /**
      * 
      * @type {string}
      * @memberof Chart
      */
-    submittedBy?: string;
+    'submittedBy'?: string;
     /**
      * 
      * @type {string}
      * @memberof Chart
      */
-    submittedOn?: string;
-}
-
-/**
- * Check if a given object implements the Chart interface.
- */
-export function instanceOfChart(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
-}
-
-export function ChartFromJSON(json: any): Chart {
-    return ChartFromJSONTyped(json, false);
-}
-
-export function ChartFromJSONTyped(json: any, ignoreDiscriminator: boolean): Chart {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'waypointSymbol': !exists(json, 'waypointSymbol') ? undefined : json['waypointSymbol'],
-        'submittedBy': !exists(json, 'submittedBy') ? undefined : json['submittedBy'],
-        'submittedOn': !exists(json, 'submittedOn') ? undefined : json['submittedOn'],
-    };
-}
-
-export function ChartToJSON(value?: Chart | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'waypointSymbol': value.waypointSymbol,
-        'submittedBy': value.submittedBy,
-        'submittedOn': value.submittedOn,
-    };
+    'submittedOn'?: string;
 }
 

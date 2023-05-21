@@ -12,7 +12,8 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+
+
 /**
  * A cooldown is a period of time in which a ship cannot perform certain actions.
  * @export
@@ -24,70 +25,24 @@ export interface Cooldown {
      * @type {string}
      * @memberof Cooldown
      */
-    shipSymbol: string;
+    'shipSymbol': string;
     /**
      * The total duration of the cooldown in seconds
      * @type {number}
      * @memberof Cooldown
      */
-    totalSeconds: number;
+    'totalSeconds': number;
     /**
      * The remaining duration of the cooldown in seconds
      * @type {number}
      * @memberof Cooldown
      */
-    remainingSeconds: number;
+    'remainingSeconds': number;
     /**
      * The date and time when the cooldown expires in ISO 8601 format
      * @type {string}
      * @memberof Cooldown
      */
-    expiration: string;
-}
-
-/**
- * Check if a given object implements the Cooldown interface.
- */
-export function instanceOfCooldown(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "shipSymbol" in value;
-    isInstance = isInstance && "totalSeconds" in value;
-    isInstance = isInstance && "remainingSeconds" in value;
-    isInstance = isInstance && "expiration" in value;
-
-    return isInstance;
-}
-
-export function CooldownFromJSON(json: any): Cooldown {
-    return CooldownFromJSONTyped(json, false);
-}
-
-export function CooldownFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cooldown {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'shipSymbol': json['shipSymbol'],
-        'totalSeconds': json['totalSeconds'],
-        'remainingSeconds': json['remainingSeconds'],
-        'expiration': json['expiration'],
-    };
-}
-
-export function CooldownToJSON(value?: Cooldown | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'shipSymbol': value.shipSymbol,
-        'totalSeconds': value.totalSeconds,
-        'remainingSeconds': value.remainingSeconds,
-        'expiration': value.expiration,
-    };
+    'expiration'?: string;
 }
 

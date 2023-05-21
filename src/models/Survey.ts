@@ -12,13 +12,10 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { SurveyDeposit } from './SurveyDeposit';
-import {
-    SurveyDepositFromJSON,
-    SurveyDepositFromJSONTyped,
-    SurveyDepositToJSON,
-} from './SurveyDeposit';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { SurveyDeposit } from './survey-deposit';
 
 /**
  * A resource survey of a waypoint, detailing a specific extraction location and the types of resources that can be found there.
@@ -31,91 +28,39 @@ export interface Survey {
      * @type {string}
      * @memberof Survey
      */
-    signature: string;
+    'signature': string;
     /**
      * The symbol of the waypoint that this survey is for.
      * @type {string}
      * @memberof Survey
      */
-    symbol: string;
+    'symbol': string;
     /**
      * A list of deposits that can be found at this location.
      * @type {Array<SurveyDeposit>}
      * @memberof Survey
      */
-    deposits: Array<SurveyDeposit>;
+    'deposits': Array<SurveyDeposit>;
     /**
      * The date and time when the survey expires. After this date and time, the survey will no longer be available for extraction.
      * @type {string}
      * @memberof Survey
      */
-    expiration: string;
+    'expiration': string;
     /**
      * The size of the deposit. This value indicates how much can be extracted from the survey before it is exhausted.
      * @type {string}
      * @memberof Survey
      */
-    size: SurveySizeEnum;
+    'size': SurveySizeEnum;
 }
 
-
-/**
- * @export
- */
 export const SurveySizeEnum = {
     Small: 'SMALL',
     Moderate: 'MODERATE',
     Large: 'LARGE'
 } as const;
+
 export type SurveySizeEnum = typeof SurveySizeEnum[keyof typeof SurveySizeEnum];
 
-
-/**
- * Check if a given object implements the Survey interface.
- */
-export function instanceOfSurvey(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "signature" in value;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "deposits" in value;
-    isInstance = isInstance && "expiration" in value;
-    isInstance = isInstance && "size" in value;
-
-    return isInstance;
-}
-
-export function SurveyFromJSON(json: any): Survey {
-    return SurveyFromJSONTyped(json, false);
-}
-
-export function SurveyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Survey {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'signature': json['signature'],
-        'symbol': json['symbol'],
-        'deposits': ((json['deposits'] as Array<any>).map(SurveyDepositFromJSON)),
-        'expiration': json['expiration'],
-        'size': json['size'],
-    };
-}
-
-export function SurveyToJSON(value?: Survey | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'signature': value.signature,
-        'symbol': value.symbol,
-        'deposits': ((value.deposits as Array<any>).map(SurveyDepositToJSON)),
-        'expiration': value.expiration,
-        'size': value.size,
-    };
-}
 

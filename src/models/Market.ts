@@ -12,25 +12,16 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { MarketTradeGood } from './MarketTradeGood';
-import {
-    MarketTradeGoodFromJSON,
-    MarketTradeGoodFromJSONTyped,
-    MarketTradeGoodToJSON,
-} from './MarketTradeGood';
-import type { MarketTransaction } from './MarketTransaction';
-import {
-    MarketTransactionFromJSON,
-    MarketTransactionFromJSONTyped,
-    MarketTransactionToJSON,
-} from './MarketTransaction';
-import type { TradeGood } from './TradeGood';
-import {
-    TradeGoodFromJSON,
-    TradeGoodFromJSONTyped,
-    TradeGoodToJSON,
-} from './TradeGood';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { MarketTradeGood } from './market-trade-good';
+// May contain unused imports in some cases
+// @ts-ignore
+import { MarketTransaction } from './market-transaction';
+// May contain unused imports in some cases
+// @ts-ignore
+import { TradeGood } from './trade-good';
 
 /**
  * 
@@ -43,86 +34,36 @@ export interface Market {
      * @type {string}
      * @memberof Market
      */
-    symbol: string;
+    'symbol': string;
     /**
      * The list of goods that are exported from this market.
      * @type {Array<TradeGood>}
      * @memberof Market
      */
-    exports: Array<TradeGood>;
+    'exports': Array<TradeGood>;
     /**
      * The list of goods that are sought as imports in this market.
      * @type {Array<TradeGood>}
      * @memberof Market
      */
-    imports: Array<TradeGood>;
+    'imports': Array<TradeGood>;
     /**
      * The list of goods that are bought and sold between agents at this market.
      * @type {Array<TradeGood>}
      * @memberof Market
      */
-    exchange: Array<TradeGood>;
+    'exchange': Array<TradeGood>;
     /**
      * The list of recent transactions at this market. Visible only when a ship is present at the market.
      * @type {Array<MarketTransaction>}
      * @memberof Market
      */
-    transactions?: Array<MarketTransaction>;
+    'transactions'?: Array<MarketTransaction>;
     /**
      * The list of goods that are traded at this market. Visible only when a ship is present at the market.
      * @type {Array<MarketTradeGood>}
      * @memberof Market
      */
-    tradeGoods?: Array<MarketTradeGood>;
-}
-
-/**
- * Check if a given object implements the Market interface.
- */
-export function instanceOfMarket(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "exports" in value;
-    isInstance = isInstance && "imports" in value;
-    isInstance = isInstance && "exchange" in value;
-
-    return isInstance;
-}
-
-export function MarketFromJSON(json: any): Market {
-    return MarketFromJSONTyped(json, false);
-}
-
-export function MarketFromJSONTyped(json: any, ignoreDiscriminator: boolean): Market {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-        'exports': ((json['exports'] as Array<any>).map(TradeGoodFromJSON)),
-        'imports': ((json['imports'] as Array<any>).map(TradeGoodFromJSON)),
-        'exchange': ((json['exchange'] as Array<any>).map(TradeGoodFromJSON)),
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(MarketTransactionFromJSON)),
-        'tradeGoods': !exists(json, 'tradeGoods') ? undefined : ((json['tradeGoods'] as Array<any>).map(MarketTradeGoodFromJSON)),
-    };
-}
-
-export function MarketToJSON(value?: Market | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-        'exports': ((value.exports as Array<any>).map(TradeGoodToJSON)),
-        'imports': ((value.imports as Array<any>).map(TradeGoodToJSON)),
-        'exchange': ((value.exchange as Array<any>).map(TradeGoodToJSON)),
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(MarketTransactionToJSON)),
-        'tradeGoods': value.tradeGoods === undefined ? undefined : ((value.tradeGoods as Array<any>).map(MarketTradeGoodToJSON)),
-    };
+    'tradeGoods'?: Array<MarketTradeGood>;
 }
 

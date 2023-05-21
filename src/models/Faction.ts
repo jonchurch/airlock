@@ -12,13 +12,10 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
-import type { FactionTrait } from './FactionTrait';
-import {
-    FactionTraitFromJSON,
-    FactionTraitFromJSONTyped,
-    FactionTraitToJSON,
-} from './FactionTrait';
+
+// May contain unused imports in some cases
+// @ts-ignore
+import { FactionTrait } from './faction-trait';
 
 /**
  * 
@@ -31,79 +28,36 @@ export interface Faction {
      * @type {string}
      * @memberof Faction
      */
-    symbol: string;
+    'symbol': string;
     /**
      * 
      * @type {string}
      * @memberof Faction
      */
-    name: string;
+    'name': string;
     /**
      * 
      * @type {string}
      * @memberof Faction
      */
-    description: string;
+    'description': string;
     /**
      * 
      * @type {string}
      * @memberof Faction
      */
-    headquarters: string;
+    'headquarters': string;
     /**
      * 
      * @type {Array<FactionTrait>}
      * @memberof Faction
      */
-    traits: Array<FactionTrait>;
-}
-
-/**
- * Check if a given object implements the Faction interface.
- */
-export function instanceOfFaction(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "headquarters" in value;
-    isInstance = isInstance && "traits" in value;
-
-    return isInstance;
-}
-
-export function FactionFromJSON(json: any): Faction {
-    return FactionFromJSONTyped(json, false);
-}
-
-export function FactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Faction {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-        'name': json['name'],
-        'description': json['description'],
-        'headquarters': json['headquarters'],
-        'traits': ((json['traits'] as Array<any>).map(FactionTraitFromJSON)),
-    };
-}
-
-export function FactionToJSON(value?: Faction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-        'name': value.name,
-        'description': value.description,
-        'headquarters': value.headquarters,
-        'traits': ((value.traits as Array<any>).map(FactionTraitToJSON)),
-    };
+    'traits': Array<FactionTrait>;
+    /**
+     * Whether or not the faction is currently recruiting new agents.
+     * @type {boolean}
+     * @memberof Faction
+     */
+    'isRecruiting': boolean;
 }
 
