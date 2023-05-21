@@ -15,7 +15,7 @@
           "useSingleRequestParameter": false,
           "withSeparateModelsAndApi": true,
           "apiPackage": "api",
-          "modelsPackage": "models"
+          "modelPackage": "models"
         }
       }
     }
