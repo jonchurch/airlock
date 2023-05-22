@@ -602,7 +602,7 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
             };
         },
         /**
-         * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+         * Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
          * @summary Jump Ship
          * @param {string} shipSymbol 
          * @param {JumpShipRequest} [jumpShipRequest] 
@@ -1250,7 +1250,7 @@ export const FleetApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+         * Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
          * @summary Jump Ship
          * @param {string} shipSymbol 
          * @param {JumpShipRequest} [jumpShipRequest] 
@@ -1531,7 +1531,7 @@ export const FleetApiFactory = function (configuration?: Configuration, basePath
             return localVarFp.jettison(requestParameters.shipSymbol, requestParameters.jettisonRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+         * Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
          * @summary Jump Ship
          * @param {FleetApiJumpShipRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -2251,7 +2251,7 @@ export class FleetApi extends BaseAPI {
     }
 
     /**
-     * Jump your ship instantly to a target system. Unlike other forms of navigation, jumping requires a unit of antimatter.
+     * Jump your ship instantly to a target system. When used while in orbit or docked to a jump gate waypoint, any ship can use this command. When used elsewhere, jumping requires a jump drive unit and consumes a unit of antimatter (which needs to be in your cargo).
      * @summary Jump Ship
      * @param {FleetApiJumpShipRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.

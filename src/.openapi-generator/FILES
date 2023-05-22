@@ -1,6 +1,5 @@
 .gitignore
 .npmignore
-.openapi-generator-ignore
 api.ts
 api/agents-api.ts
 api/contracts-api.ts
