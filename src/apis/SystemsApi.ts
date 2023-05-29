@@ -97,14 +97,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -141,14 +133,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/market`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -185,14 +169,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -225,14 +201,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems/{systemSymbol}`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))),
             method: 'GET',
@@ -317,14 +285,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems`,
             method: 'GET',
@@ -361,14 +321,6 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("AgentToken", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
