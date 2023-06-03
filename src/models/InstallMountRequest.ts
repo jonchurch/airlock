@@ -16,57 +16,42 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMountRequest
  */
-export interface RegisterRequest {
+export interface InstallMountRequest {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
-     */
-    faction: any | null;
-    /**
-     * How other agents will see your ships and information.
+     * 
      * @type {string}
-     * @memberof RegisterRequest
+     * @memberof InstallMountRequest
      */
     symbol: string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    email?: string;
 }
 
 /**
- * Check if a given object implements the RegisterRequest interface.
+ * Check if a given object implements the InstallMountRequest interface.
  */
-export function instanceOfRegisterRequest(value: object): boolean {
+export function instanceOfInstallMountRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "faction" in value;
     isInstance = isInstance && "symbol" in value;
 
     return isInstance;
 }
 
-export function RegisterRequestFromJSON(json: any): RegisterRequest {
-    return RegisterRequestFromJSONTyped(json, false);
+export function InstallMountRequestFromJSON(json: any): InstallMountRequest {
+    return InstallMountRequestFromJSONTyped(json, false);
 }
 
-export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterRequest {
+export function InstallMountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): InstallMountRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'faction': json['faction'],
         'symbol': json['symbol'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
     };
 }
 
-export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
+export function InstallMountRequestToJSON(value?: InstallMountRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,9 +60,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
         'symbol': value.symbol,
-        'email': value.email,
     };
 }
 

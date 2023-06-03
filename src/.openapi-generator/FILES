@@ -44,6 +44,7 @@ models/GetFaction200Response.ts
 models/GetFactions200Response.ts
 models/GetJumpGate200Response.ts
 models/GetMarket200Response.ts
+models/GetMounts200Response.ts
 models/GetMyAgent200Response.ts
 models/GetMyShip200Response.ts
 models/GetMyShipCargo200Response.ts
@@ -63,6 +64,10 @@ models/GetSystem200Response.ts
 models/GetSystemWaypoints200Response.ts
 models/GetSystems200Response.ts
 models/GetWaypoint200Response.ts
+models/InstallMount201Response.ts
+models/InstallMount201ResponseData.ts
+models/InstallMount201ResponseDataTransaction.ts
+models/InstallMountRequest.ts
 models/Jettison200Response.ts
 models/Jettison200ResponseData.ts
 models/JettisonRequest.ts
@@ -92,6 +97,8 @@ models/RefuelShip200ResponseData.ts
 models/Register201Response.ts
 models/Register201ResponseData.ts
 models/RegisterRequest.ts
+models/RemoveMount201Response.ts
+models/RemoveMountRequest.ts
 models/ScannedShip.ts
 models/ScannedShipEngine.ts
 models/ScannedShipFrame.ts

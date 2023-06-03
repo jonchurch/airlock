@@ -23,11 +23,14 @@ import type {
   DockShip200Response,
   ExtractResources201Response,
   ExtractResourcesRequest,
+  GetMounts200Response,
   GetMyShip200Response,
   GetMyShipCargo200Response,
   GetMyShips200Response,
   GetShipCooldown200Response,
   GetShipNav200Response,
+  InstallMount201Response,
+  InstallMountRequest,
   Jettison200Response,
   JettisonRequest,
   JumpShip200Response,
@@ -42,6 +45,8 @@ import type {
   PurchaseShip201Response,
   PurchaseShipRequest,
   RefuelShip200Response,
+  RemoveMount201Response,
+  RemoveMountRequest,
   SellCargo201Response,
   SellCargoRequest,
   ShipRefine200Response,
@@ -66,6 +71,8 @@ import {
     ExtractResources201ResponseToJSON,
     ExtractResourcesRequestFromJSON,
     ExtractResourcesRequestToJSON,
+    GetMounts200ResponseFromJSON,
+    GetMounts200ResponseToJSON,
     GetMyShip200ResponseFromJSON,
     GetMyShip200ResponseToJSON,
     GetMyShipCargo200ResponseFromJSON,
@@ -76,6 +83,10 @@ import {
     GetShipCooldown200ResponseToJSON,
     GetShipNav200ResponseFromJSON,
     GetShipNav200ResponseToJSON,
+    InstallMount201ResponseFromJSON,
+    InstallMount201ResponseToJSON,
+    InstallMountRequestFromJSON,
+    InstallMountRequestToJSON,
     Jettison200ResponseFromJSON,
     Jettison200ResponseToJSON,
     JettisonRequestFromJSON,
@@ -104,6 +115,10 @@ import {
     PurchaseShipRequestToJSON,
     RefuelShip200ResponseFromJSON,
     RefuelShip200ResponseToJSON,
+    RemoveMount201ResponseFromJSON,
+    RemoveMount201ResponseToJSON,
+    RemoveMountRequestFromJSON,
+    RemoveMountRequestToJSON,
     SellCargo201ResponseFromJSON,
     SellCargo201ResponseToJSON,
     SellCargoRequestFromJSON,
@@ -147,6 +162,10 @@ export interface ExtractResourcesOperationRequest {
     extractResourcesRequest?: ExtractResourcesRequest;
 }
 
+export interface GetMountsRequest {
+    shipSymbol: string;
+}
+
 export interface GetMyShipRequest {
     shipSymbol: string;
 }
@@ -166,6 +185,11 @@ export interface GetShipCooldownRequest {
 
 export interface GetShipNavRequest {
     shipSymbol: string;
+}
+
+export interface InstallMountOperationRequest {
+    shipSymbol: string;
+    installMountRequest?: InstallMountRequest;
 }
 
 export interface JettisonOperationRequest {
@@ -208,6 +232,11 @@ export interface PurchaseShipOperationRequest {
 
 export interface RefuelShipRequest {
     shipSymbol: string;
+}
+
+export interface RemoveMountOperationRequest {
+    shipSymbol: string;
+    removeMountRequest?: RemoveMountRequest;
 }
 
 export interface SellCargoOperationRequest {
@@ -519,6 +548,46 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get the mounts on a ship.
+     * Get Mounts
+     */
+    async getMountsRaw(requestParameters: GetMountsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMounts200Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling getMounts.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/mounts`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetMounts200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the mounts on a ship.
+     * Get Mounts
+     */
+    async getMounts(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMounts200Response> {
+        const response = await this.getMountsRaw({ shipSymbol: shipSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve the details of your ship.
      * Get Ship
      */
@@ -719,6 +788,49 @@ export class FleetApi extends runtime.BaseAPI {
      */
     async getShipNav(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipNav200Response> {
         const response = await this.getShipNavRaw({ shipSymbol: shipSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Install a mount on a ship.
+     * Install Mount
+     */
+    async installMountRaw(requestParameters: InstallMountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InstallMount201Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling installMount.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/mounts/install`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: InstallMountRequestToJSON(requestParameters.installMountRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => InstallMount201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Install a mount on a ship.
+     * Install Mount
+     */
+    async installMount(shipSymbol: string, installMountRequest?: InstallMountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InstallMount201Response> {
+        const response = await this.installMountRaw({ shipSymbol: shipSymbol, installMountRequest: installMountRequest }, initOverrides);
         return await response.value();
     }
 
@@ -1096,6 +1208,49 @@ export class FleetApi extends runtime.BaseAPI {
      */
     async refuelShip(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RefuelShip200Response> {
         const response = await this.refuelShipRaw({ shipSymbol: shipSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Remove a mount from a ship.
+     * Remove Mount
+     */
+    async removeMountRaw(requestParameters: RemoveMountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveMount201Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling removeMount.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/mounts/remove`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RemoveMountRequestToJSON(requestParameters.removeMountRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RemoveMount201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Remove a mount from a ship.
+     * Remove Mount
+     */
+    async removeMount(shipSymbol: string, removeMountRequest?: RemoveMountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveMount201Response> {
+        const response = await this.removeMountRaw({ shipSymbol: shipSymbol, removeMountRequest: removeMountRequest }, initOverrides);
         return await response.value();
     }
 

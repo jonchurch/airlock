@@ -13,60 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { InstallMount201ResponseData } from './InstallMount201ResponseData';
+import {
+    InstallMount201ResponseDataFromJSON,
+    InstallMount201ResponseDataFromJSONTyped,
+    InstallMount201ResponseDataToJSON,
+} from './InstallMount201ResponseData';
+
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMount201Response
  */
-export interface RegisterRequest {
+export interface InstallMount201Response {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * 
+     * @type {InstallMount201ResponseData}
+     * @memberof InstallMount201Response
      */
-    faction: any | null;
-    /**
-     * How other agents will see your ships and information.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    symbol: string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    email?: string;
+    data: InstallMount201ResponseData;
 }
 
 /**
- * Check if a given object implements the RegisterRequest interface.
+ * Check if a given object implements the InstallMount201Response interface.
  */
-export function instanceOfRegisterRequest(value: object): boolean {
+export function instanceOfInstallMount201Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "faction" in value;
-    isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function RegisterRequestFromJSON(json: any): RegisterRequest {
-    return RegisterRequestFromJSONTyped(json, false);
+export function InstallMount201ResponseFromJSON(json: any): InstallMount201Response {
+    return InstallMount201ResponseFromJSONTyped(json, false);
 }
 
-export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterRequest {
+export function InstallMount201ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): InstallMount201Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'faction': json['faction'],
-        'symbol': json['symbol'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
+        'data': InstallMount201ResponseDataFromJSON(json['data']),
     };
 }
 
-export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
+export function InstallMount201ResponseToJSON(value?: InstallMount201Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,9 +67,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
-        'symbol': value.symbol,
-        'email': value.email,
+        'data': InstallMount201ResponseDataToJSON(value.data),
     };
 }
 

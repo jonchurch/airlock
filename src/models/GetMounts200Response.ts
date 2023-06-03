@@ -13,60 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ShipMount } from './ShipMount';
+import {
+    ShipMountFromJSON,
+    ShipMountFromJSONTyped,
+    ShipMountToJSON,
+} from './ShipMount';
+
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface GetMounts200Response
  */
-export interface RegisterRequest {
+export interface GetMounts200Response {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * 
+     * @type {Array<ShipMount>}
+     * @memberof GetMounts200Response
      */
-    faction: any | null;
-    /**
-     * How other agents will see your ships and information.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    symbol: string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    email?: string;
+    data: Array<ShipMount>;
 }
 
 /**
- * Check if a given object implements the RegisterRequest interface.
+ * Check if a given object implements the GetMounts200Response interface.
  */
-export function instanceOfRegisterRequest(value: object): boolean {
+export function instanceOfGetMounts200Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "faction" in value;
-    isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function RegisterRequestFromJSON(json: any): RegisterRequest {
-    return RegisterRequestFromJSONTyped(json, false);
+export function GetMounts200ResponseFromJSON(json: any): GetMounts200Response {
+    return GetMounts200ResponseFromJSONTyped(json, false);
 }
 
-export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterRequest {
+export function GetMounts200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMounts200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'faction': json['faction'],
-        'symbol': json['symbol'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
+        'data': ((json['data'] as Array<any>).map(ShipMountFromJSON)),
     };
 }
 
-export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
+export function GetMounts200ResponseToJSON(value?: GetMounts200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,9 +67,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
-        'symbol': value.symbol,
-        'email': value.email,
+        'data': ((value.data as Array<any>).map(ShipMountToJSON)),
     };
 }
 

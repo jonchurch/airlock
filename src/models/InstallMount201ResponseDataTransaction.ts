@@ -16,57 +16,50 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMount201ResponseDataTransaction
  */
-export interface RegisterRequest {
+export interface InstallMount201ResponseDataTransaction {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * The total price of the transaction.
+     * @type {number}
+     * @memberof InstallMount201ResponseDataTransaction
      */
-    faction: any | null;
+    totalPrice: number;
     /**
-     * How other agents will see your ships and information.
+     * The timestamp of the transaction.
      * @type {string}
-     * @memberof RegisterRequest
+     * @memberof InstallMount201ResponseDataTransaction
      */
-    symbol: string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    email?: string;
+    timestamp: string;
 }
 
 /**
- * Check if a given object implements the RegisterRequest interface.
+ * Check if a given object implements the InstallMount201ResponseDataTransaction interface.
  */
-export function instanceOfRegisterRequest(value: object): boolean {
+export function instanceOfInstallMount201ResponseDataTransaction(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "faction" in value;
-    isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "totalPrice" in value;
+    isInstance = isInstance && "timestamp" in value;
 
     return isInstance;
 }
 
-export function RegisterRequestFromJSON(json: any): RegisterRequest {
-    return RegisterRequestFromJSONTyped(json, false);
+export function InstallMount201ResponseDataTransactionFromJSON(json: any): InstallMount201ResponseDataTransaction {
+    return InstallMount201ResponseDataTransactionFromJSONTyped(json, false);
 }
 
-export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterRequest {
+export function InstallMount201ResponseDataTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): InstallMount201ResponseDataTransaction {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'faction': json['faction'],
-        'symbol': json['symbol'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
+        'totalPrice': json['totalPrice'],
+        'timestamp': json['timestamp'],
     };
 }
 
-export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
+export function InstallMount201ResponseDataTransactionToJSON(value?: InstallMount201ResponseDataTransaction | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,9 +68,8 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
-        'symbol': value.symbol,
-        'email': value.email,
+        'totalPrice': value.totalPrice,
+        'timestamp': value.timestamp,
     };
 }
 

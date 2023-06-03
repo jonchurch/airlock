@@ -16,57 +16,42 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface RemoveMountRequest
  */
-export interface RegisterRequest {
+export interface RemoveMountRequest {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
-     */
-    faction: any | null;
-    /**
-     * How other agents will see your ships and information.
+     * 
      * @type {string}
-     * @memberof RegisterRequest
+     * @memberof RemoveMountRequest
      */
     symbol: string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    email?: string;
 }
 
 /**
- * Check if a given object implements the RegisterRequest interface.
+ * Check if a given object implements the RemoveMountRequest interface.
  */
-export function instanceOfRegisterRequest(value: object): boolean {
+export function instanceOfRemoveMountRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "faction" in value;
     isInstance = isInstance && "symbol" in value;
 
     return isInstance;
 }
 
-export function RegisterRequestFromJSON(json: any): RegisterRequest {
-    return RegisterRequestFromJSONTyped(json, false);
+export function RemoveMountRequestFromJSON(json: any): RemoveMountRequest {
+    return RemoveMountRequestFromJSONTyped(json, false);
 }
 
-export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RegisterRequest {
+export function RemoveMountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RemoveMountRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'faction': json['faction'],
         'symbol': json['symbol'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
     };
 }
 
-export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
+export function RemoveMountRequestToJSON(value?: RemoveMountRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,9 +60,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
         'symbol': value.symbol,
-        'email': value.email,
     };
 }
 
