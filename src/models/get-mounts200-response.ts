@@ -13,30 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipMount } from './ship-mount';
 
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface GetMounts200Response
  */
-export interface RegisterRequest {
+export interface GetMounts200Response {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * 
+     * @type {Array<ShipMount>}
+     * @memberof GetMounts200Response
      */
-    'faction': any;
-    /**
-     * How other agents will see your ships and information.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'symbol': string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'email'?: string;
+    'data': Array<ShipMount>;
 }
 

@@ -13,30 +13,48 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { Agent } from './agent';
+// May contain unused imports in some cases
+// @ts-ignore
+import { InstallMount201ResponseDataTransaction } from './install-mount201-response-data-transaction';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipCargo } from './ship-cargo';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipMount } from './ship-mount';
 
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMount201ResponseData
  */
-export interface RegisterRequest {
+export interface InstallMount201ResponseData {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * 
+     * @type {Agent}
+     * @memberof InstallMount201ResponseData
      */
-    'faction': any;
+    'agent': Agent;
     /**
-     * How other agents will see your ships and information.
-     * @type {string}
-     * @memberof RegisterRequest
+     * 
+     * @type {Array<ShipMount>}
+     * @memberof InstallMount201ResponseData
      */
-    'symbol': string;
+    'mounts': Array<ShipMount>;
     /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
+     * 
+     * @type {ShipCargo}
+     * @memberof InstallMount201ResponseData
      */
-    'email'?: string;
+    'cargo': ShipCargo;
+    /**
+     * 
+     * @type {InstallMount201ResponseDataTransaction}
+     * @memberof InstallMount201ResponseData
+     */
+    'transaction': InstallMount201ResponseDataTransaction;
 }
 

@@ -17,26 +17,14 @@
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface RemoveMountRequest
  */
-export interface RegisterRequest {
+export interface RemoveMountRequest {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
-     */
-    'faction': any;
-    /**
-     * How other agents will see your ships and information.
+     * 
      * @type {string}
-     * @memberof RegisterRequest
+     * @memberof RemoveMountRequest
      */
     'symbol': string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'email'?: string;
 }
 

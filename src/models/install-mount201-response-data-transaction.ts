@@ -17,26 +17,20 @@
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMount201ResponseDataTransaction
  */
-export interface RegisterRequest {
+export interface InstallMount201ResponseDataTransaction {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * The total price of the transaction.
+     * @type {number}
+     * @memberof InstallMount201ResponseDataTransaction
      */
-    'faction': any;
+    'totalPrice': number;
     /**
-     * How other agents will see your ships and information.
+     * The timestamp of the transaction.
      * @type {string}
-     * @memberof RegisterRequest
+     * @memberof InstallMount201ResponseDataTransaction
      */
-    'symbol': string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'email'?: string;
+    'timestamp': string;
 }
 

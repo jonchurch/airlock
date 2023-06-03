@@ -13,30 +13,21 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { InstallMount201ResponseData } from './install-mount201-response-data';
 
 /**
  * 
  * @export
- * @interface RegisterRequest
+ * @interface InstallMount201Response
  */
-export interface RegisterRequest {
+export interface InstallMount201Response {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
-     * @memberof RegisterRequest
+     * 
+     * @type {InstallMount201ResponseData}
+     * @memberof InstallMount201Response
      */
-    'faction': any;
-    /**
-     * How other agents will see your ships and information.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'symbol': string;
-    /**
-     * Your email address. This is used if you reserved your call sign between resets.
-     * @type {string}
-     * @memberof RegisterRequest
-     */
-    'email'?: string;
+    'data': InstallMount201ResponseData;
 }
 
