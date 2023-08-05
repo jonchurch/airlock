@@ -70,7 +70,7 @@ export const FactionsApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * List all discovered factions in the game.
+         * Return a paginated list of all the factions in the game.
          * @summary List Factions
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -135,7 +135,7 @@ export const FactionsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * List all discovered factions in the game.
+         * Return a paginated list of all the factions in the game.
          * @summary List Factions
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -167,7 +167,7 @@ export const FactionsApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getFaction(requestParameters.factionSymbol, options).then((request) => request(axios, basePath));
         },
         /**
-         * List all discovered factions in the game.
+         * Return a paginated list of all the factions in the game.
          * @summary List Factions
          * @param {FactionsApiGetFactionsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -234,7 +234,7 @@ export class FactionsApi extends BaseAPI {
     }
 
     /**
-     * List all discovered factions in the game.
+     * Return a paginated list of all the factions in the game.
      * @summary List Factions
      * @param {FactionsApiGetFactionsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.

@@ -30,7 +30,7 @@ import { GetStatus200ResponseServerResets } from './get-status200-response-serve
 import { GetStatus200ResponseStats } from './get-status200-response-stats';
 
 /**
- * OK
+ * 
  * @export
  * @interface GetStatus200Response
  */
@@ -48,7 +48,7 @@ export interface GetStatus200Response {
      */
     'version': string;
     /**
-     * The date and time when the game server was last reset.
+     * The date when the game server was last reset.
      * @type {string}
      * @memberof GetStatus200Response
      */

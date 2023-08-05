@@ -15,19 +15,19 @@
 
 
 /**
- * 
+ * Agent details.
  * @export
  * @interface Agent
  */
 export interface Agent {
     /**
-     * 
+     * Account ID that is tied to this agent. Only included on your own agent.
      * @type {string}
      * @memberof Agent
      */
-    'accountId': string;
+    'accountId'?: string;
     /**
-     * 
+     * Symbol of the agent.
      * @type {string}
      * @memberof Agent
      */
@@ -50,5 +50,11 @@ export interface Agent {
      * @memberof Agent
      */
     'startingFaction': string;
+    /**
+     * How many ships are owned by the agent.
+     * @type {number}
+     * @memberof Agent
+     */
+    'shipCount'?: number;
 }
 

@@ -42,7 +42,7 @@ import { GetWaypoint200Response } from '../models';
 export const SystemsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Get jump gate details for a waypoint.
+         * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
          * @summary Get Jump Gate
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -68,6 +68,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -80,7 +84,7 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+         * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
          * @summary Get Market
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -106,6 +110,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -118,7 +126,7 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+         * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
          * @summary Get Shipyard
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -143,6 +151,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
 
     
@@ -178,6 +190,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -190,8 +206,8 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-         * @summary List Waypoints
+         * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+         * @summary List Waypoints in System
          * @param {string} systemSymbol The system symbol
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -238,7 +254,7 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * Return a list of all systems.
+         * Return a paginated list of all systems.
          * @summary List Systems
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -257,6 +273,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
 
             if (page !== undefined) {
                 localVarQueryParameter['page'] = page;
@@ -278,7 +298,7 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * View the details of a waypoint.
+         * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
          * @summary Get Waypoint
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -304,6 +324,10 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication AgentToken required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -326,7 +350,7 @@ export const SystemsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SystemsApiAxiosParamCreator(configuration)
     return {
         /**
-         * Get jump gate details for a waypoint.
+         * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
          * @summary Get Jump Gate
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -338,7 +362,7 @@ export const SystemsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+         * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
          * @summary Get Market
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -350,7 +374,7 @@ export const SystemsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+         * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
          * @summary Get Shipyard
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -373,8 +397,8 @@ export const SystemsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-         * @summary List Waypoints
+         * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+         * @summary List Waypoints in System
          * @param {string} systemSymbol The system symbol
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -386,7 +410,7 @@ export const SystemsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Return a list of all systems.
+         * Return a paginated list of all systems.
          * @summary List Systems
          * @param {number} [page] What entry offset to request
          * @param {number} [limit] How many entries to return per page
@@ -398,7 +422,7 @@ export const SystemsApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * View the details of a waypoint.
+         * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
          * @summary Get Waypoint
          * @param {string} systemSymbol The system symbol
          * @param {string} waypointSymbol The waypoint symbol
@@ -420,7 +444,7 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
     const localVarFp = SystemsApiFp(configuration)
     return {
         /**
-         * Get jump gate details for a waypoint.
+         * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
          * @summary Get Jump Gate
          * @param {SystemsApiGetJumpGateRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -430,7 +454,7 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getJumpGate(requestParameters.systemSymbol, requestParameters.waypointSymbol, options).then((request) => request(axios, basePath));
         },
         /**
-         * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+         * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
          * @summary Get Market
          * @param {SystemsApiGetMarketRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -440,7 +464,7 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getMarket(requestParameters.systemSymbol, requestParameters.waypointSymbol, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+         * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
          * @summary Get Shipyard
          * @param {SystemsApiGetShipyardRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -460,8 +484,8 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getSystem(requestParameters.systemSymbol, options).then((request) => request(axios, basePath));
         },
         /**
-         * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-         * @summary List Waypoints
+         * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+         * @summary List Waypoints in System
          * @param {SystemsApiGetSystemWaypointsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -470,7 +494,7 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getSystemWaypoints(requestParameters.systemSymbol, requestParameters.page, requestParameters.limit, options).then((request) => request(axios, basePath));
         },
         /**
-         * Return a list of all systems.
+         * Return a paginated list of all systems.
          * @summary List Systems
          * @param {SystemsApiGetSystemsRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -480,7 +504,7 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.getSystems(requestParameters.page, requestParameters.limit, options).then((request) => request(axios, basePath));
         },
         /**
-         * View the details of a waypoint.
+         * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
          * @summary Get Waypoint
          * @param {SystemsApiGetWaypointRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
@@ -647,7 +671,7 @@ export interface SystemsApiGetWaypointRequest {
  */
 export class SystemsApi extends BaseAPI {
     /**
-     * Get jump gate details for a waypoint.
+     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
      * @summary Get Jump Gate
      * @param {SystemsApiGetJumpGateRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -659,7 +683,7 @@ export class SystemsApi extends BaseAPI {
     }
 
     /**
-     * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+     * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
      * @summary Get Market
      * @param {SystemsApiGetMarketRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -671,7 +695,7 @@ export class SystemsApi extends BaseAPI {
     }
 
     /**
-     * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+     * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
      * @summary Get Shipyard
      * @param {SystemsApiGetShipyardRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -695,8 +719,8 @@ export class SystemsApi extends BaseAPI {
     }
 
     /**
-     * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-     * @summary List Waypoints
+     * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+     * @summary List Waypoints in System
      * @param {SystemsApiGetSystemWaypointsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -707,7 +731,7 @@ export class SystemsApi extends BaseAPI {
     }
 
     /**
-     * Return a list of all systems.
+     * Return a paginated list of all systems.
      * @summary List Systems
      * @param {SystemsApiGetSystemsRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -719,7 +743,7 @@ export class SystemsApi extends BaseAPI {
     }
 
     /**
-     * View the details of a waypoint.
+     * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
      * @summary Get Waypoint
      * @param {SystemsApiGetWaypointRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
