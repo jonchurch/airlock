@@ -39,7 +39,7 @@ export interface CreateShipWaypointScan201ResponseData {
      */
     cooldown: Cooldown;
     /**
-     * 
+     * List of scanned waypoints.
      * @type {Array<ScannedWaypoint>}
      * @memberof CreateShipWaypointScan201ResponseData
      */

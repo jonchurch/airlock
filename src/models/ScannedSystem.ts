@@ -21,19 +21,19 @@ import {
 } from './SystemType';
 
 /**
- * 
+ * Details of a system was that scanned.
  * @export
  * @interface ScannedSystem
  */
 export interface ScannedSystem {
     /**
-     * 
+     * Symbol of the system.
      * @type {string}
      * @memberof ScannedSystem
      */
     symbol: string;
     /**
-     * 
+     * Symbol of the system's sector.
      * @type {string}
      * @memberof ScannedSystem
      */
@@ -45,19 +45,19 @@ export interface ScannedSystem {
      */
     type: SystemType;
     /**
-     * 
+     * Position in the universe in the x axis.
      * @type {number}
      * @memberof ScannedSystem
      */
     x: number;
     /**
-     * 
+     * Position in the universe in the y axis.
      * @type {number}
      * @memberof ScannedSystem
      */
     y: number;
     /**
-     * 
+     * The system's distance from the scanning ship.
      * @type {number}
      * @memberof ScannedSystem
      */

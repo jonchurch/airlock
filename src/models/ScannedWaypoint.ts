@@ -45,13 +45,13 @@ import {
 } from './WaypointType';
 
 /**
- * A waypoint is a location that ships can travel to such as a Planet, Moon or Space Station.
+ * A waypoint that was scanned by a ship.
  * @export
  * @interface ScannedWaypoint
  */
 export interface ScannedWaypoint {
     /**
-     * 
+     * Symbol of the waypoint.
      * @type {string}
      * @memberof ScannedWaypoint
      */
@@ -63,25 +63,25 @@ export interface ScannedWaypoint {
      */
     type: WaypointType;
     /**
-     * 
+     * Symbol of the system.
      * @type {string}
      * @memberof ScannedWaypoint
      */
     systemSymbol: string;
     /**
-     * 
+     * Position in the universe in the x axis.
      * @type {number}
      * @memberof ScannedWaypoint
      */
     x: number;
     /**
-     * 
+     * Position in the universe in the y axis.
      * @type {number}
      * @memberof ScannedWaypoint
      */
     y: number;
     /**
-     * 
+     * List of waypoints that orbit this waypoint.
      * @type {Array<WaypointOrbital>}
      * @memberof ScannedWaypoint
      */

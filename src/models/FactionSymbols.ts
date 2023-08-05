@@ -12,55 +12,44 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+
 /**
- * The frame of the ship.
+ * The symbol of the faction.
  * @export
- * @interface ScannedShipFrame
  */
-export interface ScannedShipFrame {
-    /**
-     * The symbol of the frame.
-     * @type {string}
-     * @memberof ScannedShipFrame
-     */
-    symbol: string;
+export const FactionSymbols = {
+    Cosmic: 'COSMIC',
+    Void: 'VOID',
+    Galactic: 'GALACTIC',
+    Quantum: 'QUANTUM',
+    Dominion: 'DOMINION',
+    Astro: 'ASTRO',
+    Corsairs: 'CORSAIRS',
+    Obsidian: 'OBSIDIAN',
+    Aegis: 'AEGIS',
+    United: 'UNITED',
+    Solitary: 'SOLITARY',
+    Cobalt: 'COBALT',
+    Omega: 'OMEGA',
+    Echo: 'ECHO',
+    Lords: 'LORDS',
+    Cult: 'CULT',
+    Ancients: 'ANCIENTS',
+    Shadow: 'SHADOW',
+    Ethereal: 'ETHEREAL'
+} as const;
+export type FactionSymbols = typeof FactionSymbols[keyof typeof FactionSymbols];
+
+
+export function FactionSymbolsFromJSON(json: any): FactionSymbols {
+    return FactionSymbolsFromJSONTyped(json, false);
 }
 
-/**
- * Check if a given object implements the ScannedShipFrame interface.
- */
-export function instanceOfScannedShipFrame(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-
-    return isInstance;
+export function FactionSymbolsFromJSONTyped(json: any, ignoreDiscriminator: boolean): FactionSymbols {
+    return json as FactionSymbols;
 }
 
-export function ScannedShipFrameFromJSON(json: any): ScannedShipFrame {
-    return ScannedShipFrameFromJSONTyped(json, false);
-}
-
-export function ScannedShipFrameFromJSONTyped(json: any, ignoreDiscriminator: boolean): ScannedShipFrame {
-    if ((json === undefined) || (json === null)) {
-        return json;
-    }
-    return {
-        
-        'symbol': json['symbol'],
-    };
-}
-
-export function ScannedShipFrameToJSON(value?: ScannedShipFrame | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
-    }
-    return {
-        
-        'symbol': value.symbol,
-    };
+export function FactionSymbolsToJSON(value?: FactionSymbols | null): any {
+    return value as any;
 }
 

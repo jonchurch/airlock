@@ -15,12 +15,24 @@
 
 import * as runtime from '../runtime';
 import type {
+  GetAgents200Response,
   GetMyAgent200Response,
 } from '../models';
 import {
+    GetAgents200ResponseFromJSON,
+    GetAgents200ResponseToJSON,
     GetMyAgent200ResponseFromJSON,
     GetMyAgent200ResponseToJSON,
 } from '../models';
+
+export interface GetAgentRequest {
+    agentSymbol: string;
+}
+
+export interface GetAgentsRequest {
+    page?: number;
+    limit?: number;
+}
 
 /**
  * 
@@ -28,8 +40,92 @@ import {
 export class AgentsApi extends runtime.BaseAPI {
 
     /**
+     * Fetch agent details.
+     * Get Public Agent
+     */
+    async getAgentRaw(requestParameters: GetAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMyAgent200Response>> {
+        if (requestParameters.agentSymbol === null || requestParameters.agentSymbol === undefined) {
+            throw new runtime.RequiredError('agentSymbol','Required parameter requestParameters.agentSymbol was null or undefined when calling getAgent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/agents/{agentSymbol}`.replace(`{${"agentSymbol"}}`, encodeURIComponent(String(requestParameters.agentSymbol))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetMyAgent200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch agent details.
+     * Get Public Agent
+     */
+    async getAgent(agentSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyAgent200Response> {
+        const response = await this.getAgentRaw({ agentSymbol: agentSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetch agents details.
+     * List Agents
+     */
+    async getAgentsRaw(requestParameters: GetAgentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAgents200Response>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/agents`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetAgents200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetch agents details.
+     * List Agents
+     */
+    async getAgents(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetAgents200Response> {
+        const response = await this.getAgentsRaw({ page: page, limit: limit }, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Fetch your agent\'s details.
-     * My Agent Details
+     * Get Agent
      */
     async getMyAgentRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMyAgent200Response>> {
         const queryParameters: any = {};
@@ -56,7 +152,7 @@ export class AgentsApi extends runtime.BaseAPI {
 
     /**
      * Fetch your agent\'s details.
-     * My Agent Details
+     * Get Agent
      */
     async getMyAgent(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMyAgent200Response> {
         const response = await this.getMyAgentRaw(initOverrides);

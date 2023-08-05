@@ -21,13 +21,13 @@ import {
 } from './ContractTerms';
 
 /**
- * 
+ * Contract details.
  * @export
  * @interface Contract
  */
 export interface Contract {
     /**
-     * 
+     * ID of the contract.
      * @type {string}
      * @memberof Contract
      */
@@ -39,7 +39,7 @@ export interface Contract {
      */
     factionSymbol: string;
     /**
-     * 
+     * Type of contract.
      * @type {string}
      * @memberof Contract
      */

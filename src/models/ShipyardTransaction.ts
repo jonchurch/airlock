@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * Results of a transaction with a shipyard.
  * @export
  * @interface ShipyardTransaction
  */
@@ -26,7 +26,7 @@ export interface ShipyardTransaction {
      */
     waypointSymbol: string;
     /**
-     * The symbol of the ship that was purchased.
+     * The symbol of the ship that was the subject of the transaction.
      * @type {string}
      * @memberof ShipyardTransaction
      */

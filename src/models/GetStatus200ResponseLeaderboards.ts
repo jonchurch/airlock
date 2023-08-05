@@ -33,13 +33,13 @@ import {
  */
 export interface GetStatus200ResponseLeaderboards {
     /**
-     * 
+     * Top agents with the most credits.
      * @type {Array<GetStatus200ResponseLeaderboardsMostCreditsInner>}
      * @memberof GetStatus200ResponseLeaderboards
      */
     mostCredits: Array<GetStatus200ResponseLeaderboardsMostCreditsInner>;
     /**
-     * 
+     * Top agents with the most charted submitted.
      * @type {Array<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner>}
      * @memberof GetStatus200ResponseLeaderboards
      */

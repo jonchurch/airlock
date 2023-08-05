@@ -27,19 +27,19 @@ import {
  */
 export interface ShipEngine {
     /**
-     * 
+     * The symbol of the engine.
      * @type {string}
      * @memberof ShipEngine
      */
     symbol: ShipEngineSymbolEnum;
     /**
-     * 
+     * The name of the engine.
      * @type {string}
      * @memberof ShipEngine
      */
     name: string;
     /**
-     * 
+     * The description of the engine.
      * @type {string}
      * @memberof ShipEngine
      */
@@ -51,7 +51,7 @@ export interface ShipEngine {
      */
     condition?: number;
     /**
-     * 
+     * The speed stat of this engine. The higher the speed, the faster a ship can travel from one point to another. Reduces the time of arrival when navigating the ship.
      * @type {number}
      * @memberof ShipEngine
      */

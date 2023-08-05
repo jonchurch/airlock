@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { InstallMount201ResponseData } from './InstallMount201ResponseData';
+import type { RemoveMount201ResponseData } from './RemoveMount201ResponseData';
 import {
-    InstallMount201ResponseDataFromJSON,
-    InstallMount201ResponseDataFromJSONTyped,
-    InstallMount201ResponseDataToJSON,
-} from './InstallMount201ResponseData';
+    RemoveMount201ResponseDataFromJSON,
+    RemoveMount201ResponseDataFromJSONTyped,
+    RemoveMount201ResponseDataToJSON,
+} from './RemoveMount201ResponseData';
 
 /**
  * 
@@ -28,10 +28,10 @@ import {
 export interface RemoveMount201Response {
     /**
      * 
-     * @type {InstallMount201ResponseData}
+     * @type {RemoveMount201ResponseData}
      * @memberof RemoveMount201Response
      */
-    data: InstallMount201ResponseData;
+    data: RemoveMount201ResponseData;
 }
 
 /**
@@ -54,7 +54,7 @@ export function RemoveMount201ResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'data': InstallMount201ResponseDataFromJSON(json['data']),
+        'data': RemoveMount201ResponseDataFromJSON(json['data']),
     };
 }
 
@@ -67,7 +67,7 @@ export function RemoveMount201ResponseToJSON(value?: RemoveMount201Response | nu
     }
     return {
         
-        'data': InstallMount201ResponseDataToJSON(value.data),
+        'data': RemoveMount201ResponseDataToJSON(value.data),
     };
 }
 

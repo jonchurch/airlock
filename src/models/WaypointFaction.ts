@@ -13,18 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FactionSymbols } from './FactionSymbols';
+import {
+    FactionSymbolsFromJSON,
+    FactionSymbolsFromJSONTyped,
+    FactionSymbolsToJSON,
+} from './FactionSymbols';
+
 /**
- * 
+ * The faction that controls the waypoint.
  * @export
  * @interface WaypointFaction
  */
 export interface WaypointFaction {
     /**
      * 
-     * @type {string}
+     * @type {FactionSymbols}
      * @memberof WaypointFaction
      */
-    symbol: string;
+    symbol: FactionSymbols;
 }
 
 /**
@@ -47,7 +54,7 @@ export function WaypointFactionFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': FactionSymbolsFromJSON(json['symbol']),
     };
 }
 
@@ -60,7 +67,7 @@ export function WaypointFactionToJSON(value?: WaypointFaction | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': FactionSymbolsToJSON(value.symbol),
     };
 }
 

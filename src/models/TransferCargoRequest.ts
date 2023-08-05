@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
  * 
  * @export
@@ -21,18 +28,18 @@ import { exists, mapValues } from '../runtime';
 export interface TransferCargoRequest {
     /**
      * 
-     * @type {string}
+     * @type {TradeSymbol}
      * @memberof TransferCargoRequest
      */
-    tradeSymbol: string;
+    tradeSymbol: TradeSymbol;
     /**
-     * 
+     * Amount of units to transfer.
      * @type {number}
      * @memberof TransferCargoRequest
      */
     units: number;
     /**
-     * 
+     * The symbol of the ship to transfer to.
      * @type {string}
      * @memberof TransferCargoRequest
      */
@@ -61,7 +68,7 @@ export function TransferCargoRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'tradeSymbol': json['tradeSymbol'],
+        'tradeSymbol': TradeSymbolFromJSON(json['tradeSymbol']),
         'units': json['units'],
         'shipSymbol': json['shipSymbol'],
     };
@@ -76,7 +83,7 @@ export function TransferCargoRequestToJSON(value?: TransferCargoRequest | null):
     }
     return {
         
-        'tradeSymbol': value.tradeSymbol,
+        'tradeSymbol': TradeSymbolToJSON(value.tradeSymbol),
         'units': value.units,
         'shipSymbol': value.shipSymbol,
     };

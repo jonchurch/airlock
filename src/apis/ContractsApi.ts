@@ -65,7 +65,7 @@ export interface GetContractsRequest {
 export class ContractsApi extends runtime.BaseAPI {
 
     /**
-     * Accept a contract.
+     * Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
      * Accept Contract
      */
     async acceptContractRaw(requestParameters: AcceptContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AcceptContract200Response>> {
@@ -96,7 +96,7 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Accept a contract.
+     * Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
      * Accept Contract
      */
     async acceptContract(contractId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AcceptContract200Response> {
@@ -105,8 +105,8 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deliver cargo on a given contract.
-     * Deliver Contract
+     * Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship\'s cargo.
+     * Deliver Cargo to Contract
      */
     async deliverContractRaw(requestParameters: DeliverContractOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeliverContract200Response>> {
         if (requestParameters.contractId === null || requestParameters.contractId === undefined) {
@@ -139,8 +139,8 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Deliver cargo on a given contract.
-     * Deliver Contract
+     * Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship\'s cargo.
+     * Deliver Cargo to Contract
      */
     async deliverContract(contractId: string, deliverContractRequest?: DeliverContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeliverContract200Response> {
         const response = await this.deliverContractRaw({ contractId: contractId, deliverContractRequest: deliverContractRequest }, initOverrides);
@@ -148,7 +148,7 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fulfill a contract
+     * Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
      * Fulfill Contract
      */
     async fulfillContractRaw(requestParameters: FulfillContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FulfillContract200Response>> {
@@ -179,7 +179,7 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fulfill a contract
+     * Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
      * Fulfill Contract
      */
     async fulfillContract(contractId: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FulfillContract200Response> {
@@ -228,7 +228,7 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all of your contracts.
+     * Return a paginated list of all your contracts.
      * List Contracts
      */
     async getContractsRaw(requestParameters: GetContractsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetContracts200Response>> {
@@ -263,7 +263,7 @@ export class ContractsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all of your contracts.
+     * Return a paginated list of all your contracts.
      * List Contracts
      */
     async getContracts(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetContracts200Response> {

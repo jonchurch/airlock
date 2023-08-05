@@ -43,7 +43,7 @@ export interface JumpShip200ResponseData {
      * @type {ShipNav}
      * @memberof JumpShip200ResponseData
      */
-    nav?: ShipNav;
+    nav: ShipNav;
 }
 
 /**
@@ -52,6 +52,7 @@ export interface JumpShip200ResponseData {
 export function instanceOfJumpShip200ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "cooldown" in value;
+    isInstance = isInstance && "nav" in value;
 
     return isInstance;
 }
@@ -67,7 +68,7 @@ export function JumpShip200ResponseDataFromJSONTyped(json: any, ignoreDiscrimina
     return {
         
         'cooldown': CooldownFromJSON(json['cooldown']),
-        'nav': !exists(json, 'nav') ? undefined : ShipNavFromJSON(json['nav']),
+        'nav': ShipNavFromJSON(json['nav']),
     };
 }
 

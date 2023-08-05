@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FactionSymbols } from './FactionSymbols';
+import {
+    FactionSymbolsFromJSON,
+    FactionSymbolsFromJSONTyped,
+    FactionSymbolsToJSON,
+} from './FactionSymbols';
+
 /**
  * 
  * @export
@@ -21,10 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface SystemFaction {
     /**
      * 
-     * @type {string}
+     * @type {FactionSymbols}
      * @memberof SystemFaction
      */
-    symbol: string;
+    symbol: FactionSymbols;
 }
 
 /**
@@ -47,7 +54,7 @@ export function SystemFactionFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': FactionSymbolsFromJSON(json['symbol']),
     };
 }
 
@@ -60,7 +67,7 @@ export function SystemFactionToJSON(value?: SystemFaction | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': FactionSymbolsToJSON(value.symbol),
     };
 }
 

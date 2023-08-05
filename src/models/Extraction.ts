@@ -21,13 +21,13 @@ import {
 } from './ExtractionYield';
 
 /**
- * 
+ * Extraction details.
  * @export
  * @interface Extraction
  */
 export interface Extraction {
     /**
-     * 
+     * Symbol of the ship that executed the extraction.
      * @type {string}
      * @memberof Extraction
      */

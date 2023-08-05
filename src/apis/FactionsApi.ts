@@ -80,7 +80,7 @@ export class FactionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all discovered factions in the game.
+     * Return a paginated list of all the factions in the game.
      * List Factions
      */
     async getFactionsRaw(requestParameters: GetFactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFactions200Response>> {
@@ -115,7 +115,7 @@ export class FactionsApi extends runtime.BaseAPI {
     }
 
     /**
-     * List all discovered factions in the game.
+     * Return a paginated list of all the factions in the game.
      * List Factions
      */
     async getFactions(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetFactions200Response> {

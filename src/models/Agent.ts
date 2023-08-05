@@ -14,19 +14,19 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * Agent details.
  * @export
  * @interface Agent
  */
 export interface Agent {
     /**
-     * 
+     * Account ID that is tied to this agent. Only included on your own agent.
      * @type {string}
      * @memberof Agent
      */
-    accountId: string;
+    accountId?: string;
     /**
-     * 
+     * Symbol of the agent.
      * @type {string}
      * @memberof Agent
      */
@@ -49,6 +49,12 @@ export interface Agent {
      * @memberof Agent
      */
     startingFaction: string;
+    /**
+     * How many ships are owned by the agent.
+     * @type {number}
+     * @memberof Agent
+     */
+    shipCount?: number;
 }
 
 /**
@@ -56,7 +62,6 @@ export interface Agent {
  */
 export function instanceOfAgent(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "accountId" in value;
     isInstance = isInstance && "symbol" in value;
     isInstance = isInstance && "headquarters" in value;
     isInstance = isInstance && "credits" in value;
@@ -75,11 +80,12 @@ export function AgentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Age
     }
     return {
         
-        'accountId': json['accountId'],
+        'accountId': !exists(json, 'accountId') ? undefined : json['accountId'],
         'symbol': json['symbol'],
         'headquarters': json['headquarters'],
         'credits': json['credits'],
         'startingFaction': json['startingFaction'],
+        'shipCount': !exists(json, 'shipCount') ? undefined : json['shipCount'],
     };
 }
 
@@ -97,6 +103,7 @@ export function AgentToJSON(value?: Agent | null): any {
         'headquarters': value.headquarters,
         'credits': value.credits,
         'startingFaction': value.startingFaction,
+        'shipCount': value.shipCount,
     };
 }
 

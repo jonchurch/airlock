@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
  * 
  * @export
@@ -21,12 +28,12 @@ import { exists, mapValues } from '../runtime';
 export interface PurchaseCargoRequest {
     /**
      * 
-     * @type {string}
+     * @type {TradeSymbol}
      * @memberof PurchaseCargoRequest
      */
-    symbol: string;
+    symbol: TradeSymbol;
     /**
-     * 
+     * Amounts of units to purchase.
      * @type {number}
      * @memberof PurchaseCargoRequest
      */
@@ -54,7 +61,7 @@ export function PurchaseCargoRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
         'units': json['units'],
     };
 }
@@ -68,7 +75,7 @@ export function PurchaseCargoRequestToJSON(value?: PurchaseCargoRequest | null):
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
         'units': value.units,
     };
 }

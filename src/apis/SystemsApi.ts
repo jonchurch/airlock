@@ -81,7 +81,7 @@ export interface GetWaypointRequest {
 export class SystemsApi extends runtime.BaseAPI {
 
     /**
-     * Get jump gate details for a waypoint.
+     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
      * Get Jump Gate
      */
     async getJumpGateRaw(requestParameters: GetJumpGateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetJumpGate200Response>> {
@@ -97,6 +97,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/jump-gate`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -108,7 +116,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get jump gate details for a waypoint.
+     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
      * Get Jump Gate
      */
     async getJumpGate(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetJumpGate200Response> {
@@ -117,7 +125,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+     * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
      * Get Market
      */
     async getMarketRaw(requestParameters: GetMarketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMarket200Response>> {
@@ -133,6 +141,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/market`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -144,7 +160,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Retrieve imports, exports and exchange data from a marketplace. Imports can be sold, exports can be purchased, and exchange goods can be purchased or sold. Send a ship to the waypoint to access trade good prices and recent transactions.
+     * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
      * Get Market
      */
     async getMarket(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMarket200Response> {
@@ -153,7 +169,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+     * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
      * Get Shipyard
      */
     async getShipyardRaw(requestParameters: GetShipyardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetShipyard200Response>> {
@@ -169,6 +185,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/shipyard`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -180,7 +204,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get the shipyard for a waypoint. Send a ship to the waypoint to access ships that are currently available for purchase and recent transactions.
+     * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
      * Get Shipyard
      */
     async getShipyard(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetShipyard200Response> {
@@ -201,6 +225,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems/{systemSymbol}`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))),
             method: 'GET',
@@ -221,8 +253,8 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-     * List Waypoints
+     * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+     * List Waypoints in System
      */
     async getSystemWaypointsRaw(requestParameters: GetSystemWaypointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSystemWaypoints200Response>> {
         if (requestParameters.systemSymbol === null || requestParameters.systemSymbol === undefined) {
@@ -260,8 +292,8 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Fetch all of the waypoints for a given system. System must be charted or a ship must be present to return waypoint details.
-     * List Waypoints
+     * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
+     * List Waypoints in System
      */
     async getSystemWaypoints(systemSymbol: string, page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystemWaypoints200Response> {
         const response = await this.getSystemWaypointsRaw({ systemSymbol: systemSymbol, page: page, limit: limit }, initOverrides);
@@ -269,7 +301,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return a list of all systems.
+     * Return a paginated list of all systems.
      * List Systems
      */
     async getSystemsRaw(requestParameters: GetSystemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSystems200Response>> {
@@ -285,6 +317,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems`,
             method: 'GET',
@@ -296,7 +336,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Return a list of all systems.
+     * Return a paginated list of all systems.
      * List Systems
      */
     async getSystems(page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystems200Response> {
@@ -305,7 +345,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * View the details of a waypoint.
+     * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
      * Get Waypoint
      */
     async getWaypointRaw(requestParameters: GetWaypointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWaypoint200Response>> {
@@ -321,6 +361,14 @@ export class SystemsApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
             method: 'GET',
@@ -332,7 +380,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * View the details of a waypoint.
+     * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
      * Get Waypoint
      */
     async getWaypoint(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWaypoint200Response> {

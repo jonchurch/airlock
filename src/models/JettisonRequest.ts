@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
  * 
  * @export
@@ -21,12 +28,12 @@ import { exists, mapValues } from '../runtime';
 export interface JettisonRequest {
     /**
      * 
-     * @type {string}
+     * @type {TradeSymbol}
      * @memberof JettisonRequest
      */
-    symbol: string;
+    symbol: TradeSymbol;
     /**
-     * 
+     * Amount of units to jettison of this good.
      * @type {number}
      * @memberof JettisonRequest
      */
@@ -54,7 +61,7 @@ export function JettisonRequestFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
         'units': json['units'],
     };
 }
@@ -68,7 +75,7 @@ export function JettisonRequestToJSON(value?: JettisonRequest | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
         'units': value.units,
     };
 }

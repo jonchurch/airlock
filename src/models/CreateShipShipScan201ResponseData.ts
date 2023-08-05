@@ -39,7 +39,7 @@ export interface CreateShipShipScan201ResponseData {
      */
     cooldown: Cooldown;
     /**
-     * 
+     * List of scanned ships.
      * @type {Array<ScannedShip>}
      * @memberof CreateShipShipScan201ResponseData
      */

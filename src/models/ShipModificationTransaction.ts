@@ -14,60 +14,76 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * Result of a transaction for a ship modification, such as installing a mount or a module.
  * @export
- * @interface DeliverContractRequest
+ * @interface ShipModificationTransaction
  */
-export interface DeliverContractRequest {
+export interface ShipModificationTransaction {
     /**
-     * Symbol of a ship located in the destination to deliver a contract and that has a good to deliver in its cargo.
+     * The symbol of the waypoint where the transaction took place.
      * @type {string}
-     * @memberof DeliverContractRequest
+     * @memberof ShipModificationTransaction
+     */
+    waypointSymbol: string;
+    /**
+     * The symbol of the ship that made the transaction.
+     * @type {string}
+     * @memberof ShipModificationTransaction
      */
     shipSymbol: string;
     /**
-     * The symbol of the good to deliver.
+     * The symbol of the trade good.
      * @type {string}
-     * @memberof DeliverContractRequest
+     * @memberof ShipModificationTransaction
      */
     tradeSymbol: string;
     /**
-     * Amount of units to deliver.
+     * The total price of the transaction.
      * @type {number}
-     * @memberof DeliverContractRequest
+     * @memberof ShipModificationTransaction
      */
-    units: number;
+    totalPrice: number;
+    /**
+     * The timestamp of the transaction.
+     * @type {string}
+     * @memberof ShipModificationTransaction
+     */
+    timestamp: string;
 }
 
 /**
- * Check if a given object implements the DeliverContractRequest interface.
+ * Check if a given object implements the ShipModificationTransaction interface.
  */
-export function instanceOfDeliverContractRequest(value: object): boolean {
+export function instanceOfShipModificationTransaction(value: object): boolean {
     let isInstance = true;
+    isInstance = isInstance && "waypointSymbol" in value;
     isInstance = isInstance && "shipSymbol" in value;
     isInstance = isInstance && "tradeSymbol" in value;
-    isInstance = isInstance && "units" in value;
+    isInstance = isInstance && "totalPrice" in value;
+    isInstance = isInstance && "timestamp" in value;
 
     return isInstance;
 }
 
-export function DeliverContractRequestFromJSON(json: any): DeliverContractRequest {
-    return DeliverContractRequestFromJSONTyped(json, false);
+export function ShipModificationTransactionFromJSON(json: any): ShipModificationTransaction {
+    return ShipModificationTransactionFromJSONTyped(json, false);
 }
 
-export function DeliverContractRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeliverContractRequest {
+export function ShipModificationTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipModificationTransaction {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
+        'waypointSymbol': json['waypointSymbol'],
         'shipSymbol': json['shipSymbol'],
         'tradeSymbol': json['tradeSymbol'],
-        'units': json['units'],
+        'totalPrice': json['totalPrice'],
+        'timestamp': json['timestamp'],
     };
 }
 
-export function DeliverContractRequestToJSON(value?: DeliverContractRequest | null): any {
+export function ShipModificationTransactionToJSON(value?: ShipModificationTransaction | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -76,9 +92,11 @@ export function DeliverContractRequestToJSON(value?: DeliverContractRequest | nu
     }
     return {
         
+        'waypointSymbol': value.waypointSymbol,
         'shipSymbol': value.shipSymbol,
         'tradeSymbol': value.tradeSymbol,
-        'units': value.units,
+        'totalPrice': value.totalPrice,
+        'timestamp': value.timestamp,
     };
 }
 

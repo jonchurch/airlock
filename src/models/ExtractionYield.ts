@@ -13,18 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
- * 
+ * A yield from the extraction operation.
  * @export
  * @interface ExtractionYield
  */
 export interface ExtractionYield {
     /**
      * 
-     * @type {string}
+     * @type {TradeSymbol}
      * @memberof ExtractionYield
      */
-    symbol: string;
+    symbol: TradeSymbol;
     /**
      * The number of units extracted that were placed into the ship's cargo hold.
      * @type {number}
@@ -54,7 +61,7 @@ export function ExtractionYieldFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
         'units': json['units'],
     };
 }
@@ -68,7 +75,7 @@ export function ExtractionYieldToJSON(value?: ExtractionYield | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
         'units': value.units,
     };
 }

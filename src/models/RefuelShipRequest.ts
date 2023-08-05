@@ -13,60 +13,44 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
-import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
-
 /**
  * 
  * @export
- * @interface SellCargoRequest
+ * @interface RefuelShipRequest
  */
-export interface SellCargoRequest {
+export interface RefuelShipRequest {
     /**
-     * 
-     * @type {TradeSymbol}
-     * @memberof SellCargoRequest
-     */
-    symbol: TradeSymbol;
-    /**
-     * Amounts of units to sell of the selected good.
+     * The amount of fuel to fill in the ship's tanks. When not specified, the ship will be refueled to its maximum fuel capacity. If the amount specified is greater than the ship's remaining capacity, the ship will only be refueled to its maximum fuel capacity. The amount specified is not in market units but in ship fuel units.
      * @type {number}
-     * @memberof SellCargoRequest
+     * @memberof RefuelShipRequest
      */
-    units: number;
+    units?: number;
 }
 
 /**
- * Check if a given object implements the SellCargoRequest interface.
+ * Check if a given object implements the RefuelShipRequest interface.
  */
-export function instanceOfSellCargoRequest(value: object): boolean {
+export function instanceOfRefuelShipRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "units" in value;
 
     return isInstance;
 }
 
-export function SellCargoRequestFromJSON(json: any): SellCargoRequest {
-    return SellCargoRequestFromJSONTyped(json, false);
+export function RefuelShipRequestFromJSON(json: any): RefuelShipRequest {
+    return RefuelShipRequestFromJSONTyped(json, false);
 }
 
-export function SellCargoRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SellCargoRequest {
+export function RefuelShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RefuelShipRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
-        'units': json['units'],
+        'units': !exists(json, 'units') ? undefined : json['units'],
     };
 }
 
-export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
+export function RefuelShipRequestToJSON(value?: RefuelShipRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,7 +59,6 @@ export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
         'units': value.units,
     };
 }

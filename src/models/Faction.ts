@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FactionSymbols } from './FactionSymbols';
+import {
+    FactionSymbolsFromJSON,
+    FactionSymbolsFromJSONTyped,
+    FactionSymbolsToJSON,
+} from './FactionSymbols';
 import type { FactionTrait } from './FactionTrait';
 import {
     FactionTraitFromJSON,
@@ -21,37 +27,37 @@ import {
 } from './FactionTrait';
 
 /**
- * 
+ * Faction details.
  * @export
  * @interface Faction
  */
 export interface Faction {
     /**
      * 
-     * @type {string}
+     * @type {FactionSymbols}
      * @memberof Faction
      */
-    symbol: string;
+    symbol: FactionSymbols;
     /**
-     * 
+     * Name of the faction.
      * @type {string}
      * @memberof Faction
      */
     name: string;
     /**
-     * 
+     * Description of the faction.
      * @type {string}
      * @memberof Faction
      */
     description: string;
     /**
-     * 
+     * The waypoint in which the faction's HQ is located in.
      * @type {string}
      * @memberof Faction
      */
     headquarters: string;
     /**
-     * 
+     * List of traits that define this faction.
      * @type {Array<FactionTrait>}
      * @memberof Faction
      */
@@ -89,7 +95,7 @@ export function FactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): F
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': FactionSymbolsFromJSON(json['symbol']),
         'name': json['name'],
         'description': json['description'],
         'headquarters': json['headquarters'],
@@ -107,7 +113,7 @@ export function FactionToJSON(value?: Faction | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': FactionSymbolsToJSON(value.symbol),
         'name': value.name,
         'description': value.description,
         'headquarters': value.headquarters,

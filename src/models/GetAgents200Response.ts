@@ -13,60 +13,66 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
+import type { Agent } from './Agent';
 import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
+    AgentFromJSON,
+    AgentFromJSONTyped,
+    AgentToJSON,
+} from './Agent';
+import type { Meta } from './Meta';
+import {
+    MetaFromJSON,
+    MetaFromJSONTyped,
+    MetaToJSON,
+} from './Meta';
 
 /**
  * 
  * @export
- * @interface SellCargoRequest
+ * @interface GetAgents200Response
  */
-export interface SellCargoRequest {
+export interface GetAgents200Response {
     /**
      * 
-     * @type {TradeSymbol}
-     * @memberof SellCargoRequest
+     * @type {Array<Agent>}
+     * @memberof GetAgents200Response
      */
-    symbol: TradeSymbol;
+    data: Array<Agent>;
     /**
-     * Amounts of units to sell of the selected good.
-     * @type {number}
-     * @memberof SellCargoRequest
+     * 
+     * @type {Meta}
+     * @memberof GetAgents200Response
      */
-    units: number;
+    meta: Meta;
 }
 
 /**
- * Check if a given object implements the SellCargoRequest interface.
+ * Check if a given object implements the GetAgents200Response interface.
  */
-export function instanceOfSellCargoRequest(value: object): boolean {
+export function instanceOfGetAgents200Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "units" in value;
+    isInstance = isInstance && "data" in value;
+    isInstance = isInstance && "meta" in value;
 
     return isInstance;
 }
 
-export function SellCargoRequestFromJSON(json: any): SellCargoRequest {
-    return SellCargoRequestFromJSONTyped(json, false);
+export function GetAgents200ResponseFromJSON(json: any): GetAgents200Response {
+    return GetAgents200ResponseFromJSONTyped(json, false);
 }
 
-export function SellCargoRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SellCargoRequest {
+export function GetAgents200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetAgents200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
-        'units': json['units'],
+        'data': ((json['data'] as Array<any>).map(AgentFromJSON)),
+        'meta': MetaFromJSON(json['meta']),
     };
 }
 
-export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
+export function GetAgents200ResponseToJSON(value?: GetAgents200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,8 +81,8 @@ export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
-        'units': value.units,
+        'data': ((value.data as Array<any>).map(AgentToJSON)),
+        'meta': MetaToJSON(value.meta),
     };
 }
 

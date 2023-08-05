@@ -27,7 +27,7 @@ import {
  */
 export interface ShipNavRouteWaypoint {
     /**
-     * 
+     * The symbol of the waypoint.
      * @type {string}
      * @memberof ShipNavRouteWaypoint
      */
@@ -39,19 +39,19 @@ export interface ShipNavRouteWaypoint {
      */
     type: WaypointType;
     /**
-     * 
+     * The symbol of the system the waypoint is in.
      * @type {string}
      * @memberof ShipNavRouteWaypoint
      */
     systemSymbol: string;
     /**
-     * 
+     * Position in the universe in the x axis.
      * @type {number}
      * @memberof ShipNavRouteWaypoint
      */
     x: number;
     /**
-     * 
+     * Position in the universe in the y axis.
      * @type {number}
      * @memberof ShipNavRouteWaypoint
      */

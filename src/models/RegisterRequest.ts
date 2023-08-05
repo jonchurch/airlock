@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FactionSymbols } from './FactionSymbols';
+import {
+    FactionSymbolsFromJSON,
+    FactionSymbolsFromJSONTyped,
+    FactionSymbolsToJSON,
+} from './FactionSymbols';
+
 /**
  * 
  * @export
@@ -20,13 +27,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface RegisterRequest {
     /**
-     * The faction you choose determines your headquarters.
-     * @type {any}
+     * 
+     * @type {FactionSymbols}
      * @memberof RegisterRequest
      */
-    faction: any | null;
+    faction: FactionSymbols;
     /**
-     * How other agents will see your ships and information.
+     * Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships.
      * @type {string}
      * @memberof RegisterRequest
      */
@@ -60,7 +67,7 @@ export function RegisterRequestFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'faction': json['faction'],
+        'faction': FactionSymbolsFromJSON(json['faction']),
         'symbol': json['symbol'],
         'email': !exists(json, 'email') ? undefined : json['email'],
     };
@@ -75,7 +82,7 @@ export function RegisterRequestToJSON(value?: RegisterRequest | null): any {
     }
     return {
         
-        'faction': value.faction,
+        'faction': FactionSymbolsToJSON(value.faction),
         'symbol': value.symbol,
         'email': value.email,
     };

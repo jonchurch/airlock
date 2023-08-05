@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * Type of ship
  * @export
  */
 export const ShipType = {

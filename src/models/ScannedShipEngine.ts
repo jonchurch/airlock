@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ScannedShipEngine {
     /**
-     * 
+     * The symbol of the engine.
      * @type {string}
      * @memberof ScannedShipEngine
      */

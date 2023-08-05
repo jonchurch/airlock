@@ -14,7 +14,7 @@
 
 
 /**
- * 
+ * The good's symbol.
  * @export
  */
 export const TradeSymbol = {

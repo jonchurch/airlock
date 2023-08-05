@@ -27,13 +27,13 @@ import {
  */
 export interface ConnectedSystem {
     /**
-     * 
+     * The symbol of the system.
      * @type {string}
      * @memberof ConnectedSystem
      */
     symbol: string;
     /**
-     * 
+     * The sector of this system.
      * @type {string}
      * @memberof ConnectedSystem
      */
@@ -51,19 +51,19 @@ export interface ConnectedSystem {
      */
     factionSymbol?: string;
     /**
-     * 
+     * Position in the universe in the x axis.
      * @type {number}
      * @memberof ConnectedSystem
      */
     x: number;
     /**
-     * 
+     * Position in the universe in the y axis.
      * @type {number}
      * @memberof ConnectedSystem
      */
     y: number;
     /**
-     * 
+     * The distance of this system to the connected Jump Gate.
      * @type {number}
      * @memberof ConnectedSystem
      */

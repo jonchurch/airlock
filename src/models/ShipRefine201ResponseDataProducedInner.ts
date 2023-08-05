@@ -13,60 +13,53 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
-import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
-
 /**
  * 
  * @export
- * @interface SellCargoRequest
+ * @interface ShipRefine201ResponseDataProducedInner
  */
-export interface SellCargoRequest {
+export interface ShipRefine201ResponseDataProducedInner {
     /**
-     * 
-     * @type {TradeSymbol}
-     * @memberof SellCargoRequest
+     * Symbol of the good.
+     * @type {string}
+     * @memberof ShipRefine201ResponseDataProducedInner
      */
-    symbol: TradeSymbol;
+    tradeSymbol: string;
     /**
-     * Amounts of units to sell of the selected good.
+     * Amount of units of the good.
      * @type {number}
-     * @memberof SellCargoRequest
+     * @memberof ShipRefine201ResponseDataProducedInner
      */
     units: number;
 }
 
 /**
- * Check if a given object implements the SellCargoRequest interface.
+ * Check if a given object implements the ShipRefine201ResponseDataProducedInner interface.
  */
-export function instanceOfSellCargoRequest(value: object): boolean {
+export function instanceOfShipRefine201ResponseDataProducedInner(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "tradeSymbol" in value;
     isInstance = isInstance && "units" in value;
 
     return isInstance;
 }
 
-export function SellCargoRequestFromJSON(json: any): SellCargoRequest {
-    return SellCargoRequestFromJSONTyped(json, false);
+export function ShipRefine201ResponseDataProducedInnerFromJSON(json: any): ShipRefine201ResponseDataProducedInner {
+    return ShipRefine201ResponseDataProducedInnerFromJSONTyped(json, false);
 }
 
-export function SellCargoRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SellCargoRequest {
+export function ShipRefine201ResponseDataProducedInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipRefine201ResponseDataProducedInner {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
+        'tradeSymbol': json['tradeSymbol'],
         'units': json['units'],
     };
 }
 
-export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
+export function ShipRefine201ResponseDataProducedInnerToJSON(value?: ShipRefine201ResponseDataProducedInner | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,7 +68,7 @@ export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
+        'tradeSymbol': value.tradeSymbol,
         'units': value.units,
     };
 }

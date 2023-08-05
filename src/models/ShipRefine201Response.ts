@@ -13,60 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
+import type { ShipRefine201ResponseData } from './ShipRefine201ResponseData';
 import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
+    ShipRefine201ResponseDataFromJSON,
+    ShipRefine201ResponseDataFromJSONTyped,
+    ShipRefine201ResponseDataToJSON,
+} from './ShipRefine201ResponseData';
 
 /**
  * 
  * @export
- * @interface SellCargoRequest
+ * @interface ShipRefine201Response
  */
-export interface SellCargoRequest {
+export interface ShipRefine201Response {
     /**
      * 
-     * @type {TradeSymbol}
-     * @memberof SellCargoRequest
+     * @type {ShipRefine201ResponseData}
+     * @memberof ShipRefine201Response
      */
-    symbol: TradeSymbol;
-    /**
-     * Amounts of units to sell of the selected good.
-     * @type {number}
-     * @memberof SellCargoRequest
-     */
-    units: number;
+    data: ShipRefine201ResponseData;
 }
 
 /**
- * Check if a given object implements the SellCargoRequest interface.
+ * Check if a given object implements the ShipRefine201Response interface.
  */
-export function instanceOfSellCargoRequest(value: object): boolean {
+export function instanceOfShipRefine201Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "units" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function SellCargoRequestFromJSON(json: any): SellCargoRequest {
-    return SellCargoRequestFromJSONTyped(json, false);
+export function ShipRefine201ResponseFromJSON(json: any): ShipRefine201Response {
+    return ShipRefine201ResponseFromJSONTyped(json, false);
 }
 
-export function SellCargoRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SellCargoRequest {
+export function ShipRefine201ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipRefine201Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
-        'units': json['units'],
+        'data': ShipRefine201ResponseDataFromJSON(json['data']),
     };
 }
 
-export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
+export function ShipRefine201ResponseToJSON(value?: ShipRefine201Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -75,8 +67,7 @@ export function SellCargoRequestToJSON(value?: SellCargoRequest | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
-        'units': value.units,
+        'data': ShipRefine201ResponseDataToJSON(value.data),
     };
 }
 

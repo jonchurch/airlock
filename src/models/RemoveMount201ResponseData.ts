@@ -41,39 +41,39 @@ import {
 /**
  * 
  * @export
- * @interface InstallMount201ResponseData
+ * @interface RemoveMount201ResponseData
  */
-export interface InstallMount201ResponseData {
+export interface RemoveMount201ResponseData {
     /**
      * 
      * @type {Agent}
-     * @memberof InstallMount201ResponseData
+     * @memberof RemoveMount201ResponseData
      */
     agent: Agent;
     /**
-     * List of installed mounts after the installation of the new mount.
+     * List of installed mounts after the removal of the selected mount.
      * @type {Array<ShipMount>}
-     * @memberof InstallMount201ResponseData
+     * @memberof RemoveMount201ResponseData
      */
     mounts: Array<ShipMount>;
     /**
      * 
      * @type {ShipCargo}
-     * @memberof InstallMount201ResponseData
+     * @memberof RemoveMount201ResponseData
      */
     cargo: ShipCargo;
     /**
      * 
      * @type {ShipModificationTransaction}
-     * @memberof InstallMount201ResponseData
+     * @memberof RemoveMount201ResponseData
      */
     transaction: ShipModificationTransaction;
 }
 
 /**
- * Check if a given object implements the InstallMount201ResponseData interface.
+ * Check if a given object implements the RemoveMount201ResponseData interface.
  */
-export function instanceOfInstallMount201ResponseData(value: object): boolean {
+export function instanceOfRemoveMount201ResponseData(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "agent" in value;
     isInstance = isInstance && "mounts" in value;
@@ -83,11 +83,11 @@ export function instanceOfInstallMount201ResponseData(value: object): boolean {
     return isInstance;
 }
 
-export function InstallMount201ResponseDataFromJSON(json: any): InstallMount201ResponseData {
-    return InstallMount201ResponseDataFromJSONTyped(json, false);
+export function RemoveMount201ResponseDataFromJSON(json: any): RemoveMount201ResponseData {
+    return RemoveMount201ResponseDataFromJSONTyped(json, false);
 }
 
-export function InstallMount201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): InstallMount201ResponseData {
+export function RemoveMount201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): RemoveMount201ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -100,7 +100,7 @@ export function InstallMount201ResponseDataFromJSONTyped(json: any, ignoreDiscri
     };
 }
 
-export function InstallMount201ResponseDataToJSON(value?: InstallMount201ResponseData | null): any {
+export function RemoveMount201ResponseDataToJSON(value?: RemoveMount201ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }

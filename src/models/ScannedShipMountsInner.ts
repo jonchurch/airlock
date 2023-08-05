@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ScannedShipMountsInner {
     /**
-     * 
+     * The symbol of the mount.
      * @type {string}
      * @memberof ScannedShipMountsInner
      */

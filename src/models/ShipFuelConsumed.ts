@@ -14,7 +14,7 @@
 
 import { exists, mapValues } from '../runtime';
 /**
- * 
+ * An object that only shows up when an action has consumed fuel in the process. Shows the fuel consumption data.
  * @export
  * @interface ShipFuelConsumed
  */
