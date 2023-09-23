@@ -49,6 +49,12 @@ import {
     ShipTypeFromJSONTyped,
     ShipTypeToJSON,
 } from './ShipType';
+import type { ShipyardShipCrew } from './ShipyardShipCrew';
+import {
+    ShipyardShipCrewFromJSON,
+    ShipyardShipCrewFromJSONTyped,
+    ShipyardShipCrewToJSON,
+} from './ShipyardShipCrew';
 
 /**
  * 
@@ -110,6 +116,12 @@ export interface ShipyardShip {
      * @memberof ShipyardShip
      */
     mounts: Array<ShipMount>;
+    /**
+     * 
+     * @type {ShipyardShipCrew}
+     * @memberof ShipyardShip
+     */
+    crew: ShipyardShipCrew;
 }
 
 /**
@@ -125,6 +137,7 @@ export function instanceOfShipyardShip(value: object): boolean {
     isInstance = isInstance && "engine" in value;
     isInstance = isInstance && "modules" in value;
     isInstance = isInstance && "mounts" in value;
+    isInstance = isInstance && "crew" in value;
 
     return isInstance;
 }
@@ -148,6 +161,7 @@ export function ShipyardShipFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'engine': ShipEngineFromJSON(json['engine']),
         'modules': ((json['modules'] as Array<any>).map(ShipModuleFromJSON)),
         'mounts': ((json['mounts'] as Array<any>).map(ShipMountFromJSON)),
+        'crew': ShipyardShipCrewFromJSON(json['crew']),
     };
 }
 
@@ -169,6 +183,7 @@ export function ShipyardShipToJSON(value?: ShipyardShip | null): any {
         'engine': ShipEngineToJSON(value.engine),
         'modules': ((value.modules as Array<any>).map(ShipModuleToJSON)),
         'mounts': ((value.mounts as Array<any>).map(ShipMountToJSON)),
+        'crew': ShipyardShipCrewToJSON(value.crew),
     };
 }
 

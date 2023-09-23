@@ -39,6 +39,12 @@ export interface ShipNavRoute {
      */
     departure: ShipNavRouteWaypoint;
     /**
+     * 
+     * @type {ShipNavRouteWaypoint}
+     * @memberof ShipNavRoute
+     */
+    origin: ShipNavRouteWaypoint;
+    /**
      * The date time of the ship's departure.
      * @type {string}
      * @memberof ShipNavRoute
@@ -59,6 +65,7 @@ export function instanceOfShipNavRoute(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "destination" in value;
     isInstance = isInstance && "departure" in value;
+    isInstance = isInstance && "origin" in value;
     isInstance = isInstance && "departureTime" in value;
     isInstance = isInstance && "arrival" in value;
 
@@ -77,6 +84,7 @@ export function ShipNavRouteFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'destination': ShipNavRouteWaypointFromJSON(json['destination']),
         'departure': ShipNavRouteWaypointFromJSON(json['departure']),
+        'origin': ShipNavRouteWaypointFromJSON(json['origin']),
         'departureTime': json['departureTime'],
         'arrival': json['arrival'],
     };
@@ -93,6 +101,7 @@ export function ShipNavRouteToJSON(value?: ShipNavRoute | null): any {
         
         'destination': ShipNavRouteWaypointToJSON(value.destination),
         'departure': ShipNavRouteWaypointToJSON(value.departure),
+        'origin': ShipNavRouteWaypointToJSON(value.origin),
         'departureTime': value.departureTime,
         'arrival': value.arrival,
     };

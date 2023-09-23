@@ -139,6 +139,7 @@ models/ShipRole.ts
 models/ShipType.ts
 models/Shipyard.ts
 models/ShipyardShip.ts
+models/ShipyardShipCrew.ts
 models/ShipyardShipTypesInner.ts
 models/ShipyardTransaction.ts
 models/Survey.ts

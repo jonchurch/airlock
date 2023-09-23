@@ -69,13 +69,13 @@ export interface Waypoint {
      */
     systemSymbol: string;
     /**
-     * Position in the universe in the x axis.
+     * Relative position of the waypoint on the system's x axis. This is not an absolute position in the universe.
      * @type {number}
      * @memberof Waypoint
      */
     x: number;
     /**
-     * Position in the universe in the Y axis.
+     * Relative position of the waypoint on the system's y axis. This is not an absolute position in the universe.
      * @type {number}
      * @memberof Waypoint
      */
@@ -86,6 +86,12 @@ export interface Waypoint {
      * @memberof Waypoint
      */
     orbitals: Array<WaypointOrbital>;
+    /**
+     * The symbol of the parent waypoint, if this waypoint is in orbit around another waypoint. Otherwise this value is undefined.
+     * @type {string}
+     * @memberof Waypoint
+     */
+    orbits?: string;
     /**
      * 
      * @type {WaypointFaction}
@@ -138,6 +144,7 @@ export function WaypointFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'x': json['x'],
         'y': json['y'],
         'orbitals': ((json['orbitals'] as Array<any>).map(WaypointOrbitalFromJSON)),
+        'orbits': !exists(json, 'orbits') ? undefined : json['orbits'],
         'faction': !exists(json, 'faction') ? undefined : WaypointFactionFromJSON(json['faction']),
         'traits': ((json['traits'] as Array<any>).map(WaypointTraitFromJSON)),
         'chart': !exists(json, 'chart') ? undefined : ChartFromJSON(json['chart']),
@@ -159,6 +166,7 @@ export function WaypointToJSON(value?: Waypoint | null): any {
         'x': value.x,
         'y': value.y,
         'orbitals': ((value.orbitals as Array<any>).map(WaypointOrbitalToJSON)),
+        'orbits': value.orbits,
         'faction': WaypointFactionToJSON(value.faction),
         'traits': ((value.traits as Array<any>).map(WaypointTraitToJSON)),
         'chart': ChartToJSON(value.chart),

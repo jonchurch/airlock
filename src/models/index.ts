@@ -133,6 +133,7 @@ export * from './ShipRole';
 export * from './ShipType';
 export * from './Shipyard';
 export * from './ShipyardShip';
+export * from './ShipyardShipCrew';
 export * from './ShipyardShipTypesInner';
 export * from './ShipyardTransaction';
 export * from './Survey';

@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Cooldown } from './Cooldown';
+import {
+    CooldownFromJSON,
+    CooldownFromJSONTyped,
+    CooldownToJSON,
+} from './Cooldown';
 import type { ShipCargo } from './ShipCargo';
 import {
     ShipCargoFromJSON,
@@ -123,6 +129,12 @@ export interface Ship {
      */
     engine: ShipEngine;
     /**
+     * 
+     * @type {Cooldown}
+     * @memberof Ship
+     */
+    cooldown: Cooldown;
+    /**
      * Modules installed in this ship.
      * @type {Array<ShipModule>}
      * @memberof Ship
@@ -160,6 +172,7 @@ export function instanceOfShip(value: object): boolean {
     isInstance = isInstance && "frame" in value;
     isInstance = isInstance && "reactor" in value;
     isInstance = isInstance && "engine" in value;
+    isInstance = isInstance && "cooldown" in value;
     isInstance = isInstance && "modules" in value;
     isInstance = isInstance && "mounts" in value;
     isInstance = isInstance && "cargo" in value;
@@ -185,6 +198,7 @@ export function ShipFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ship
         'frame': ShipFrameFromJSON(json['frame']),
         'reactor': ShipReactorFromJSON(json['reactor']),
         'engine': ShipEngineFromJSON(json['engine']),
+        'cooldown': CooldownFromJSON(json['cooldown']),
         'modules': ((json['modules'] as Array<any>).map(ShipModuleFromJSON)),
         'mounts': ((json['mounts'] as Array<any>).map(ShipMountFromJSON)),
         'cargo': ShipCargoFromJSON(json['cargo']),
@@ -208,6 +222,7 @@ export function ShipToJSON(value?: Ship | null): any {
         'frame': ShipFrameToJSON(value.frame),
         'reactor': ShipReactorToJSON(value.reactor),
         'engine': ShipEngineToJSON(value.engine),
+        'cooldown': CooldownToJSON(value.cooldown),
         'modules': ((value.modules as Array<any>).map(ShipModuleToJSON)),
         'mounts': ((value.mounts as Array<any>).map(ShipMountToJSON)),
         'cargo': ShipCargoToJSON(value.cargo),

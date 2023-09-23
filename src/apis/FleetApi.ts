@@ -52,6 +52,7 @@ import type {
   SellCargoRequest,
   ShipRefine201Response,
   ShipRefineRequest,
+  Survey,
   TransferCargo200Response,
   TransferCargoRequest,
 } from '../models';
@@ -130,6 +131,8 @@ import {
     ShipRefine201ResponseToJSON,
     ShipRefineRequestFromJSON,
     ShipRefineRequestToJSON,
+    SurveyFromJSON,
+    SurveyToJSON,
     TransferCargo200ResponseFromJSON,
     TransferCargo200ResponseToJSON,
     TransferCargoRequestFromJSON,
@@ -163,6 +166,11 @@ export interface DockShipRequest {
 export interface ExtractResourcesOperationRequest {
     shipSymbol: string;
     extractResourcesRequest?: ExtractResourcesRequest;
+}
+
+export interface ExtractResourcesWithSurveyRequest {
+    shipSymbol: string;
+    survey?: Survey;
 }
 
 export interface GetMountsRequest {
@@ -508,7 +516,7 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
+     * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.  The survey property is now deprecated. See the `extract/survey` endpoint for more details.
      * Extract Resources
      */
     async extractResourcesRaw(requestParameters: ExtractResourcesOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtractResources201Response>> {
@@ -542,11 +550,54 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.
+     * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.  The survey property is now deprecated. See the `extract/survey` endpoint for more details.
      * Extract Resources
      */
     async extractResources(shipSymbol: string, extractResourcesRequest?: ExtractResourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtractResources201Response> {
         const response = await this.extractResourcesRaw({ shipSymbol: shipSymbol, extractResourcesRequest: extractResourcesRequest }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+     * Extract Resources with Survey
+     */
+    async extractResourcesWithSurveyRaw(requestParameters: ExtractResourcesWithSurveyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExtractResources201Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling extractResourcesWithSurvey.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/extract/survey`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SurveyToJSON(requestParameters.survey),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ExtractResources201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
+     * Extract Resources with Survey
+     */
+    async extractResourcesWithSurvey(shipSymbol: string, survey?: Survey, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExtractResources201Response> {
+        const response = await this.extractResourcesWithSurveyRaw({ shipSymbol: shipSymbol, survey: survey }, initOverrides);
         return await response.value();
     }
 

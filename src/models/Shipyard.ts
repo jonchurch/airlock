@@ -62,6 +62,12 @@ export interface Shipyard {
      * @memberof Shipyard
      */
     ships?: Array<ShipyardShip>;
+    /**
+     * The fee to modify a ship at this shipyard. This includes installing or removing modules and mounts on a ship. In the case of mounts, the fee is a flat rate per mount. In the case of modules, the fee is per slot the module occupies.
+     * @type {number}
+     * @memberof Shipyard
+     */
+    modificationsFee: number;
 }
 
 /**
@@ -71,6 +77,7 @@ export function instanceOfShipyard(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "symbol" in value;
     isInstance = isInstance && "shipTypes" in value;
+    isInstance = isInstance && "modificationsFee" in value;
 
     return isInstance;
 }
@@ -89,6 +96,7 @@ export function ShipyardFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'shipTypes': ((json['shipTypes'] as Array<any>).map(ShipyardShipTypesInnerFromJSON)),
         'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(ShipyardTransactionFromJSON)),
         'ships': !exists(json, 'ships') ? undefined : ((json['ships'] as Array<any>).map(ShipyardShipFromJSON)),
+        'modificationsFee': json['modificationsFee'],
     };
 }
 
@@ -105,6 +113,7 @@ export function ShipyardToJSON(value?: Shipyard | null): any {
         'shipTypes': ((value.shipTypes as Array<any>).map(ShipyardShipTypesInnerToJSON)),
         'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(ShipyardTransactionToJSON)),
         'ships': value.ships === undefined ? undefined : ((value.ships as Array<any>).map(ShipyardShipToJSON)),
+        'modificationsFee': value.modificationsFee,
     };
 }
 
