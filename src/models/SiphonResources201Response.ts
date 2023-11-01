@@ -13,45 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SiphonResources201ResponseData } from './SiphonResources201ResponseData';
+import {
+    SiphonResources201ResponseDataFromJSON,
+    SiphonResources201ResponseDataFromJSONTyped,
+    SiphonResources201ResponseDataToJSON,
+} from './SiphonResources201ResponseData';
+
 /**
  * 
  * @export
- * @interface JumpShipRequest
+ * @interface SiphonResources201Response
  */
-export interface JumpShipRequest {
+export interface SiphonResources201Response {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {string}
-     * @memberof JumpShipRequest
+     * 
+     * @type {SiphonResources201ResponseData}
+     * @memberof SiphonResources201Response
      */
-    waypointSymbol: string;
+    data: SiphonResources201ResponseData;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the SiphonResources201Response interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfSiphonResources201Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function SiphonResources201ResponseFromJSON(json: any): SiphonResources201Response {
+    return SiphonResources201ResponseFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function SiphonResources201ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SiphonResources201Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'data': SiphonResources201ResponseDataFromJSON(json['data']),
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function SiphonResources201ResponseToJSON(value?: SiphonResources201Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +67,7 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'data': SiphonResources201ResponseDataToJSON(value.data),
     };
 }
 

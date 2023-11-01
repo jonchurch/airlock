@@ -13,45 +13,60 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
- * 
+ * A yield from the siphon operation.
  * @export
- * @interface JumpShipRequest
+ * @interface SiphonYield
  */
-export interface JumpShipRequest {
+export interface SiphonYield {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {string}
-     * @memberof JumpShipRequest
+     * 
+     * @type {TradeSymbol}
+     * @memberof SiphonYield
      */
-    waypointSymbol: string;
+    symbol: TradeSymbol;
+    /**
+     * The number of units siphoned that were placed into the ship's cargo hold.
+     * @type {number}
+     * @memberof SiphonYield
+     */
+    units: number;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the SiphonYield interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfSiphonYield(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "units" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function SiphonYieldFromJSON(json: any): SiphonYield {
+    return SiphonYieldFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function SiphonYieldFromJSONTyped(json: any, ignoreDiscriminator: boolean): SiphonYield {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
+        'units': json['units'],
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function SiphonYieldToJSON(value?: SiphonYield | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +75,8 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
+        'units': value.units,
     };
 }
 

@@ -52,6 +52,7 @@ import type {
   SellCargoRequest,
   ShipRefine201Response,
   ShipRefineRequest,
+  SiphonResources201Response,
   Survey,
   TransferCargo200Response,
   TransferCargoRequest,
@@ -131,6 +132,8 @@ import {
     ShipRefine201ResponseToJSON,
     ShipRefineRequestFromJSON,
     ShipRefineRequestToJSON,
+    SiphonResources201ResponseFromJSON,
+    SiphonResources201ResponseToJSON,
     SurveyFromJSON,
     SurveyToJSON,
     TransferCargo200ResponseFromJSON,
@@ -258,6 +261,10 @@ export interface SellCargoOperationRequest {
 export interface ShipRefineOperationRequest {
     shipSymbol: string;
     shipRefineRequest?: ShipRefineRequest;
+}
+
+export interface SiphonResourcesRequest {
+    shipSymbol: string;
 }
 
 export interface TransferCargoOperationRequest {
@@ -932,7 +939,7 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system\'s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship\'s cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+     * Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
      * Jump Ship
      */
     async jumpShipRaw(requestParameters: JumpShipOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<JumpShip200Response>> {
@@ -966,7 +973,7 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Jump your ship instantly to a target system. The ship must be in orbit to use this function. When used while in orbit of a Jump Gate waypoint, any ship can use this command, jumping to the target system\'s Jump Gate waypoint.  When used elsewhere, jumping requires the ship to have a `Jump Drive` module installed and consumes a unit of antimatter from the ship\'s cargo. The command will fail if there is no antimatter to consume. When jumping via the `Jump Drive` module, the ship ends up at its largest source of energy in the system, such as a gas planet or a jump gate.
+     * Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
      * Jump Ship
      */
     async jumpShip(shipSymbol: string, jumpShipRequest?: JumpShipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<JumpShip200Response> {
@@ -1018,7 +1025,7 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction\'s HQ waypoint to negotiate a contract with that faction.
+     * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
      * Negotiate Contract
      */
     async negotiateContractRaw(requestParameters: NegotiateContractRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NegotiateContract200Response>> {
@@ -1049,7 +1056,7 @@ export class FleetApi extends runtime.BaseAPI {
     }
 
     /**
-     * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at a faction\'s HQ waypoint to negotiate a contract with that faction.
+     * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
      * Negotiate Contract
      */
     async negotiateContract(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NegotiateContract200Response> {
@@ -1391,6 +1398,46 @@ export class FleetApi extends runtime.BaseAPI {
      */
     async shipRefine(shipSymbol: string, shipRefineRequest?: ShipRefineRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ShipRefine201Response> {
         const response = await this.shipRefineRaw({ shipSymbol: shipSymbol, shipRefineRequest: shipRefineRequest }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+     * Siphon Resources
+     */
+    async siphonResourcesRaw(requestParameters: SiphonResourcesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SiphonResources201Response>> {
+        if (requestParameters.shipSymbol === null || requestParameters.shipSymbol === undefined) {
+            throw new runtime.RequiredError('shipSymbol','Required parameter requestParameters.shipSymbol was null or undefined when calling siphonResources.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/my/ships/{shipSymbol}/siphon`.replace(`{${"shipSymbol"}}`, encodeURIComponent(String(requestParameters.shipSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SiphonResources201ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
+     * Siphon Resources
+     */
+    async siphonResources(shipSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SiphonResources201Response> {
+        const response = await this.siphonResourcesRaw({ shipSymbol: shipSymbol }, initOverrides);
         return await response.value();
     }
 

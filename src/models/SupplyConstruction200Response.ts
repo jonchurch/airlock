@@ -13,45 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SupplyConstruction200ResponseData } from './SupplyConstruction200ResponseData';
+import {
+    SupplyConstruction200ResponseDataFromJSON,
+    SupplyConstruction200ResponseDataFromJSONTyped,
+    SupplyConstruction200ResponseDataToJSON,
+} from './SupplyConstruction200ResponseData';
+
 /**
  * 
  * @export
- * @interface JumpShipRequest
+ * @interface SupplyConstruction200Response
  */
-export interface JumpShipRequest {
+export interface SupplyConstruction200Response {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {string}
-     * @memberof JumpShipRequest
+     * 
+     * @type {SupplyConstruction200ResponseData}
+     * @memberof SupplyConstruction200Response
      */
-    waypointSymbol: string;
+    data: SupplyConstruction200ResponseData;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the SupplyConstruction200Response interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfSupplyConstruction200Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function SupplyConstruction200ResponseFromJSON(json: any): SupplyConstruction200Response {
+    return SupplyConstruction200ResponseFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function SupplyConstruction200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SupplyConstruction200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'data': SupplyConstruction200ResponseDataFromJSON(json['data']),
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function SupplyConstruction200ResponseToJSON(value?: SupplyConstruction200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +67,7 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'data': SupplyConstruction200ResponseDataToJSON(value.data),
     };
 }
 

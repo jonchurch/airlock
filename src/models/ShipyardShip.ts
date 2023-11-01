@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ActivityLevel } from './ActivityLevel';
+import {
+    ActivityLevelFromJSON,
+    ActivityLevelFromJSONTyped,
+    ActivityLevelToJSON,
+} from './ActivityLevel';
 import type { ShipEngine } from './ShipEngine';
 import {
     ShipEngineFromJSON,
@@ -55,6 +61,12 @@ import {
     ShipyardShipCrewFromJSONTyped,
     ShipyardShipCrewToJSON,
 } from './ShipyardShipCrew';
+import type { SupplyLevel } from './SupplyLevel';
+import {
+    SupplyLevelFromJSON,
+    SupplyLevelFromJSONTyped,
+    SupplyLevelToJSON,
+} from './SupplyLevel';
 
 /**
  * 
@@ -80,6 +92,18 @@ export interface ShipyardShip {
      * @memberof ShipyardShip
      */
     description: string;
+    /**
+     * 
+     * @type {SupplyLevel}
+     * @memberof ShipyardShip
+     */
+    supply: SupplyLevel;
+    /**
+     * 
+     * @type {ActivityLevel}
+     * @memberof ShipyardShip
+     */
+    activity?: ActivityLevel;
     /**
      * 
      * @type {number}
@@ -131,6 +155,7 @@ export function instanceOfShipyardShip(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "description" in value;
+    isInstance = isInstance && "supply" in value;
     isInstance = isInstance && "purchasePrice" in value;
     isInstance = isInstance && "frame" in value;
     isInstance = isInstance && "reactor" in value;
@@ -155,6 +180,8 @@ export function ShipyardShipFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'type': !exists(json, 'type') ? undefined : ShipTypeFromJSON(json['type']),
         'name': json['name'],
         'description': json['description'],
+        'supply': SupplyLevelFromJSON(json['supply']),
+        'activity': !exists(json, 'activity') ? undefined : ActivityLevelFromJSON(json['activity']),
         'purchasePrice': json['purchasePrice'],
         'frame': ShipFrameFromJSON(json['frame']),
         'reactor': ShipReactorFromJSON(json['reactor']),
@@ -177,6 +204,8 @@ export function ShipyardShipToJSON(value?: ShipyardShip | null): any {
         'type': ShipTypeToJSON(value.type),
         'name': value.name,
         'description': value.description,
+        'supply': SupplyLevelToJSON(value.supply),
+        'activity': ActivityLevelToJSON(value.activity),
         'purchasePrice': value.purchasePrice,
         'frame': ShipFrameToJSON(value.frame),
         'reactor': ShipReactorToJSON(value.reactor),

@@ -15,15 +15,22 @@
 
 import * as runtime from '../runtime';
 import type {
+  GetConstruction200Response,
   GetJumpGate200Response,
   GetMarket200Response,
   GetShipyard200Response,
   GetSystem200Response,
   GetSystemWaypoints200Response,
+  GetSystemWaypointsTraitsParameter,
   GetSystems200Response,
   GetWaypoint200Response,
+  SupplyConstruction200Response,
+  SupplyConstructionRequest,
+  WaypointType,
 } from '../models';
 import {
+    GetConstruction200ResponseFromJSON,
+    GetConstruction200ResponseToJSON,
     GetJumpGate200ResponseFromJSON,
     GetJumpGate200ResponseToJSON,
     GetMarket200ResponseFromJSON,
@@ -34,11 +41,24 @@ import {
     GetSystem200ResponseToJSON,
     GetSystemWaypoints200ResponseFromJSON,
     GetSystemWaypoints200ResponseToJSON,
+    GetSystemWaypointsTraitsParameterFromJSON,
+    GetSystemWaypointsTraitsParameterToJSON,
     GetSystems200ResponseFromJSON,
     GetSystems200ResponseToJSON,
     GetWaypoint200ResponseFromJSON,
     GetWaypoint200ResponseToJSON,
+    SupplyConstruction200ResponseFromJSON,
+    SupplyConstruction200ResponseToJSON,
+    SupplyConstructionRequestFromJSON,
+    SupplyConstructionRequestToJSON,
+    WaypointTypeFromJSON,
+    WaypointTypeToJSON,
 } from '../models';
+
+export interface GetConstructionRequest {
+    systemSymbol: string;
+    waypointSymbol: string;
+}
 
 export interface GetJumpGateRequest {
     systemSymbol: string;
@@ -63,6 +83,8 @@ export interface GetSystemWaypointsRequest {
     systemSymbol: string;
     page?: number;
     limit?: number;
+    type?: WaypointType;
+    traits?: GetSystemWaypointsTraitsParameter;
 }
 
 export interface GetSystemsRequest {
@@ -75,13 +97,63 @@ export interface GetWaypointRequest {
     waypointSymbol: string;
 }
 
+export interface SupplyConstructionOperationRequest {
+    systemSymbol: string;
+    waypointSymbol: string;
+    supplyConstructionRequest?: SupplyConstructionRequest;
+}
+
 /**
  * 
  */
 export class SystemsApi extends runtime.BaseAPI {
 
     /**
-     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+     * Get construction details for a waypoint. Requires a waypoint with a property of `isUnderConstruction` to be true.
+     * Get Construction Site
+     */
+    async getConstructionRaw(requestParameters: GetConstructionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetConstruction200Response>> {
+        if (requestParameters.systemSymbol === null || requestParameters.systemSymbol === undefined) {
+            throw new runtime.RequiredError('systemSymbol','Required parameter requestParameters.systemSymbol was null or undefined when calling getConstruction.');
+        }
+
+        if (requestParameters.waypointSymbol === null || requestParameters.waypointSymbol === undefined) {
+            throw new runtime.RequiredError('waypointSymbol','Required parameter requestParameters.waypointSymbol was null or undefined when calling getConstruction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetConstruction200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get construction details for a waypoint. Requires a waypoint with a property of `isUnderConstruction` to be true.
+     * Get Construction Site
+     */
+    async getConstruction(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetConstruction200Response> {
+        const response = await this.getConstructionRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  Waypoints connected to this jump gate can be 
      * Get Jump Gate
      */
     async getJumpGateRaw(requestParameters: GetJumpGateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetJumpGate200Response>> {
@@ -116,7 +188,7 @@ export class SystemsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  The response will return all systems that are have a Jump Gate in range of this Jump Gate. Those systems can be jumped to from this Jump Gate.
+     * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  Waypoints connected to this jump gate can be 
      * Get Jump Gate
      */
     async getJumpGate(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetJumpGate200Response> {
@@ -271,6 +343,14 @@ export class SystemsApi extends runtime.BaseAPI {
             queryParameters['limit'] = requestParameters.limit;
         }
 
+        if (requestParameters.type !== undefined) {
+            queryParameters['type'] = requestParameters.type;
+        }
+
+        if (requestParameters.traits !== undefined) {
+            queryParameters['traits'] = requestParameters.traits;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -295,8 +375,8 @@ export class SystemsApi extends runtime.BaseAPI {
      * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
      * List Waypoints in System
      */
-    async getSystemWaypoints(systemSymbol: string, page?: number, limit?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystemWaypoints200Response> {
-        const response = await this.getSystemWaypointsRaw({ systemSymbol: systemSymbol, page: page, limit: limit }, initOverrides);
+    async getSystemWaypoints(systemSymbol: string, page?: number, limit?: number, type?: WaypointType, traits?: GetSystemWaypointsTraitsParameter, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSystemWaypoints200Response> {
+        const response = await this.getSystemWaypointsRaw({ systemSymbol: systemSymbol, page: page, limit: limit, type: type, traits: traits }, initOverrides);
         return await response.value();
     }
 
@@ -385,6 +465,53 @@ export class SystemsApi extends runtime.BaseAPI {
      */
     async getWaypoint(systemSymbol: string, waypointSymbol: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWaypoint200Response> {
         const response = await this.getWaypointRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.  The good must be in your ship\'s cargo. The good will be removed from your ship\'s cargo and added to the construction site\'s materials.
+     * Supply Construction Site
+     */
+    async supplyConstructionRaw(requestParameters: SupplyConstructionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SupplyConstruction200Response>> {
+        if (requestParameters.systemSymbol === null || requestParameters.systemSymbol === undefined) {
+            throw new runtime.RequiredError('systemSymbol','Required parameter requestParameters.systemSymbol was null or undefined when calling supplyConstruction.');
+        }
+
+        if (requestParameters.waypointSymbol === null || requestParameters.waypointSymbol === undefined) {
+            throw new runtime.RequiredError('waypointSymbol','Required parameter requestParameters.waypointSymbol was null or undefined when calling supplyConstruction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("AgentToken", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/systems/{systemSymbol}/waypoints/{waypointSymbol}/construction/supply`.replace(`{${"systemSymbol"}}`, encodeURIComponent(String(requestParameters.systemSymbol))).replace(`{${"waypointSymbol"}}`, encodeURIComponent(String(requestParameters.waypointSymbol))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SupplyConstructionRequestToJSON(requestParameters.supplyConstructionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SupplyConstruction200ResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.  The good must be in your ship\'s cargo. The good will be removed from your ship\'s cargo and added to the construction site\'s materials.
+     * Supply Construction Site
+     */
+    async supplyConstruction(systemSymbol: string, waypointSymbol: string, supplyConstructionRequest?: SupplyConstructionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SupplyConstruction200Response> {
+        const response = await this.supplyConstructionRaw({ systemSymbol: systemSymbol, waypointSymbol: waypointSymbol, supplyConstructionRequest: supplyConstructionRequest }, initOverrides);
         return await response.value();
     }
 

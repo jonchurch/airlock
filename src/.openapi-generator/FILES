@@ -8,9 +8,11 @@ apis/index.ts
 index.ts
 models/AcceptContract200Response.ts
 models/AcceptContract200ResponseData.ts
+models/ActivityLevel.ts
 models/Agent.ts
 models/Chart.ts
-models/ConnectedSystem.ts
+models/Construction.ts
+models/ConstructionMaterial.ts
 models/Contract.ts
 models/ContractDeliverGood.ts
 models/ContractPayment.ts
@@ -40,6 +42,7 @@ models/FactionSymbols.ts
 models/FactionTrait.ts
 models/FulfillContract200Response.ts
 models/GetAgents200Response.ts
+models/GetConstruction200Response.ts
 models/GetContract200Response.ts
 models/GetContracts200Response.ts
 models/GetFaction200Response.ts
@@ -64,6 +67,7 @@ models/GetStatus200ResponseServerResets.ts
 models/GetStatus200ResponseStats.ts
 models/GetSystem200Response.ts
 models/GetSystemWaypoints200Response.ts
+models/GetSystemWaypointsTraitsParameter.ts
 models/GetSystems200Response.ts
 models/GetWaypoint200Response.ts
 models/InstallMount201Response.ts
@@ -142,6 +146,14 @@ models/ShipyardShip.ts
 models/ShipyardShipCrew.ts
 models/ShipyardShipTypesInner.ts
 models/ShipyardTransaction.ts
+models/Siphon.ts
+models/SiphonResources201Response.ts
+models/SiphonResources201ResponseData.ts
+models/SiphonYield.ts
+models/SupplyConstruction200Response.ts
+models/SupplyConstruction200ResponseData.ts
+models/SupplyConstructionRequest.ts
+models/SupplyLevel.ts
 models/Survey.ts
 models/SurveyDeposit.ts
 models/System.ts
@@ -154,6 +166,7 @@ models/TransferCargo200Response.ts
 models/TransferCargoRequest.ts
 models/Waypoint.ts
 models/WaypointFaction.ts
+models/WaypointModifier.ts
 models/WaypointOrbital.ts
 models/WaypointTrait.ts
 models/WaypointType.ts

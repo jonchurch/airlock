@@ -12,55 +12,54 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import {
+    Array<WaypointTrait>,
+    instanceOfArray<WaypointTrait>,
+    Array<WaypointTrait>FromJSON,
+    Array<WaypointTrait>FromJSONTyped,
+    Array<WaypointTrait>ToJSON,
+} from './Array&lt;WaypointTrait&gt;';
+import {
+    WaypointTrait,
+    instanceOfWaypointTrait,
+    WaypointTraitFromJSON,
+    WaypointTraitFromJSONTyped,
+    WaypointTraitToJSON,
+} from './WaypointTrait';
+
 /**
+ * @type GetSystemWaypointsTraitsParameter
  * 
  * @export
- * @interface JumpShipRequest
  */
-export interface JumpShipRequest {
-    /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {string}
-     * @memberof JumpShipRequest
-     */
-    waypointSymbol: string;
+export type GetSystemWaypointsTraitsParameter = Array<WaypointTrait> | WaypointTrait;
+
+export function GetSystemWaypointsTraitsParameterFromJSON(json: any): GetSystemWaypointsTraitsParameter {
+    return GetSystemWaypointsTraitsParameterFromJSONTyped(json, false);
 }
 
-/**
- * Check if a given object implements the JumpShipRequest interface.
- */
-export function instanceOfJumpShipRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
-
-    return isInstance;
-}
-
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
-}
-
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function GetSystemWaypointsTraitsParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetSystemWaypointsTraitsParameter {
     if ((json === undefined) || (json === null)) {
         return json;
     }
-    return {
-        
-        'waypointSymbol': json['waypointSymbol'],
-    };
+    return { ...Array<WaypointTrait>FromJSONTyped(json, true), ...WaypointTraitFromJSONTyped(json, true) };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function GetSystemWaypointsTraitsParameterToJSON(value?: GetSystemWaypointsTraitsParameter | null): any {
     if (value === undefined) {
         return undefined;
     }
     if (value === null) {
         return null;
     }
-    return {
-        
-        'waypointSymbol': value.waypointSymbol,
-    };
+
+    if (instanceOfArray<WaypointTrait>(value)) {
+        return Array<WaypointTrait>ToJSON(value as Array<WaypointTrait>);
+    }
+    if (instanceOfWaypointTrait(value)) {
+        return WaypointTraitToJSON(value as WaypointTrait);
+    }
+
+    return {};
 }
 
