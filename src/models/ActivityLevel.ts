@@ -14,35 +14,26 @@
 
 
 /**
- * Type of ship
+ * The activity level of a trade good. If the good is an import, this represents how strong consumption is for the good. If the good is an export, this represents how strong the production is for the good.
  * @export
  */
-export const ShipType = {
-    Probe: 'SHIP_PROBE',
-    MiningDrone: 'SHIP_MINING_DRONE',
-    SiphonDrone: 'SHIP_SIPHON_DRONE',
-    Interceptor: 'SHIP_INTERCEPTOR',
-    LightHauler: 'SHIP_LIGHT_HAULER',
-    CommandFrigate: 'SHIP_COMMAND_FRIGATE',
-    Explorer: 'SHIP_EXPLORER',
-    HeavyFreighter: 'SHIP_HEAVY_FREIGHTER',
-    LightShuttle: 'SHIP_LIGHT_SHUTTLE',
-    OreHound: 'SHIP_ORE_HOUND',
-    RefiningFreighter: 'SHIP_REFINING_FREIGHTER',
-    Surveyor: 'SHIP_SURVEYOR'
+export const ActivityLevel = {
+    Weak: 'WEAK',
+    Growing: 'GROWING',
+    Strong: 'STRONG'
 } as const;
-export type ShipType = typeof ShipType[keyof typeof ShipType];
+export type ActivityLevel = typeof ActivityLevel[keyof typeof ActivityLevel];
 
 
-export function ShipTypeFromJSON(json: any): ShipType {
-    return ShipTypeFromJSONTyped(json, false);
+export function ActivityLevelFromJSON(json: any): ActivityLevel {
+    return ActivityLevelFromJSONTyped(json, false);
 }
 
-export function ShipTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipType {
-    return json as ShipType;
+export function ActivityLevelFromJSONTyped(json: any, ignoreDiscriminator: boolean): ActivityLevel {
+    return json as ActivityLevel;
 }
 
-export function ShipTypeToJSON(value?: ShipType | null): any {
+export function ActivityLevelToJSON(value?: ActivityLevel | null): any {
     return value as any;
 }
 
