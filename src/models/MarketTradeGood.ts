@@ -25,6 +25,12 @@ import {
     SupplyLevelFromJSONTyped,
     SupplyLevelToJSON,
 } from './SupplyLevel';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
 
 /**
  * 
@@ -33,11 +39,11 @@ import {
  */
 export interface MarketTradeGood {
     /**
-     * The symbol of the trade good.
-     * @type {string}
+     * 
+     * @type {TradeSymbol}
      * @memberof MarketTradeGood
      */
-    symbol: string;
+    symbol: TradeSymbol;
     /**
      * The type of trade good (export, import, or exchange).
      * @type {string}
@@ -113,7 +119,7 @@ export function MarketTradeGoodFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
         'type': json['type'],
         'tradeVolume': json['tradeVolume'],
         'supply': SupplyLevelFromJSON(json['supply']),
@@ -132,7 +138,7 @@ export function MarketTradeGoodToJSON(value?: MarketTradeGood | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
         'type': value.type,
         'tradeVolume': value.tradeVolume,
         'supply': SupplyLevelToJSON(value.supply),

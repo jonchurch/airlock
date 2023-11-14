@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
  * The type of cargo item and the number of units.
  * @export
@@ -20,11 +27,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ShipCargoItem {
     /**
-     * The unique identifier of the cargo item type.
-     * @type {string}
+     * 
+     * @type {TradeSymbol}
      * @memberof ShipCargoItem
      */
-    symbol: string;
+    symbol: TradeSymbol;
     /**
      * The name of the cargo item type.
      * @type {string}
@@ -68,7 +75,7 @@ export function ShipCargoItemFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
         'name': json['name'],
         'description': json['description'],
         'units': json['units'],
@@ -84,7 +91,7 @@ export function ShipCargoItemToJSON(value?: ShipCargoItem | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
         'name': value.name,
         'description': value.description,
         'units': value.units,

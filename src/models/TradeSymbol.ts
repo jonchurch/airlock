@@ -132,7 +132,8 @@ export const TradeSymbol = {
     MountMiningLaserIii: 'MOUNT_MINING_LASER_III',
     MountLaserCannonI: 'MOUNT_LASER_CANNON_I',
     MountMissileLauncherI: 'MOUNT_MISSILE_LAUNCHER_I',
-    MountTurretI: 'MOUNT_TURRET_I'
+    MountTurretI: 'MOUNT_TURRET_I',
+    FabMats: 'FAB_MATS'
 } as const;
 export type TradeSymbol = typeof TradeSymbol[keyof typeof TradeSymbol];
 
