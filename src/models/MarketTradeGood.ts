@@ -13,6 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { ActivityLevel } from './ActivityLevel';
+import {
+    ActivityLevelFromJSON,
+    ActivityLevelFromJSONTyped,
+    ActivityLevelToJSON,
+} from './ActivityLevel';
+import type { SupplyLevel } from './SupplyLevel';
+import {
+    SupplyLevelFromJSON,
+    SupplyLevelFromJSONTyped,
+    SupplyLevelToJSON,
+} from './SupplyLevel';
+import type { TradeSymbol } from './TradeSymbol';
+import {
+    TradeSymbolFromJSON,
+    TradeSymbolFromJSONTyped,
+    TradeSymbolToJSON,
+} from './TradeSymbol';
+
 /**
  * 
  * @export
@@ -20,23 +39,35 @@ import { exists, mapValues } from '../runtime';
  */
 export interface MarketTradeGood {
     /**
-     * The symbol of the trade good.
+     * 
+     * @type {TradeSymbol}
+     * @memberof MarketTradeGood
+     */
+    symbol: TradeSymbol;
+    /**
+     * The type of trade good (export, import, or exchange).
      * @type {string}
      * @memberof MarketTradeGood
      */
-    symbol: string;
+    type: MarketTradeGoodTypeEnum;
     /**
-     * The typical volume flowing through the market for this type of good. The larger the trade volume, the more stable prices will be.
+     * This is the maximum number of units that can be purchased or sold at this market in a single trade for this good. Trade volume also gives an indication of price volatility. A market with a low trade volume will have large price swings, while high trade volume will be more resilient to price changes.
      * @type {number}
      * @memberof MarketTradeGood
      */
     tradeVolume: number;
     /**
-     * A rough estimate of the total supply of this good in the marketplace.
-     * @type {string}
+     * 
+     * @type {SupplyLevel}
      * @memberof MarketTradeGood
      */
-    supply: MarketTradeGoodSupplyEnum;
+    supply: SupplyLevel;
+    /**
+     * 
+     * @type {ActivityLevel}
+     * @memberof MarketTradeGood
+     */
+    activity?: ActivityLevel;
     /**
      * The price at which this good can be purchased from the market.
      * @type {number}
@@ -55,13 +86,12 @@ export interface MarketTradeGood {
 /**
  * @export
  */
-export const MarketTradeGoodSupplyEnum = {
-    Scarce: 'SCARCE',
-    Limited: 'LIMITED',
-    Moderate: 'MODERATE',
-    Abundant: 'ABUNDANT'
+export const MarketTradeGoodTypeEnum = {
+    Export: 'EXPORT',
+    Import: 'IMPORT',
+    Exchange: 'EXCHANGE'
 } as const;
-export type MarketTradeGoodSupplyEnum = typeof MarketTradeGoodSupplyEnum[keyof typeof MarketTradeGoodSupplyEnum];
+export type MarketTradeGoodTypeEnum = typeof MarketTradeGoodTypeEnum[keyof typeof MarketTradeGoodTypeEnum];
 
 
 /**
@@ -70,6 +100,7 @@ export type MarketTradeGoodSupplyEnum = typeof MarketTradeGoodSupplyEnum[keyof t
 export function instanceOfMarketTradeGood(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "symbol" in value;
+    isInstance = isInstance && "type" in value;
     isInstance = isInstance && "tradeVolume" in value;
     isInstance = isInstance && "supply" in value;
     isInstance = isInstance && "purchasePrice" in value;
@@ -88,9 +119,11 @@ export function MarketTradeGoodFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'symbol': json['symbol'],
+        'symbol': TradeSymbolFromJSON(json['symbol']),
+        'type': json['type'],
         'tradeVolume': json['tradeVolume'],
-        'supply': json['supply'],
+        'supply': SupplyLevelFromJSON(json['supply']),
+        'activity': !exists(json, 'activity') ? undefined : ActivityLevelFromJSON(json['activity']),
         'purchasePrice': json['purchasePrice'],
         'sellPrice': json['sellPrice'],
     };
@@ -105,9 +138,11 @@ export function MarketTradeGoodToJSON(value?: MarketTradeGood | null): any {
     }
     return {
         
-        'symbol': value.symbol,
+        'symbol': TradeSymbolToJSON(value.symbol),
+        'type': value.type,
         'tradeVolume': value.tradeVolume,
-        'supply': value.supply,
+        'supply': SupplyLevelToJSON(value.supply),
+        'activity': ActivityLevelToJSON(value.activity),
         'purchasePrice': value.purchasePrice,
         'sellPrice': value.sellPrice,
     };

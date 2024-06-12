@@ -16,42 +16,58 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface JumpShipRequest
+ * @interface SupplyConstructionRequest
  */
-export interface JumpShipRequest {
+export interface SupplyConstructionRequest {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
+     * Symbol of the ship to use.
      * @type {string}
-     * @memberof JumpShipRequest
+     * @memberof SupplyConstructionRequest
      */
-    waypointSymbol: string;
+    shipSymbol: string;
+    /**
+     * The symbol of the good to supply.
+     * @type {string}
+     * @memberof SupplyConstructionRequest
+     */
+    tradeSymbol: string;
+    /**
+     * Amount of units to supply.
+     * @type {number}
+     * @memberof SupplyConstructionRequest
+     */
+    units: number;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the SupplyConstructionRequest interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfSupplyConstructionRequest(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "shipSymbol" in value;
+    isInstance = isInstance && "tradeSymbol" in value;
+    isInstance = isInstance && "units" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function SupplyConstructionRequestFromJSON(json: any): SupplyConstructionRequest {
+    return SupplyConstructionRequestFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function SupplyConstructionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SupplyConstructionRequest {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'shipSymbol': json['shipSymbol'],
+        'tradeSymbol': json['tradeSymbol'],
+        'units': json['units'],
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function SupplyConstructionRequestToJSON(value?: SupplyConstructionRequest | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +76,9 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'shipSymbol': value.shipSymbol,
+        'tradeSymbol': value.tradeSymbol,
+        'units': value.units,
     };
 }
 

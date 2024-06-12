@@ -13,13 +13,6 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { ConnectedSystem } from './ConnectedSystem';
-import {
-    ConnectedSystemFromJSON,
-    ConnectedSystemFromJSONTyped,
-    ConnectedSystemToJSON,
-} from './ConnectedSystem';
-
 /**
  * 
  * @export
@@ -27,23 +20,11 @@ import {
  */
 export interface JumpGate {
     /**
-     * The maximum jump range of the gate.
-     * @type {number}
+     * All the gates that are connected to this waypoint.
+     * @type {Array<string>}
      * @memberof JumpGate
      */
-    jumpRange: number;
-    /**
-     * The symbol of the faction that owns the gate.
-     * @type {string}
-     * @memberof JumpGate
-     */
-    factionSymbol?: string;
-    /**
-     * The systems within range of the gate that have a corresponding gate.
-     * @type {Array<ConnectedSystem>}
-     * @memberof JumpGate
-     */
-    connectedSystems: Array<ConnectedSystem>;
+    connections: Array<string>;
 }
 
 /**
@@ -51,8 +32,7 @@ export interface JumpGate {
  */
 export function instanceOfJumpGate(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "jumpRange" in value;
-    isInstance = isInstance && "connectedSystems" in value;
+    isInstance = isInstance && "connections" in value;
 
     return isInstance;
 }
@@ -67,9 +47,7 @@ export function JumpGateFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     }
     return {
         
-        'jumpRange': json['jumpRange'],
-        'factionSymbol': !exists(json, 'factionSymbol') ? undefined : json['factionSymbol'],
-        'connectedSystems': ((json['connectedSystems'] as Array<any>).map(ConnectedSystemFromJSON)),
+        'connections': json['connections'],
     };
 }
 
@@ -82,9 +60,7 @@ export function JumpGateToJSON(value?: JumpGate | null): any {
     }
     return {
         
-        'jumpRange': value.jumpRange,
-        'factionSymbol': value.factionSymbol,
-        'connectedSystems': ((value.connectedSystems as Array<any>).map(ConnectedSystemToJSON)),
+        'connections': value.connections,
     };
 }
 

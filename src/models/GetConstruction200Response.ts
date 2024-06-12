@@ -13,45 +13,52 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Construction } from './Construction';
+import {
+    ConstructionFromJSON,
+    ConstructionFromJSONTyped,
+    ConstructionToJSON,
+} from './Construction';
+
 /**
  * 
  * @export
- * @interface JumpShipRequest
+ * @interface GetConstruction200Response
  */
-export interface JumpShipRequest {
+export interface GetConstruction200Response {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {string}
-     * @memberof JumpShipRequest
+     * 
+     * @type {Construction}
+     * @memberof GetConstruction200Response
      */
-    waypointSymbol: string;
+    data: Construction;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the GetConstruction200Response interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfGetConstruction200Response(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "data" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function GetConstruction200ResponseFromJSON(json: any): GetConstruction200Response {
+    return GetConstruction200ResponseFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function GetConstruction200ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetConstruction200Response {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'data': ConstructionFromJSON(json['data']),
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function GetConstruction200ResponseToJSON(value?: GetConstruction200Response | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +67,7 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'data': ConstructionToJSON(value.data),
     };
 }
 

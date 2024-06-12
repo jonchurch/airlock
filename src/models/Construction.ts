@@ -13,76 +13,68 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
+import type { ConstructionMaterial } from './ConstructionMaterial';
 import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
+    ConstructionMaterialFromJSON,
+    ConstructionMaterialFromJSONTyped,
+    ConstructionMaterialToJSON,
+} from './ConstructionMaterial';
 
 /**
- * The type of cargo item and the number of units.
+ * The construction details of a waypoint.
  * @export
- * @interface ShipCargoItem
+ * @interface Construction
  */
-export interface ShipCargoItem {
+export interface Construction {
     /**
-     * 
-     * @type {TradeSymbol}
-     * @memberof ShipCargoItem
-     */
-    symbol: TradeSymbol;
-    /**
-     * The name of the cargo item type.
+     * The symbol of the waypoint.
      * @type {string}
-     * @memberof ShipCargoItem
+     * @memberof Construction
      */
-    name: string;
+    symbol: string;
     /**
-     * The description of the cargo item type.
-     * @type {string}
-     * @memberof ShipCargoItem
+     * The materials required to construct the waypoint.
+     * @type {Array<ConstructionMaterial>}
+     * @memberof Construction
      */
-    description: string;
+    materials: Array<ConstructionMaterial>;
     /**
-     * The number of units of the cargo item.
-     * @type {number}
-     * @memberof ShipCargoItem
+     * Whether the waypoint has been constructed.
+     * @type {boolean}
+     * @memberof Construction
      */
-    units: number;
+    isComplete: boolean;
 }
 
 /**
- * Check if a given object implements the ShipCargoItem interface.
+ * Check if a given object implements the Construction interface.
  */
-export function instanceOfShipCargoItem(value: object): boolean {
+export function instanceOfConstruction(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "symbol" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "units" in value;
+    isInstance = isInstance && "materials" in value;
+    isInstance = isInstance && "isComplete" in value;
 
     return isInstance;
 }
 
-export function ShipCargoItemFromJSON(json: any): ShipCargoItem {
-    return ShipCargoItemFromJSONTyped(json, false);
+export function ConstructionFromJSON(json: any): Construction {
+    return ConstructionFromJSONTyped(json, false);
 }
 
-export function ShipCargoItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipCargoItem {
+export function ConstructionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Construction {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
-        'name': json['name'],
-        'description': json['description'],
-        'units': json['units'],
+        'symbol': json['symbol'],
+        'materials': ((json['materials'] as Array<any>).map(ConstructionMaterialFromJSON)),
+        'isComplete': json['isComplete'],
     };
 }
 
-export function ShipCargoItemToJSON(value?: ShipCargoItem | null): any {
+export function ConstructionToJSON(value?: Construction | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -91,10 +83,9 @@ export function ShipCargoItemToJSON(value?: ShipCargoItem | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
-        'name': value.name,
-        'description': value.description,
-        'units': value.units,
+        'symbol': value.symbol,
+        'materials': ((value.materials as Array<any>).map(ConstructionMaterialToJSON)),
+        'isComplete': value.isComplete,
     };
 }
 

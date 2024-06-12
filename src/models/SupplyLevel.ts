@@ -14,35 +14,28 @@
 
 
 /**
- * Type of ship
+ * The supply level of a trade good.
  * @export
  */
-export const ShipType = {
-    Probe: 'SHIP_PROBE',
-    MiningDrone: 'SHIP_MINING_DRONE',
-    SiphonDrone: 'SHIP_SIPHON_DRONE',
-    Interceptor: 'SHIP_INTERCEPTOR',
-    LightHauler: 'SHIP_LIGHT_HAULER',
-    CommandFrigate: 'SHIP_COMMAND_FRIGATE',
-    Explorer: 'SHIP_EXPLORER',
-    HeavyFreighter: 'SHIP_HEAVY_FREIGHTER',
-    LightShuttle: 'SHIP_LIGHT_SHUTTLE',
-    OreHound: 'SHIP_ORE_HOUND',
-    RefiningFreighter: 'SHIP_REFINING_FREIGHTER',
-    Surveyor: 'SHIP_SURVEYOR'
+export const SupplyLevel = {
+    Scarce: 'SCARCE',
+    Limited: 'LIMITED',
+    Moderate: 'MODERATE',
+    High: 'HIGH',
+    Abundant: 'ABUNDANT'
 } as const;
-export type ShipType = typeof ShipType[keyof typeof ShipType];
+export type SupplyLevel = typeof SupplyLevel[keyof typeof SupplyLevel];
 
 
-export function ShipTypeFromJSON(json: any): ShipType {
-    return ShipTypeFromJSONTyped(json, false);
+export function SupplyLevelFromJSON(json: any): SupplyLevel {
+    return SupplyLevelFromJSONTyped(json, false);
 }
 
-export function ShipTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipType {
-    return json as ShipType;
+export function SupplyLevelFromJSONTyped(json: any, ignoreDiscriminator: boolean): SupplyLevel {
+    return json as SupplyLevel;
 }
 
-export function ShipTypeToJSON(value?: ShipType | null): any {
+export function SupplyLevelToJSON(value?: SupplyLevel | null): any {
     return value as any;
 }
 

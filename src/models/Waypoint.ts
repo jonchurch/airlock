@@ -25,6 +25,12 @@ import {
     WaypointFactionFromJSONTyped,
     WaypointFactionToJSON,
 } from './WaypointFaction';
+import type { WaypointModifier } from './WaypointModifier';
+import {
+    WaypointModifierFromJSON,
+    WaypointModifierFromJSONTyped,
+    WaypointModifierToJSON,
+} from './WaypointModifier';
 import type { WaypointOrbital } from './WaypointOrbital';
 import {
     WaypointOrbitalFromJSON,
@@ -105,11 +111,23 @@ export interface Waypoint {
      */
     traits: Array<WaypointTrait>;
     /**
+     * The modifiers of the waypoint.
+     * @type {Array<WaypointModifier>}
+     * @memberof Waypoint
+     */
+    modifiers?: Array<WaypointModifier>;
+    /**
      * 
      * @type {Chart}
      * @memberof Waypoint
      */
     chart?: Chart;
+    /**
+     * True if the waypoint is under construction.
+     * @type {boolean}
+     * @memberof Waypoint
+     */
+    isUnderConstruction: boolean;
 }
 
 /**
@@ -124,6 +142,7 @@ export function instanceOfWaypoint(value: object): boolean {
     isInstance = isInstance && "y" in value;
     isInstance = isInstance && "orbitals" in value;
     isInstance = isInstance && "traits" in value;
+    isInstance = isInstance && "isUnderConstruction" in value;
 
     return isInstance;
 }
@@ -147,7 +166,9 @@ export function WaypointFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'orbits': !exists(json, 'orbits') ? undefined : json['orbits'],
         'faction': !exists(json, 'faction') ? undefined : WaypointFactionFromJSON(json['faction']),
         'traits': ((json['traits'] as Array<any>).map(WaypointTraitFromJSON)),
+        'modifiers': !exists(json, 'modifiers') ? undefined : ((json['modifiers'] as Array<any>).map(WaypointModifierFromJSON)),
         'chart': !exists(json, 'chart') ? undefined : ChartFromJSON(json['chart']),
+        'isUnderConstruction': json['isUnderConstruction'],
     };
 }
 
@@ -169,7 +190,9 @@ export function WaypointToJSON(value?: Waypoint | null): any {
         'orbits': value.orbits,
         'faction': WaypointFactionToJSON(value.faction),
         'traits': ((value.traits as Array<any>).map(WaypointTraitToJSON)),
+        'modifiers': value.modifiers === undefined ? undefined : ((value.modifiers as Array<any>).map(WaypointModifierToJSON)),
         'chart': ChartToJSON(value.chart),
+        'isUnderConstruction': value.isUnderConstruction,
     };
 }
 

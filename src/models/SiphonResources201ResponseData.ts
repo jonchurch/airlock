@@ -19,74 +19,74 @@ import {
     CooldownFromJSONTyped,
     CooldownToJSON,
 } from './Cooldown';
-import type { MarketTransaction } from './MarketTransaction';
+import type { ShipCargo } from './ShipCargo';
 import {
-    MarketTransactionFromJSON,
-    MarketTransactionFromJSONTyped,
-    MarketTransactionToJSON,
-} from './MarketTransaction';
-import type { ShipNav } from './ShipNav';
+    ShipCargoFromJSON,
+    ShipCargoFromJSONTyped,
+    ShipCargoToJSON,
+} from './ShipCargo';
+import type { Siphon } from './Siphon';
 import {
-    ShipNavFromJSON,
-    ShipNavFromJSONTyped,
-    ShipNavToJSON,
-} from './ShipNav';
+    SiphonFromJSON,
+    SiphonFromJSONTyped,
+    SiphonToJSON,
+} from './Siphon';
 
 /**
  * 
  * @export
- * @interface JumpShip200ResponseData
+ * @interface SiphonResources201ResponseData
  */
-export interface JumpShip200ResponseData {
-    /**
-     * 
-     * @type {ShipNav}
-     * @memberof JumpShip200ResponseData
-     */
-    nav: ShipNav;
+export interface SiphonResources201ResponseData {
     /**
      * 
      * @type {Cooldown}
-     * @memberof JumpShip200ResponseData
+     * @memberof SiphonResources201ResponseData
      */
     cooldown: Cooldown;
     /**
      * 
-     * @type {MarketTransaction}
-     * @memberof JumpShip200ResponseData
+     * @type {Siphon}
+     * @memberof SiphonResources201ResponseData
      */
-    transaction: MarketTransaction;
+    siphon: Siphon;
+    /**
+     * 
+     * @type {ShipCargo}
+     * @memberof SiphonResources201ResponseData
+     */
+    cargo: ShipCargo;
 }
 
 /**
- * Check if a given object implements the JumpShip200ResponseData interface.
+ * Check if a given object implements the SiphonResources201ResponseData interface.
  */
-export function instanceOfJumpShip200ResponseData(value: object): boolean {
+export function instanceOfSiphonResources201ResponseData(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "nav" in value;
     isInstance = isInstance && "cooldown" in value;
-    isInstance = isInstance && "transaction" in value;
+    isInstance = isInstance && "siphon" in value;
+    isInstance = isInstance && "cargo" in value;
 
     return isInstance;
 }
 
-export function JumpShip200ResponseDataFromJSON(json: any): JumpShip200ResponseData {
-    return JumpShip200ResponseDataFromJSONTyped(json, false);
+export function SiphonResources201ResponseDataFromJSON(json: any): SiphonResources201ResponseData {
+    return SiphonResources201ResponseDataFromJSONTyped(json, false);
 }
 
-export function JumpShip200ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShip200ResponseData {
+export function SiphonResources201ResponseDataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SiphonResources201ResponseData {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'nav': ShipNavFromJSON(json['nav']),
         'cooldown': CooldownFromJSON(json['cooldown']),
-        'transaction': MarketTransactionFromJSON(json['transaction']),
+        'siphon': SiphonFromJSON(json['siphon']),
+        'cargo': ShipCargoFromJSON(json['cargo']),
     };
 }
 
-export function JumpShip200ResponseDataToJSON(value?: JumpShip200ResponseData | null): any {
+export function SiphonResources201ResponseDataToJSON(value?: SiphonResources201ResponseData | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -95,9 +95,9 @@ export function JumpShip200ResponseDataToJSON(value?: JumpShip200ResponseData | 
     }
     return {
         
-        'nav': ShipNavToJSON(value.nav),
         'cooldown': CooldownToJSON(value.cooldown),
-        'transaction': MarketTransactionToJSON(value.transaction),
+        'siphon': SiphonToJSON(value.siphon),
+        'cargo': ShipCargoToJSON(value.cargo),
     };
 }
 

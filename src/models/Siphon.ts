@@ -13,45 +13,60 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { SiphonYield } from './SiphonYield';
+import {
+    SiphonYieldFromJSON,
+    SiphonYieldFromJSONTyped,
+    SiphonYieldToJSON,
+} from './SiphonYield';
+
 /**
- * 
+ * Siphon details.
  * @export
- * @interface JumpShipRequest
+ * @interface Siphon
  */
-export interface JumpShipRequest {
+export interface Siphon {
     /**
-     * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
+     * Symbol of the ship that executed the siphon.
      * @type {string}
-     * @memberof JumpShipRequest
+     * @memberof Siphon
      */
-    waypointSymbol: string;
+    shipSymbol: string;
+    /**
+     * 
+     * @type {SiphonYield}
+     * @memberof Siphon
+     */
+    _yield: SiphonYield;
 }
 
 /**
- * Check if a given object implements the JumpShipRequest interface.
+ * Check if a given object implements the Siphon interface.
  */
-export function instanceOfJumpShipRequest(value: object): boolean {
+export function instanceOfSiphon(value: object): boolean {
     let isInstance = true;
-    isInstance = isInstance && "waypointSymbol" in value;
+    isInstance = isInstance && "shipSymbol" in value;
+    isInstance = isInstance && "_yield" in value;
 
     return isInstance;
 }
 
-export function JumpShipRequestFromJSON(json: any): JumpShipRequest {
-    return JumpShipRequestFromJSONTyped(json, false);
+export function SiphonFromJSON(json: any): Siphon {
+    return SiphonFromJSONTyped(json, false);
 }
 
-export function JumpShipRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): JumpShipRequest {
+export function SiphonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Siphon {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'waypointSymbol': json['waypointSymbol'],
+        'shipSymbol': json['shipSymbol'],
+        '_yield': SiphonYieldFromJSON(json['yield']),
     };
 }
 
-export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
+export function SiphonToJSON(value?: Siphon | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -60,7 +75,8 @@ export function JumpShipRequestToJSON(value?: JumpShipRequest | null): any {
     }
     return {
         
-        'waypointSymbol': value.waypointSymbol,
+        'shipSymbol': value.shipSymbol,
+        'yield': SiphonYieldToJSON(value._yield),
     };
 }
 

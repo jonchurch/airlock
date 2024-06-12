@@ -13,76 +13,75 @@
  */
 
 import { exists, mapValues } from '../runtime';
-import type { TradeSymbol } from './TradeSymbol';
-import {
-    TradeSymbolFromJSON,
-    TradeSymbolFromJSONTyped,
-    TradeSymbolToJSON,
-} from './TradeSymbol';
-
 /**
- * The type of cargo item and the number of units.
+ * 
  * @export
- * @interface ShipCargoItem
+ * @interface WaypointModifier
  */
-export interface ShipCargoItem {
+export interface WaypointModifier {
     /**
-     * 
-     * @type {TradeSymbol}
-     * @memberof ShipCargoItem
-     */
-    symbol: TradeSymbol;
-    /**
-     * The name of the cargo item type.
+     * The unique identifier of the modifier.
      * @type {string}
-     * @memberof ShipCargoItem
+     * @memberof WaypointModifier
+     */
+    symbol: WaypointModifierSymbolEnum;
+    /**
+     * The name of the trait.
+     * @type {string}
+     * @memberof WaypointModifier
      */
     name: string;
     /**
-     * The description of the cargo item type.
+     * A description of the trait.
      * @type {string}
-     * @memberof ShipCargoItem
+     * @memberof WaypointModifier
      */
     description: string;
-    /**
-     * The number of units of the cargo item.
-     * @type {number}
-     * @memberof ShipCargoItem
-     */
-    units: number;
 }
 
+
 /**
- * Check if a given object implements the ShipCargoItem interface.
+ * @export
  */
-export function instanceOfShipCargoItem(value: object): boolean {
+export const WaypointModifierSymbolEnum = {
+    Stripped: 'STRIPPED',
+    Unstable: 'UNSTABLE',
+    RadiationLeak: 'RADIATION_LEAK',
+    CriticalLimit: 'CRITICAL_LIMIT',
+    CivilUnrest: 'CIVIL_UNREST'
+} as const;
+export type WaypointModifierSymbolEnum = typeof WaypointModifierSymbolEnum[keyof typeof WaypointModifierSymbolEnum];
+
+
+/**
+ * Check if a given object implements the WaypointModifier interface.
+ */
+export function instanceOfWaypointModifier(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "symbol" in value;
     isInstance = isInstance && "name" in value;
     isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "units" in value;
 
     return isInstance;
 }
 
-export function ShipCargoItemFromJSON(json: any): ShipCargoItem {
-    return ShipCargoItemFromJSONTyped(json, false);
+export function WaypointModifierFromJSON(json: any): WaypointModifier {
+    return WaypointModifierFromJSONTyped(json, false);
 }
 
-export function ShipCargoItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): ShipCargoItem {
+export function WaypointModifierFromJSONTyped(json: any, ignoreDiscriminator: boolean): WaypointModifier {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'symbol': TradeSymbolFromJSON(json['symbol']),
+        'symbol': json['symbol'],
         'name': json['name'],
         'description': json['description'],
-        'units': json['units'],
     };
 }
 
-export function ShipCargoItemToJSON(value?: ShipCargoItem | null): any {
+export function WaypointModifierToJSON(value?: WaypointModifier | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -91,10 +90,9 @@ export function ShipCargoItemToJSON(value?: ShipCargoItem | null): any {
     }
     return {
         
-        'symbol': TradeSymbolToJSON(value.symbol),
+        'symbol': value.symbol,
         'name': value.name,
         'description': value.description,
-        'units': value.units,
     };
 }
 
