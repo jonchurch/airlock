@@ -7,7 +7,7 @@
       "v2.0" : {
         "generatorName": "typescript-fetch",
         "output": "./src",
-        "inputSpec": "https://raw.githubusercontent.com/SpaceTradersAPI/api-docs/main/reference/SpaceTraders.json",
+        "inputSpec": "https://raw.githubusercontent.com/jonchurch/api-docs/main/reference/SpaceTraders.json",
         "typeMappings": {
           "Date": "string"
         },
