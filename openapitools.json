@@ -7,7 +7,7 @@
       "v2.0" : {
         "generatorName": "typescript-axios",
         "output": "./src",
-        "inputSpec": "./bundled.json",
+        "inputSpec": "https://raw.githubusercontent.com/jonchurch/api-docs/a747109442894f5819606f0ef40c9590b6310ced/reference/SpaceTraders.json",
         "typeMappings": {
           "Date": "string"
         },
