@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetScrapShip200ResponseDataTransaction } from './get-scrap-ship200-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { ScrapTransaction } from './scrap-transaction';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { Register201ResponseDataAgent } from './register201-response-data-agent'
 export interface ScrapShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof ScrapShip200ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {GetScrapShip200ResponseDataTransaction}
+     * @type {ScrapTransaction}
      * @memberof ScrapShip200ResponseData
      */
-    'transaction': GetScrapShip200ResponseDataTransaction;
+    'transaction': ScrapTransaction;
 }
 

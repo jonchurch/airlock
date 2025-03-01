@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { ShipCargo } from './ship-cargo';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataShipCargo } from './register201-response-data-sh
 export interface Jettison200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof Jettison200ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
 }
 

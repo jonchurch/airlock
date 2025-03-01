@@ -15,7 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
+import { GetStatus200ResponseAnnouncementsInner } from './get-status200-response-announcements-inner';
+// May contain unused imports in some cases
+// @ts-ignore
 import { GetStatus200ResponseLeaderboards } from './get-status200-response-leaderboards';
+// May contain unused imports in some cases
+// @ts-ignore
+import { GetStatus200ResponseLinksInner } from './get-status200-response-links-inner';
 // May contain unused imports in some cases
 // @ts-ignore
 import { GetStatus200ResponseServerResets } from './get-status200-response-server-resets';
@@ -31,28 +37,28 @@ import { GetStatus200ResponseStats } from './get-status200-response-stats';
 export interface GetStatus200Response {
     /**
      * The current status of the game server.
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200Response
      */
-    'status': any;
+    'status': string;
     /**
      * The current version of the API.
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200Response
      */
-    'version': any;
+    'version': string;
     /**
      * The date when the game server was last reset.
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200Response
      */
-    'resetDate': any;
+    'resetDate': string;
     /**
      * 
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200Response
      */
-    'description': any;
+    'description': string;
     /**
      * 
      * @type {GetStatus200ResponseStats}
@@ -73,15 +79,15 @@ export interface GetStatus200Response {
     'serverResets': GetStatus200ResponseServerResets;
     /**
      * 
-     * @type {any}
+     * @type {Array<GetStatus200ResponseAnnouncementsInner>}
      * @memberof GetStatus200Response
      */
-    'announcements': any;
+    'announcements': Array<GetStatus200ResponseAnnouncementsInner>;
     /**
      * 
-     * @type {any}
+     * @type {Array<GetStatus200ResponseLinksInner>}
      * @memberof GetStatus200Response
      */
-    'links': any;
+    'links': Array<GetStatus200ResponseLinksInner>;
 }
 

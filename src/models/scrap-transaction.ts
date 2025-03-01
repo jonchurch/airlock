@@ -15,47 +15,34 @@
 
 
 /**
- * Results of a transaction with a shipyard.
+ * Result of a scrap transaction.
  * @export
- * @interface PurchaseShip201ResponseDataTransaction
+ * @interface ScrapTransaction
  */
-export interface PurchaseShip201ResponseDataTransaction {
+export interface ScrapTransaction {
     /**
      * The symbol of the waypoint.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
+     * @type {string}
+     * @memberof ScrapTransaction
      */
-    'waypointSymbol': any;
+    'waypointSymbol': string;
     /**
-     * The symbol of the ship that was the subject of the transaction.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
-     * @deprecated
+     * The symbol of the ship.
+     * @type {string}
+     * @memberof ScrapTransaction
      */
-    'shipSymbol': any;
+    'shipSymbol': string;
     /**
-     * The symbol of the ship that was the subject of the transaction.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
+     * The total price of the transaction.
+     * @type {number}
+     * @memberof ScrapTransaction
      */
-    'shipType': any;
-    /**
-     * The price of the transaction.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
-     */
-    'price': any;
-    /**
-     * The symbol of the agent that made the transaction.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
-     */
-    'agentSymbol': any;
+    'totalPrice': number;
     /**
      * The timestamp of the transaction.
-     * @type {any}
-     * @memberof PurchaseShip201ResponseDataTransaction
+     * @type {string}
+     * @memberof ScrapTransaction
      */
-    'timestamp': any;
+    'timestamp': string;
 }
 

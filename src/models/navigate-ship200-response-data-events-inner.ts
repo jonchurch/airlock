@@ -13,43 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipConditionEvent } from './ship-condition-event';
 
 /**
- * The faction that controls the waypoint.
+ * @type NavigateShip200ResponseDataEventsInner
  * @export
- * @interface GetWaypoint200ResponseDataFaction
  */
-export interface GetWaypoint200ResponseDataFaction {
-    /**
-     * The symbol of the faction.
-     * @type {any}
-     * @memberof GetWaypoint200ResponseDataFaction
-     */
-    'symbol': GetWaypoint200ResponseDataFactionSymbolEnum;
-}
-
-export const GetWaypoint200ResponseDataFactionSymbolEnum = {
-    Cosmic: 'COSMIC',
-    Void: 'VOID',
-    Galactic: 'GALACTIC',
-    Quantum: 'QUANTUM',
-    Dominion: 'DOMINION',
-    Astro: 'ASTRO',
-    Corsairs: 'CORSAIRS',
-    Obsidian: 'OBSIDIAN',
-    Aegis: 'AEGIS',
-    United: 'UNITED',
-    Solitary: 'SOLITARY',
-    Cobalt: 'COBALT',
-    Omega: 'OMEGA',
-    Echo: 'ECHO',
-    Lords: 'LORDS',
-    Cult: 'CULT',
-    Ancients: 'ANCIENTS',
-    Shadow: 'SHADOW',
-    Ethereal: 'ETHEREAL'
-} as const;
-
-export type GetWaypoint200ResponseDataFactionSymbolEnum = typeof GetWaypoint200ResponseDataFactionSymbolEnum[keyof typeof GetWaypoint200ResponseDataFactionSymbolEnum];
+export type NavigateShip200ResponseDataEventsInner = ShipConditionEvent;
 
 

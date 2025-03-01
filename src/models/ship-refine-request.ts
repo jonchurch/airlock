@@ -22,7 +22,7 @@
 export interface ShipRefineRequest {
     /**
      * The type of good to produce out of the refining process.
-     * @type {any}
+     * @type {string}
      * @memberof ShipRefineRequest
      */
     'produce': ShipRefineRequestProduceEnum;

@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { JumpShip200ResponseDataTransaction } from './jump-ship200-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { Cooldown } from './cooldown';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { MarketTransaction } from './market-transaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipNav } from './register201-response-data-ship-nav';
+import { ShipNav } from './ship-nav';
 
 /**
  * 
@@ -34,27 +34,27 @@ import { Register201ResponseDataShipNav } from './register201-response-data-ship
 export interface JumpShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipNav}
+     * @type {ShipNav}
      * @memberof JumpShip200ResponseData
      */
-    'nav': Register201ResponseDataShipNav;
+    'nav': ShipNav;
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof JumpShip200ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * 
-     * @type {JumpShip200ResponseDataTransaction}
+     * @type {MarketTransaction}
      * @memberof JumpShip200ResponseData
      */
-    'transaction': JumpShip200ResponseDataTransaction;
+    'transaction': MarketTransaction;
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof JumpShip200ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
 }
 

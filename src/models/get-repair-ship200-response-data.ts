@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetRepairShip200ResponseDataTransaction } from './get-repair-ship200-response-data-transaction';
+import { RepairTransaction } from './repair-transaction';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetRepairShip200ResponseDataTransaction } from './get-repair-ship200-re
 export interface GetRepairShip200ResponseData {
     /**
      * 
-     * @type {GetRepairShip200ResponseDataTransaction}
+     * @type {RepairTransaction}
      * @memberof GetRepairShip200ResponseData
      */
-    'transaction': GetRepairShip200ResponseDataTransaction;
+    'transaction': RepairTransaction;
 }
 

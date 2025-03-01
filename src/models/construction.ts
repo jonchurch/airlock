@@ -15,25 +15,31 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ExtractResources201ResponseDataExtractionYield } from './extract-resources201-response-data-extraction-yield';
+import { ConstructionMaterial } from './construction-material';
 
 /**
- * Extraction details.
+ * The construction details of a waypoint.
  * @export
- * @interface ExtractResources201ResponseDataExtraction
+ * @interface Construction
  */
-export interface ExtractResources201ResponseDataExtraction {
+export interface Construction {
     /**
-     * Symbol of the ship that executed the extraction.
-     * @type {any}
-     * @memberof ExtractResources201ResponseDataExtraction
+     * The symbol of the waypoint.
+     * @type {string}
+     * @memberof Construction
      */
-    'shipSymbol': any;
+    'symbol': string;
     /**
-     * 
-     * @type {ExtractResources201ResponseDataExtractionYield}
-     * @memberof ExtractResources201ResponseDataExtraction
+     * The materials required to construct the waypoint.
+     * @type {Array<ConstructionMaterial>}
+     * @memberof Construction
      */
-    'yield': ExtractResources201ResponseDataExtractionYield;
+    'materials': Array<ConstructionMaterial>;
+    /**
+     * Whether the waypoint has been constructed.
+     * @type {boolean}
+     * @memberof Construction
+     */
+    'isComplete': boolean;
 }
 

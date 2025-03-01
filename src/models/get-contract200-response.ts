@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataContract } from './register201-response-data-contract';
+import { Contract } from './contract';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataContract } from './register201-response-data-con
 export interface GetContract200Response {
     /**
      * 
-     * @type {Register201ResponseDataContract}
+     * @type {Contract}
      * @memberof GetContract200Response
      */
-    'data': Register201ResponseDataContract;
+    'data': Contract;
 }
 

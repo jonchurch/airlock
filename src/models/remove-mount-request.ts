@@ -22,9 +22,9 @@
 export interface RemoveMountRequest {
     /**
      * The symbol of the mount to remove.
-     * @type {any}
+     * @type {string}
      * @memberof RemoveMountRequest
      */
-    'symbol': any;
+    'symbol': string;
 }
 

@@ -13,33 +13,22 @@
  */
 
 
-// May contain unused imports in some cases
-// @ts-ignore
-import { Register201ResponseDataShipFuelConsumed } from './register201-response-data-ship-fuel-consumed';
 
 /**
- * Details of the ship\'s fuel tanks including how much fuel was consumed during the last transit or action.
+ * The supply level of a trade good.
  * @export
- * @interface Register201ResponseDataShipFuel
+ * @enum {string}
  */
-export interface Register201ResponseDataShipFuel {
-    /**
-     * The current amount of fuel in the ship\'s tanks.
-     * @type {any}
-     * @memberof Register201ResponseDataShipFuel
-     */
-    'current': any;
-    /**
-     * The maximum amount of fuel the ship\'s tanks can hold.
-     * @type {any}
-     * @memberof Register201ResponseDataShipFuel
-     */
-    'capacity': any;
-    /**
-     * 
-     * @type {Register201ResponseDataShipFuelConsumed}
-     * @memberof Register201ResponseDataShipFuel
-     */
-    'consumed'?: Register201ResponseDataShipFuelConsumed;
-}
+
+export const SupplyLevel = {
+    Scarce: 'SCARCE',
+    Limited: 'LIMITED',
+    Moderate: 'MODERATE',
+    High: 'HIGH',
+    Abundant: 'ABUNDANT'
+} as const;
+
+export type SupplyLevel = typeof SupplyLevel[keyof typeof SupplyLevel];
+
+
 

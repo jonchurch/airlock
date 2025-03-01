@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { Cooldown } from './cooldown';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ScannedSystem } from './scanned-system';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface CreateShipSystemScan201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof CreateShipSystemScan201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * List of scanned systems.
-     * @type {any}
+     * @type {Array<ScannedSystem>}
      * @memberof CreateShipSystemScan201ResponseData
      */
-    'systems': any;
+    'systems': Array<ScannedSystem>;
 }
 

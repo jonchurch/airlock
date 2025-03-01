@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { InstallMount201ResponseDataTransaction } from './install-mount201-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { ShipCargo } from './ship-cargo';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { ShipModificationTransaction } from './ship-modification-transaction';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipMount } from './ship-mount';
 
 /**
  * 
@@ -31,27 +34,27 @@ import { Register201ResponseDataShipCargo } from './register201-response-data-sh
 export interface RemoveMount201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof RemoveMount201ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * List of installed mounts after the removal of the selected mount.
-     * @type {any}
+     * @type {Array<ShipMount>}
      * @memberof RemoveMount201ResponseData
      */
-    'mounts': any;
+    'mounts': Array<ShipMount>;
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof RemoveMount201ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
     /**
      * 
-     * @type {InstallMount201ResponseDataTransaction}
+     * @type {ShipModificationTransaction}
      * @memberof RemoveMount201ResponseData
      */
-    'transaction': InstallMount201ResponseDataTransaction;
+    'transaction': ShipModificationTransaction;
 }
 

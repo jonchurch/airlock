@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
+import { Faction } from './faction';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Meta } from './meta';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
 export interface GetFactions200Response {
     /**
      * 
-     * @type {any}
+     * @type {Array<Faction>}
      * @memberof GetFactions200Response
      */
-    'data': any;
+    'data': Array<Faction>;
     /**
      * 
-     * @type {GetSystems200ResponseMeta}
+     * @type {Meta}
      * @memberof GetFactions200Response
      */
-    'meta': GetSystems200ResponseMeta;
+    'meta': Meta;
 }
 

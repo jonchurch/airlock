@@ -22,21 +22,21 @@
 export interface SupplyConstructionRequest {
     /**
      * Symbol of the ship to use.
-     * @type {any}
+     * @type {string}
      * @memberof SupplyConstructionRequest
      */
-    'shipSymbol': any;
+    'shipSymbol': string;
     /**
      * The symbol of the good to supply.
-     * @type {any}
+     * @type {string}
      * @memberof SupplyConstructionRequest
      */
-    'tradeSymbol': any;
+    'tradeSymbol': string;
     /**
      * Amount of units to supply.
-     * @type {any}
+     * @type {number}
      * @memberof SupplyConstructionRequest
      */
-    'units': any;
+    'units': number;
 }
 

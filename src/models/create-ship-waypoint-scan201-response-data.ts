@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { Cooldown } from './cooldown';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ScannedWaypoint } from './scanned-waypoint';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface CreateShipWaypointScan201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof CreateShipWaypointScan201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * List of scanned waypoints.
-     * @type {any}
+     * @type {Array<ScannedWaypoint>}
      * @memberof CreateShipWaypointScan201ResponseData
      */
-    'waypoints': any;
+    'waypoints': Array<ScannedWaypoint>;
 }
 

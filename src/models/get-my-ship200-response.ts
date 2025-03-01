@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShip } from './register201-response-data-ship';
+import { Ship } from './ship';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataShip } from './register201-response-data-ship';
 export interface GetMyShip200Response {
     /**
      * 
-     * @type {Register201ResponseDataShip}
+     * @type {Ship}
      * @memberof GetMyShip200Response
      */
-    'data': Register201ResponseDataShip;
+    'data': Ship;
 }
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { Agent } from './agent';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataAgent } from './register201-response-data-agent'
 export interface GetMyAgent200Response {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof GetMyAgent200Response
      */
-    'data': Register201ResponseDataAgent;
+    'data': Agent;
 }
 

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipNavFlightMode } from './ship-nav-flight-mode';
 
 /**
  * 
@@ -21,20 +24,12 @@
  */
 export interface PatchShipNavRequest {
     /**
-     * The ship\'s set speed when traveling between waypoints or systems.
-     * @type {any}
+     * 
+     * @type {ShipNavFlightMode}
      * @memberof PatchShipNavRequest
      */
-    'flightMode'?: PatchShipNavRequestFlightModeEnum;
+    'flightMode'?: ShipNavFlightMode;
 }
 
-export const PatchShipNavRequestFlightModeEnum = {
-    Drift: 'DRIFT',
-    Stealth: 'STEALTH',
-    Cruise: 'CRUISE',
-    Burn: 'BURN'
-} as const;
-
-export type PatchShipNavRequestFlightModeEnum = typeof PatchShipNavRequestFlightModeEnum[keyof typeof PatchShipNavRequestFlightModeEnum];
 
 

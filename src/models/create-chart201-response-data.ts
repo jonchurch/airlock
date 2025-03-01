@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetWaypoint200ResponseData } from './get-waypoint200-response-data';
+import { Chart } from './chart';
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetWaypoint200ResponseDataChart } from './get-waypoint200-response-data-chart';
+import { Waypoint } from './waypoint';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { GetWaypoint200ResponseDataChart } from './get-waypoint200-response-data
 export interface CreateChart201ResponseData {
     /**
      * 
-     * @type {GetWaypoint200ResponseDataChart}
+     * @type {Chart}
      * @memberof CreateChart201ResponseData
      */
-    'chart': GetWaypoint200ResponseDataChart;
+    'chart': Chart;
     /**
      * 
-     * @type {GetWaypoint200ResponseData}
+     * @type {Waypoint}
      * @memberof CreateChart201ResponseData
      */
-    'waypoint': GetWaypoint200ResponseData;
+    'waypoint': Waypoint;
 }
 

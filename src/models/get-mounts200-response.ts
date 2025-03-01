@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipMount } from './ship-mount';
 
 /**
  * 
@@ -22,9 +25,9 @@
 export interface GetMounts200Response {
     /**
      * 
-     * @type {any}
+     * @type {Array<ShipMount>}
      * @memberof GetMounts200Response
      */
-    'data': any;
+    'data': Array<ShipMount>;
 }
 

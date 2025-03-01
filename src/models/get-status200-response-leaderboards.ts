@@ -13,6 +13,12 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { GetStatus200ResponseLeaderboardsMostCreditsInner } from './get-status200-response-leaderboards-most-credits-inner';
+// May contain unused imports in some cases
+// @ts-ignore
+import { GetStatus200ResponseLeaderboardsMostSubmittedChartsInner } from './get-status200-response-leaderboards-most-submitted-charts-inner';
 
 /**
  * 
@@ -22,15 +28,15 @@
 export interface GetStatus200ResponseLeaderboards {
     /**
      * Top agents with the most credits.
-     * @type {any}
+     * @type {Array<GetStatus200ResponseLeaderboardsMostCreditsInner>}
      * @memberof GetStatus200ResponseLeaderboards
      */
-    'mostCredits': any;
+    'mostCredits': Array<GetStatus200ResponseLeaderboardsMostCreditsInner>;
     /**
      * Top agents with the most charted submitted.
-     * @type {any}
+     * @type {Array<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner>}
      * @memberof GetStatus200ResponseLeaderboards
      */
-    'mostSubmittedCharts': any;
+    'mostSubmittedCharts': Array<GetStatus200ResponseLeaderboardsMostSubmittedChartsInner>;
 }
 

@@ -22,9 +22,9 @@
 export interface InstallMountRequest {
     /**
      * 
-     * @type {any}
+     * @type {string}
      * @memberof InstallMountRequest
      */
-    'symbol': any;
+    'symbol': string;
 }
 

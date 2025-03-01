@@ -15,25 +15,27 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { SiphonResources201ResponseDataSiphonYield } from './siphon-resources201-response-data-siphon-yield';
+import { TradeSymbol } from './trade-symbol';
 
 /**
- * Siphon details.
+ * A yield from the siphon operation.
  * @export
- * @interface SiphonResources201ResponseDataSiphon
+ * @interface SiphonYield
  */
-export interface SiphonResources201ResponseDataSiphon {
-    /**
-     * Symbol of the ship that executed the siphon.
-     * @type {any}
-     * @memberof SiphonResources201ResponseDataSiphon
-     */
-    'shipSymbol': any;
+export interface SiphonYield {
     /**
      * 
-     * @type {SiphonResources201ResponseDataSiphonYield}
-     * @memberof SiphonResources201ResponseDataSiphon
+     * @type {TradeSymbol}
+     * @memberof SiphonYield
      */
-    'yield': SiphonResources201ResponseDataSiphonYield;
+    'symbol': TradeSymbol;
+    /**
+     * The number of units siphoned that were placed into the ship\'s cargo hold.
+     * @type {number}
+     * @memberof SiphonYield
+     */
+    'units': number;
 }
+
+
 

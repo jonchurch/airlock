@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetConstruction200ResponseData } from './get-construction200-response-data';
+import { Construction } from './construction';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetConstruction200ResponseData } from './get-construction200-response-d
 export interface GetConstruction200Response {
     /**
      * 
-     * @type {GetConstruction200ResponseData}
+     * @type {Construction}
      * @memberof GetConstruction200Response
      */
-    'data': GetConstruction200ResponseData;
+    'data': Construction;
 }
 

@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { Cooldown } from './cooldown';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { ShipCargo } from './ship-cargo';
 // May contain unused imports in some cases
 // @ts-ignore
-import { SiphonResources201ResponseDataSiphon } from './siphon-resources201-response-data-siphon';
+import { ShipConditionEvent } from './ship-condition-event';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Siphon } from './siphon';
 
 /**
  * 
@@ -31,27 +34,27 @@ import { SiphonResources201ResponseDataSiphon } from './siphon-resources201-resp
 export interface SiphonResources201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof SiphonResources201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * 
-     * @type {SiphonResources201ResponseDataSiphon}
+     * @type {Siphon}
      * @memberof SiphonResources201ResponseData
      */
-    'siphon': SiphonResources201ResponseDataSiphon;
+    'siphon': Siphon;
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof SiphonResources201ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
     /**
      * 
-     * @type {any}
+     * @type {Array<ShipConditionEvent>}
      * @memberof SiphonResources201ResponseData
      */
-    'events': any;
+    'events': Array<ShipConditionEvent>;
 }
 

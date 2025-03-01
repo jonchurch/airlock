@@ -15,10 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { Cooldown } from './cooldown';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { ShipCargo } from './ship-cargo';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipRefine201ResponseDataProducedInner } from './ship-refine201-response-data-produced-inner';
 
 /**
  * 
@@ -28,27 +31,27 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface ShipRefine201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof ShipRefine201ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof ShipRefine201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * Goods that were produced by this refining process.
-     * @type {any}
+     * @type {Array<ShipRefine201ResponseDataProducedInner>}
      * @memberof ShipRefine201ResponseData
      */
-    'produced': any;
+    'produced': Array<ShipRefine201ResponseDataProducedInner>;
     /**
      * Goods that were consumed during this refining process.
-     * @type {any}
+     * @type {Array<ShipRefine201ResponseDataProducedInner>}
      * @memberof ShipRefine201ResponseData
      */
-    'consumed': any;
+    'consumed': Array<ShipRefine201ResponseDataProducedInner>;
 }
 

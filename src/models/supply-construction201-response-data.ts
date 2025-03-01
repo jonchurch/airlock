@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetConstruction200ResponseData } from './get-construction200-response-data';
+import { Construction } from './construction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { ShipCargo } from './ship-cargo';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { Register201ResponseDataShipCargo } from './register201-response-data-sh
 export interface SupplyConstruction201ResponseData {
     /**
      * 
-     * @type {GetConstruction200ResponseData}
+     * @type {Construction}
      * @memberof SupplyConstruction201ResponseData
      */
-    'construction': GetConstruction200ResponseData;
+    'construction': Construction;
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof SupplyConstruction201ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
 }
 

@@ -34,11 +34,11 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Fetch agent details.
          * @summary Get Public Agent
-         * @param {any} agentSymbol The agent symbol
+         * @param {string} agentSymbol The agent symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAgent: async (agentSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAgent: async (agentSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'agentSymbol' is not null or undefined
             assertParamExists('getAgent', 'agentSymbol', agentSymbol)
             const localVarPath = `/agents/{agentSymbol}`
@@ -72,12 +72,12 @@ export const AgentsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Fetch agents details.
          * @summary List Agents
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAgents: async (page?: any, limit?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAgents: async (page?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/agents`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -160,23 +160,23 @@ export const AgentsApiFp = function(configuration?: Configuration) {
         /**
          * Fetch agent details.
          * @summary Get Public Agent
-         * @param {any} agentSymbol The agent symbol
+         * @param {string} agentSymbol The agent symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAgent(agentSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyAgent200Response>> {
+        async getAgent(agentSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyAgent200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAgent(agentSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Fetch agents details.
          * @summary List Agents
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAgents(page?: any, limit?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAgents200Response>> {
+        async getAgents(page?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAgents200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAgents(page, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -240,10 +240,10 @@ export const AgentsApiFactory = function (configuration?: Configuration, basePat
 export interface AgentsApiGetAgentRequest {
     /**
      * The agent symbol
-     * @type {any}
+     * @type {string}
      * @memberof AgentsApiGetAgent
      */
-    readonly agentSymbol: any
+    readonly agentSymbol: string
 }
 
 /**
@@ -254,17 +254,17 @@ export interface AgentsApiGetAgentRequest {
 export interface AgentsApiGetAgentsRequest {
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof AgentsApiGetAgents
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof AgentsApiGetAgents
      */
-    readonly limit?: any
+    readonly limit?: number
 }
 
 /**

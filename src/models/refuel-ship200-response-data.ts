@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { JumpShip200ResponseDataTransaction } from './jump-ship200-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { MarketTransaction } from './market-transaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipFuel } from './register201-response-data-ship-fuel';
+import { ShipFuel } from './ship-fuel';
 
 /**
  * 
@@ -31,21 +31,21 @@ import { Register201ResponseDataShipFuel } from './register201-response-data-shi
 export interface RefuelShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof RefuelShip200ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {Register201ResponseDataShipFuel}
+     * @type {ShipFuel}
      * @memberof RefuelShip200ResponseData
      */
-    'fuel': Register201ResponseDataShipFuel;
+    'fuel': ShipFuel;
     /**
      * 
-     * @type {JumpShip200ResponseDataTransaction}
+     * @type {MarketTransaction}
      * @memberof RefuelShip200ResponseData
      */
-    'transaction': JumpShip200ResponseDataTransaction;
+    'transaction': MarketTransaction;
 }
 

@@ -22,9 +22,9 @@
 export interface JumpShipRequest {
     /**
      * The symbol of the waypoint to jump to. The destination must be a connected waypoint.
-     * @type {any}
+     * @type {string}
      * @memberof JumpShipRequest
      */
-    'waypointSymbol': any;
+    'waypointSymbol': string;
 }
 

@@ -15,34 +15,20 @@
 
 
 /**
- * Result of a repair transaction.
+ * The unique identifier of the modifier.
  * @export
- * @interface GetRepairShip200ResponseDataTransaction
+ * @enum {string}
  */
-export interface GetRepairShip200ResponseDataTransaction {
-    /**
-     * The symbol of the waypoint.
-     * @type {any}
-     * @memberof GetRepairShip200ResponseDataTransaction
-     */
-    'waypointSymbol': any;
-    /**
-     * The symbol of the ship.
-     * @type {any}
-     * @memberof GetRepairShip200ResponseDataTransaction
-     */
-    'shipSymbol': any;
-    /**
-     * The total price of the transaction.
-     * @type {any}
-     * @memberof GetRepairShip200ResponseDataTransaction
-     */
-    'totalPrice': any;
-    /**
-     * The timestamp of the transaction.
-     * @type {any}
-     * @memberof GetRepairShip200ResponseDataTransaction
-     */
-    'timestamp': any;
-}
+
+export const WaypointModifierSymbol = {
+    Stripped: 'STRIPPED',
+    Unstable: 'UNSTABLE',
+    RadiationLeak: 'RADIATION_LEAK',
+    CriticalLimit: 'CRITICAL_LIMIT',
+    CivilUnrest: 'CIVIL_UNREST'
+} as const;
+
+export type WaypointModifierSymbol = typeof WaypointModifierSymbol[keyof typeof WaypointModifierSymbol];
+
+
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetSystem200ResponseData } from './get-system200-response-data';
+import { System } from './system';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetSystem200ResponseData } from './get-system200-response-data';
 export interface GetSystem200Response {
     /**
      * 
-     * @type {GetSystem200ResponseData}
+     * @type {System}
      * @memberof GetSystem200Response
      */
-    'data': GetSystem200ResponseData;
+    'data': System;
 }
 

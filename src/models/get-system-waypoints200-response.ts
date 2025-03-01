@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
+import { Meta } from './meta';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Waypoint } from './waypoint';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
 export interface GetSystemWaypoints200Response {
     /**
      * 
-     * @type {any}
+     * @type {Array<Waypoint>}
      * @memberof GetSystemWaypoints200Response
      */
-    'data': any;
+    'data': Array<Waypoint>;
     /**
      * 
-     * @type {GetSystems200ResponseMeta}
+     * @type {Meta}
      * @memberof GetSystemWaypoints200Response
      */
-    'meta': GetSystems200ResponseMeta;
+    'meta': Meta;
 }
 

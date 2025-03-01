@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetWaypoint200ResponseData } from './get-waypoint200-response-data';
+import { Waypoint } from './waypoint';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetWaypoint200ResponseData } from './get-waypoint200-response-data';
 export interface GetWaypoint200Response {
     /**
      * 
-     * @type {GetWaypoint200ResponseData}
+     * @type {Waypoint}
      * @memberof GetWaypoint200Response
      */
-    'data': GetWaypoint200ResponseData;
+    'data': Waypoint;
 }
 

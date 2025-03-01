@@ -15,28 +15,34 @@
 
 
 /**
- * The chart of a system or waypoint, which makes the location visible to other agents.
+ * Result of a repair transaction.
  * @export
- * @interface GetWaypoint200ResponseDataChart
+ * @interface RepairTransaction
  */
-export interface GetWaypoint200ResponseDataChart {
+export interface RepairTransaction {
     /**
      * The symbol of the waypoint.
-     * @type {any}
-     * @memberof GetWaypoint200ResponseDataChart
+     * @type {string}
+     * @memberof RepairTransaction
      */
-    'waypointSymbol'?: any;
+    'waypointSymbol': string;
     /**
-     * The agent that submitted the chart for this waypoint.
-     * @type {any}
-     * @memberof GetWaypoint200ResponseDataChart
+     * The symbol of the ship.
+     * @type {string}
+     * @memberof RepairTransaction
      */
-    'submittedBy'?: any;
+    'shipSymbol': string;
     /**
-     * The time the chart for this waypoint was submitted.
-     * @type {any}
-     * @memberof GetWaypoint200ResponseDataChart
+     * The total price of the transaction.
+     * @type {number}
+     * @memberof RepairTransaction
      */
-    'submittedOn'?: any;
+    'totalPrice': number;
+    /**
+     * The timestamp of the transaction.
+     * @type {string}
+     * @memberof RepairTransaction
+     */
+    'timestamp': string;
 }
 

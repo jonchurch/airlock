@@ -13,42 +13,14 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointTraitSymbol } from './waypoint-trait-symbol';
 
 /**
- * Result of a transaction for a ship modification, such as installing a mount or a module.
+ * @type GetSystemWaypointsTraitsParameter
  * @export
- * @interface InstallMount201ResponseDataTransaction
  */
-export interface InstallMount201ResponseDataTransaction {
-    /**
-     * The symbol of the waypoint where the transaction took place.
-     * @type {any}
-     * @memberof InstallMount201ResponseDataTransaction
-     */
-    'waypointSymbol': any;
-    /**
-     * The symbol of the ship that made the transaction.
-     * @type {any}
-     * @memberof InstallMount201ResponseDataTransaction
-     */
-    'shipSymbol': any;
-    /**
-     * The symbol of the trade good.
-     * @type {any}
-     * @memberof InstallMount201ResponseDataTransaction
-     */
-    'tradeSymbol': any;
-    /**
-     * The total price of the transaction.
-     * @type {any}
-     * @memberof InstallMount201ResponseDataTransaction
-     */
-    'totalPrice': any;
-    /**
-     * The timestamp of the transaction.
-     * @type {any}
-     * @memberof InstallMount201ResponseDataTransaction
-     */
-    'timestamp': any;
-}
+export type GetSystemWaypointsTraitsParameter = Array<WaypointTraitSymbol> | WaypointTraitSymbol;
+
 

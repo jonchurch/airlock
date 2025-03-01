@@ -22,9 +22,9 @@
 export interface GetSupplyChain200ResponseData {
     /**
      * 
-     * @type {any}
+     * @type {object}
      * @memberof GetSupplyChain200ResponseData
      */
-    'exportToImportMap': any;
+    'exportToImportMap': object;
 }
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetScrapShip200ResponseDataTransaction } from './get-scrap-ship200-response-data-transaction';
+import { ScrapTransaction } from './scrap-transaction';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetScrapShip200ResponseDataTransaction } from './get-scrap-ship200-resp
 export interface GetScrapShip200ResponseData {
     /**
      * 
-     * @type {GetScrapShip200ResponseDataTransaction}
+     * @type {ScrapTransaction}
      * @memberof GetScrapShip200ResponseData
      */
-    'transaction': GetScrapShip200ResponseDataTransaction;
+    'transaction': ScrapTransaction;
 }
 

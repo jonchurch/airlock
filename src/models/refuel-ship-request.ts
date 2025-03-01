@@ -22,15 +22,15 @@
 export interface RefuelShipRequest {
     /**
      * The amount of fuel to fill in the ship\'s tanks. When not specified, the ship will be refueled to its maximum fuel capacity. If the amount specified is greater than the ship\'s remaining capacity, the ship will only be refueled to its maximum fuel capacity. The amount specified is not in market units but in ship fuel units.
-     * @type {any}
+     * @type {number}
      * @memberof RefuelShipRequest
      */
-    'units'?: any;
+    'units'?: number;
     /**
      * Wether to use the FUEL thats in your cargo or not. Default: false
-     * @type {any}
+     * @type {boolean}
      * @memberof RefuelShipRequest
      */
-    'fromCargo'?: any;
+    'fromCargo'?: boolean;
 }
 

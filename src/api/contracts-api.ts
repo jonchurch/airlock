@@ -42,11 +42,11 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
          * @summary Accept Contract
-         * @param {any} contractId The contract ID to accept.
+         * @param {string} contractId The contract ID to accept.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptContract: async (contractId: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        acceptContract: async (contractId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'contractId' is not null or undefined
             assertParamExists('acceptContract', 'contractId', contractId)
             const localVarPath = `/my/contracts/{contractId}/accept`
@@ -80,12 +80,12 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship\'s cargo.
          * @summary Deliver Cargo to Contract
-         * @param {any} contractId The ID of the contract.
+         * @param {string} contractId The ID of the contract.
          * @param {DeliverContractRequest} [deliverContractRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deliverContract: async (contractId: any, deliverContractRequest?: DeliverContractRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deliverContract: async (contractId: string, deliverContractRequest?: DeliverContractRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'contractId' is not null or undefined
             assertParamExists('deliverContract', 'contractId', contractId)
             const localVarPath = `/my/contracts/{contractId}/deliver`
@@ -122,11 +122,11 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
          * @summary Fulfill Contract
-         * @param {any} contractId The ID of the contract to fulfill.
+         * @param {string} contractId The ID of the contract to fulfill.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fulfillContract: async (contractId: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        fulfillContract: async (contractId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'contractId' is not null or undefined
             assertParamExists('fulfillContract', 'contractId', contractId)
             const localVarPath = `/my/contracts/{contractId}/fulfill`
@@ -160,11 +160,11 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Get the details of a contract by ID.
          * @summary Get Contract
-         * @param {any} contractId The contract ID
+         * @param {string} contractId The contract ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContract: async (contractId: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getContract: async (contractId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'contractId' is not null or undefined
             assertParamExists('getContract', 'contractId', contractId)
             const localVarPath = `/my/contracts/{contractId}`
@@ -198,12 +198,12 @@ export const ContractsApiAxiosParamCreator = function (configuration?: Configura
         /**
          * Return a paginated list of all your contracts.
          * @summary List Contracts
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getContracts: async (page?: any, limit?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getContracts: async (page?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/my/contracts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -252,57 +252,57 @@ export const ContractsApiFp = function(configuration?: Configuration) {
         /**
          * Accept a contract by ID.   You can only accept contracts that were offered to you, were not accepted yet, and whose deadlines has not passed yet.
          * @summary Accept Contract
-         * @param {any} contractId The contract ID to accept.
+         * @param {string} contractId The contract ID to accept.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptContract(contractId: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptContract200Response>> {
+        async acceptContract(contractId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptContract200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.acceptContract(contractId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Deliver cargo to a contract.  In order to use this API, a ship must be at the delivery location (denoted in the delivery terms as `destinationSymbol` of a contract) and must have a number of units of a good required by this contract in its cargo.  Cargo that was delivered will be removed from the ship\'s cargo.
          * @summary Deliver Cargo to Contract
-         * @param {any} contractId The ID of the contract.
+         * @param {string} contractId The ID of the contract.
          * @param {DeliverContractRequest} [deliverContractRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deliverContract(contractId: any, deliverContractRequest?: DeliverContractRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliverContract200Response>> {
+        async deliverContract(contractId: string, deliverContractRequest?: DeliverContractRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DeliverContract200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deliverContract(contractId, deliverContractRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Fulfill a contract. Can only be used on contracts that have all of their delivery terms fulfilled.
          * @summary Fulfill Contract
-         * @param {any} contractId The ID of the contract to fulfill.
+         * @param {string} contractId The ID of the contract to fulfill.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fulfillContract(contractId: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FulfillContract200Response>> {
+        async fulfillContract(contractId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FulfillContract200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.fulfillContract(contractId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the details of a contract by ID.
          * @summary Get Contract
-         * @param {any} contractId The contract ID
+         * @param {string} contractId The contract ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContract(contractId: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetContract200Response>> {
+        async getContract(contractId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetContract200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getContract(contractId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Return a paginated list of all your contracts.
          * @summary List Contracts
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getContracts(page?: any, limit?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetContracts200Response>> {
+        async getContracts(page?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetContracts200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getContracts(page, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -377,10 +377,10 @@ export const ContractsApiFactory = function (configuration?: Configuration, base
 export interface ContractsApiAcceptContractRequest {
     /**
      * The contract ID to accept.
-     * @type {any}
+     * @type {string}
      * @memberof ContractsApiAcceptContract
      */
-    readonly contractId: any
+    readonly contractId: string
 }
 
 /**
@@ -391,10 +391,10 @@ export interface ContractsApiAcceptContractRequest {
 export interface ContractsApiDeliverContractRequest {
     /**
      * The ID of the contract.
-     * @type {any}
+     * @type {string}
      * @memberof ContractsApiDeliverContract
      */
-    readonly contractId: any
+    readonly contractId: string
 
     /**
      * 
@@ -412,10 +412,10 @@ export interface ContractsApiDeliverContractRequest {
 export interface ContractsApiFulfillContractRequest {
     /**
      * The ID of the contract to fulfill.
-     * @type {any}
+     * @type {string}
      * @memberof ContractsApiFulfillContract
      */
-    readonly contractId: any
+    readonly contractId: string
 }
 
 /**
@@ -426,10 +426,10 @@ export interface ContractsApiFulfillContractRequest {
 export interface ContractsApiGetContractRequest {
     /**
      * The contract ID
-     * @type {any}
+     * @type {string}
      * @memberof ContractsApiGetContract
      */
-    readonly contractId: any
+    readonly contractId: string
 }
 
 /**
@@ -440,17 +440,17 @@ export interface ContractsApiGetContractRequest {
 export interface ContractsApiGetContractsRequest {
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof ContractsApiGetContracts
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof ContractsApiGetContracts
      */
-    readonly limit?: any
+    readonly limit?: number
 }
 
 /**

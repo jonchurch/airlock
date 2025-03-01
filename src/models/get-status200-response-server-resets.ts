@@ -22,15 +22,15 @@
 export interface GetStatus200ResponseServerResets {
     /**
      * The date and time when the game server will reset.
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200ResponseServerResets
      */
-    'next': any;
+    'next': string;
     /**
      * How often we intend to reset the game server.
-     * @type {any}
+     * @type {string}
      * @memberof GetStatus200ResponseServerResets
      */
-    'frequency': any;
+    'frequency': string;
 }
 

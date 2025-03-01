@@ -15,31 +15,25 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataContractTermsPayment } from './register201-response-data-contract-terms-payment';
+import { SiphonYield } from './siphon-yield';
 
 /**
- * The terms to fulfill the contract.
+ * Siphon details.
  * @export
- * @interface Register201ResponseDataContractTerms
+ * @interface Siphon
  */
-export interface Register201ResponseDataContractTerms {
+export interface Siphon {
     /**
-     * The deadline for the contract.
-     * @type {any}
-     * @memberof Register201ResponseDataContractTerms
+     * Symbol of the ship that executed the siphon.
+     * @type {string}
+     * @memberof Siphon
      */
-    'deadline': any;
+    'shipSymbol': string;
     /**
      * 
-     * @type {Register201ResponseDataContractTermsPayment}
-     * @memberof Register201ResponseDataContractTerms
+     * @type {SiphonYield}
+     * @memberof Siphon
      */
-    'payment': Register201ResponseDataContractTermsPayment;
-    /**
-     * The cargo that needs to be delivered to fulfill the contract.
-     * @type {any}
-     * @memberof Register201ResponseDataContractTerms
-     */
-    'deliver'?: any;
+    'yield': SiphonYield;
 }
 

@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { FactionSymbol } from './faction-symbol';
 
 /**
  * 
@@ -21,47 +24,24 @@
  */
 export interface RegisterRequest {
     /**
-     * The symbol of the faction.
-     * @type {any}
+     * 
+     * @type {FactionSymbol}
      * @memberof RegisterRequest
      */
-    'faction': RegisterRequestFactionEnum;
+    'faction': FactionSymbol;
     /**
      * Your desired agent symbol. This will be a unique name used to represent your agent, and will be the prefix for your ships.
-     * @type {any}
+     * @type {string}
      * @memberof RegisterRequest
      */
-    'symbol': any;
+    'symbol': string;
     /**
      * Your email address. This is used if you reserved your call sign between resets.
-     * @type {any}
+     * @type {string}
      * @memberof RegisterRequest
      */
-    'email'?: any;
+    'email'?: string;
 }
 
-export const RegisterRequestFactionEnum = {
-    Cosmic: 'COSMIC',
-    Void: 'VOID',
-    Galactic: 'GALACTIC',
-    Quantum: 'QUANTUM',
-    Dominion: 'DOMINION',
-    Astro: 'ASTRO',
-    Corsairs: 'CORSAIRS',
-    Obsidian: 'OBSIDIAN',
-    Aegis: 'AEGIS',
-    United: 'UNITED',
-    Solitary: 'SOLITARY',
-    Cobalt: 'COBALT',
-    Omega: 'OMEGA',
-    Echo: 'ECHO',
-    Lords: 'LORDS',
-    Cult: 'CULT',
-    Ancients: 'ANCIENTS',
-    Shadow: 'SHADOW',
-    Ethereal: 'ETHEREAL'
-} as const;
-
-export type RegisterRequestFactionEnum = typeof RegisterRequestFactionEnum[keyof typeof RegisterRequestFactionEnum];
 
 

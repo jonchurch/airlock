@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ExtractResourcesRequestSurvey } from './extract-resources-request-survey';
+import { Survey } from './survey';
 
 /**
  * 
@@ -25,10 +25,9 @@ import { ExtractResourcesRequestSurvey } from './extract-resources-request-surve
 export interface ExtractResourcesRequest {
     /**
      * 
-     * @type {ExtractResourcesRequestSurvey}
+     * @type {Survey}
      * @memberof ExtractResourcesRequest
-     * @deprecated
      */
-    'survey'?: ExtractResourcesRequestSurvey;
+    'survey'?: Survey;
 }
 

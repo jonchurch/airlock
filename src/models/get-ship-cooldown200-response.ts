@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { Cooldown } from './cooldown';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface GetShipCooldown200Response {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof GetShipCooldown200Response
      */
-    'data': Register201ResponseDataShipCooldown;
+    'data': Cooldown;
 }
 

@@ -34,6 +34,8 @@ import { GetSystem200Response } from '../models';
 // @ts-ignore
 import { GetSystemWaypoints200Response } from '../models';
 // @ts-ignore
+import { GetSystemWaypointsTraitsParameter } from '../models';
+// @ts-ignore
 import { GetSystems200Response } from '../models';
 // @ts-ignore
 import { GetWaypoint200Response } from '../models';
@@ -41,6 +43,8 @@ import { GetWaypoint200Response } from '../models';
 import { SupplyConstruction201Response } from '../models';
 // @ts-ignore
 import { SupplyConstructionRequest } from '../models';
+// @ts-ignore
+import { WaypointType } from '../models';
 /**
  * SystemsApi - axios parameter creator
  * @export
@@ -50,12 +54,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get construction details for a waypoint. Requires a waypoint with a property of `isUnderConstruction` to be true.
          * @summary Get Construction Site
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConstruction: async (systemSymbol: any, waypointSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getConstruction: async (systemSymbol: string, waypointSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getConstruction', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -92,12 +96,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  Waypoints connected to this jump gate can be 
          * @summary Get Jump Gate
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJumpGate: async (systemSymbol: any, waypointSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getJumpGate: async (systemSymbol: string, waypointSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getJumpGate', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -134,12 +138,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
          * @summary Get Market
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMarket: async (systemSymbol: any, waypointSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMarket: async (systemSymbol: string, waypointSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getMarket', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -176,12 +180,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
          * @summary Get Shipyard
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShipyard: async (systemSymbol: any, waypointSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShipyard: async (systemSymbol: string, waypointSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getShipyard', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -218,11 +222,11 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Get the details of a system.
          * @summary Get System
-         * @param {any} systemSymbol The system symbol
+         * @param {string} systemSymbol The system symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystem: async (systemSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystem: async (systemSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getSystem', 'systemSymbol', systemSymbol)
             const localVarPath = `/systems/{systemSymbol}`
@@ -256,15 +260,15 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
          * @summary List Waypoints in System
-         * @param {any} systemSymbol The system symbol
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
-         * @param {any} [type] Filter waypoints by type.
-         * @param {any} [traits] Filter waypoints by one or more traits.
+         * @param {string} systemSymbol The system symbol
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
+         * @param {WaypointType} [type] Filter waypoints by type.
+         * @param {GetSystemWaypointsTraitsParameter} [traits] Filter waypoints by one or more traits.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemWaypoints: async (systemSymbol: any, page?: any, limit?: any, type?: any, traits?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystemWaypoints: async (systemSymbol: string, page?: number, limit?: number, type?: WaypointType, traits?: GetSystemWaypointsTraitsParameter, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getSystemWaypoints', 'systemSymbol', systemSymbol)
             const localVarPath = `/systems/{systemSymbol}/waypoints`
@@ -314,12 +318,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Return a paginated list of all systems.
          * @summary List Systems
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystems: async (page?: any, limit?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystems: async (page?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/systems`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -358,12 +362,12 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
          * @summary Get Waypoint
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWaypoint: async (systemSymbol: any, waypointSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getWaypoint: async (systemSymbol: string, waypointSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('getWaypoint', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -400,13 +404,13 @@ export const SystemsApiAxiosParamCreator = function (configuration?: Configurati
         /**
          * Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.  The good must be in your ship\'s cargo. The good will be removed from your ship\'s cargo and added to the construction site\'s materials.
          * @summary Supply Construction Site
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {SupplyConstructionRequest} [supplyConstructionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        supplyConstruction: async (systemSymbol: any, waypointSymbol: any, supplyConstructionRequest?: SupplyConstructionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        supplyConstruction: async (systemSymbol: string, waypointSymbol: string, supplyConstructionRequest?: SupplyConstructionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'systemSymbol' is not null or undefined
             assertParamExists('supplyConstruction', 'systemSymbol', systemSymbol)
             // verify required parameter 'waypointSymbol' is not null or undefined
@@ -456,111 +460,111 @@ export const SystemsApiFp = function(configuration?: Configuration) {
         /**
          * Get construction details for a waypoint. Requires a waypoint with a property of `isUnderConstruction` to be true.
          * @summary Get Construction Site
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getConstruction(systemSymbol: any, waypointSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetConstruction200Response>> {
+        async getConstruction(systemSymbol: string, waypointSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetConstruction200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getConstruction(systemSymbol, waypointSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get jump gate details for a waypoint. Requires a waypoint of type `JUMP_GATE` to use.  Waypoints connected to this jump gate can be 
          * @summary Get Jump Gate
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJumpGate(systemSymbol: any, waypointSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetJumpGate200Response>> {
+        async getJumpGate(systemSymbol: string, waypointSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetJumpGate200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJumpGate(systemSymbol, waypointSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve imports, exports and exchange data from a marketplace. Requires a waypoint that has the `Marketplace` trait to use.  Send a ship to the waypoint to access trade good prices and recent transactions. Refer to the [Market Overview page](https://docs.spacetraders.io/game-concepts/markets) to gain better a understanding of the market in the game.
          * @summary Get Market
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMarket(systemSymbol: any, waypointSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMarket200Response>> {
+        async getMarket(systemSymbol: string, waypointSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMarket200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMarket(systemSymbol, waypointSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the shipyard for a waypoint. Requires a waypoint that has the `Shipyard` trait to use. Send a ship to the waypoint to access data on ships that are currently available for purchase and recent transactions.
          * @summary Get Shipyard
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShipyard(systemSymbol: any, waypointSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipyard200Response>> {
+        async getShipyard(systemSymbol: string, waypointSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipyard200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShipyard(systemSymbol, waypointSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the details of a system.
          * @summary Get System
-         * @param {any} systemSymbol The system symbol
+         * @param {string} systemSymbol The system symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystem(systemSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystem200Response>> {
+        async getSystem(systemSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystem200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystem(systemSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Return a paginated list of all of the waypoints for a given system.  If a waypoint is uncharted, it will return the `Uncharted` trait instead of its actual traits.
          * @summary List Waypoints in System
-         * @param {any} systemSymbol The system symbol
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
-         * @param {any} [type] Filter waypoints by type.
-         * @param {any} [traits] Filter waypoints by one or more traits.
+         * @param {string} systemSymbol The system symbol
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
+         * @param {WaypointType} [type] Filter waypoints by type.
+         * @param {GetSystemWaypointsTraitsParameter} [traits] Filter waypoints by one or more traits.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemWaypoints(systemSymbol: any, page?: any, limit?: any, type?: any, traits?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemWaypoints200Response>> {
+        async getSystemWaypoints(systemSymbol: string, page?: number, limit?: number, type?: WaypointType, traits?: GetSystemWaypointsTraitsParameter, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemWaypoints200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemWaypoints(systemSymbol, page, limit, type, traits, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Return a paginated list of all systems.
          * @summary List Systems
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystems(page?: any, limit?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystems200Response>> {
+        async getSystems(page?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystems200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystems(page, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * View the details of a waypoint.  If the waypoint is uncharted, it will return the \'Uncharted\' trait instead of its actual traits.
          * @summary Get Waypoint
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getWaypoint(systemSymbol: any, waypointSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWaypoint200Response>> {
+        async getWaypoint(systemSymbol: string, waypointSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetWaypoint200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWaypoint(systemSymbol, waypointSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Supply a construction site with the specified good. Requires a waypoint with a property of `isUnderConstruction` to be true.  The good must be in your ship\'s cargo. The good will be removed from your ship\'s cargo and added to the construction site\'s materials.
          * @summary Supply Construction Site
-         * @param {any} systemSymbol The system symbol
-         * @param {any} waypointSymbol The waypoint symbol
+         * @param {string} systemSymbol The system symbol
+         * @param {string} waypointSymbol The waypoint symbol
          * @param {SupplyConstructionRequest} [supplyConstructionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async supplyConstruction(systemSymbol: any, waypointSymbol: any, supplyConstructionRequest?: SupplyConstructionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SupplyConstruction201Response>> {
+        async supplyConstruction(systemSymbol: string, waypointSymbol: string, supplyConstructionRequest?: SupplyConstructionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SupplyConstruction201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.supplyConstruction(systemSymbol, waypointSymbol, supplyConstructionRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -675,17 +679,17 @@ export const SystemsApiFactory = function (configuration?: Configuration, basePa
 export interface SystemsApiGetConstructionRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetConstruction
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetConstruction
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 }
 
 /**
@@ -696,17 +700,17 @@ export interface SystemsApiGetConstructionRequest {
 export interface SystemsApiGetJumpGateRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetJumpGate
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetJumpGate
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 }
 
 /**
@@ -717,17 +721,17 @@ export interface SystemsApiGetJumpGateRequest {
 export interface SystemsApiGetMarketRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetMarket
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetMarket
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 }
 
 /**
@@ -738,17 +742,17 @@ export interface SystemsApiGetMarketRequest {
 export interface SystemsApiGetShipyardRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetShipyard
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetShipyard
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 }
 
 /**
@@ -759,10 +763,10 @@ export interface SystemsApiGetShipyardRequest {
 export interface SystemsApiGetSystemRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetSystem
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 }
 
 /**
@@ -773,38 +777,38 @@ export interface SystemsApiGetSystemRequest {
 export interface SystemsApiGetSystemWaypointsRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetSystemWaypoints
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof SystemsApiGetSystemWaypoints
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof SystemsApiGetSystemWaypoints
      */
-    readonly limit?: any
+    readonly limit?: number
 
     /**
      * Filter waypoints by type.
-     * @type {any}
+     * @type {WaypointType}
      * @memberof SystemsApiGetSystemWaypoints
      */
-    readonly type?: any
+    readonly type?: WaypointType
 
     /**
      * Filter waypoints by one or more traits.
-     * @type {any}
+     * @type {GetSystemWaypointsTraitsParameter}
      * @memberof SystemsApiGetSystemWaypoints
      */
-    readonly traits?: any
+    readonly traits?: GetSystemWaypointsTraitsParameter
 }
 
 /**
@@ -815,17 +819,17 @@ export interface SystemsApiGetSystemWaypointsRequest {
 export interface SystemsApiGetSystemsRequest {
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof SystemsApiGetSystems
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof SystemsApiGetSystems
      */
-    readonly limit?: any
+    readonly limit?: number
 }
 
 /**
@@ -836,17 +840,17 @@ export interface SystemsApiGetSystemsRequest {
 export interface SystemsApiGetWaypointRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetWaypoint
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiGetWaypoint
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 }
 
 /**
@@ -857,17 +861,17 @@ export interface SystemsApiGetWaypointRequest {
 export interface SystemsApiSupplyConstructionRequest {
     /**
      * The system symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiSupplyConstruction
      */
-    readonly systemSymbol: any
+    readonly systemSymbol: string
 
     /**
      * The waypoint symbol
-     * @type {any}
+     * @type {string}
      * @memberof SystemsApiSupplyConstruction
      */
-    readonly waypointSymbol: any
+    readonly waypointSymbol: string
 
     /**
      * 

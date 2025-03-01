@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataContract } from './register201-response-data-contract';
+import { Contract } from './contract';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { Register201ResponseDataContract } from './register201-response-data-con
 export interface AcceptContract200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof AcceptContract200ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {Register201ResponseDataContract}
+     * @type {Contract}
      * @memberof AcceptContract200ResponseData
      */
-    'contract': Register201ResponseDataContract;
+    'contract': Contract;
 }
 

@@ -34,11 +34,11 @@ export const FactionsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * View the details of a faction.
          * @summary Get Faction
-         * @param {any} factionSymbol The faction symbol
+         * @param {string} factionSymbol The faction symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFaction: async (factionSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFaction: async (factionSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'factionSymbol' is not null or undefined
             assertParamExists('getFaction', 'factionSymbol', factionSymbol)
             const localVarPath = `/factions/{factionSymbol}`
@@ -76,12 +76,12 @@ export const FactionsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * Return a paginated list of all the factions in the game.
          * @summary List Factions
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFactions: async (page?: any, limit?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFactions: async (page?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/factions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -130,23 +130,23 @@ export const FactionsApiFp = function(configuration?: Configuration) {
         /**
          * View the details of a faction.
          * @summary Get Faction
-         * @param {any} factionSymbol The faction symbol
+         * @param {string} factionSymbol The faction symbol
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFaction(factionSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFaction200Response>> {
+        async getFaction(factionSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFaction200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFaction(factionSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Return a paginated list of all the factions in the game.
          * @summary List Factions
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFactions(page?: any, limit?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFactions200Response>> {
+        async getFactions(page?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFactions200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFactions(page, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -191,10 +191,10 @@ export const FactionsApiFactory = function (configuration?: Configuration, baseP
 export interface FactionsApiGetFactionRequest {
     /**
      * The faction symbol
-     * @type {any}
+     * @type {string}
      * @memberof FactionsApiGetFaction
      */
-    readonly factionSymbol: any
+    readonly factionSymbol: string
 }
 
 /**
@@ -205,17 +205,17 @@ export interface FactionsApiGetFactionRequest {
 export interface FactionsApiGetFactionsRequest {
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof FactionsApiGetFactions
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof FactionsApiGetFactions
      */
-    readonly limit?: any
+    readonly limit?: number
 }
 
 /**

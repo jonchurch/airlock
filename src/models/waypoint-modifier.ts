@@ -13,24 +13,35 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { WaypointModifierSymbol } from './waypoint-modifier-symbol';
 
 /**
- * Payments for the contract.
+ * 
  * @export
- * @interface Register201ResponseDataContractTermsPayment
+ * @interface WaypointModifier
  */
-export interface Register201ResponseDataContractTermsPayment {
+export interface WaypointModifier {
     /**
-     * The amount of credits received up front for accepting the contract.
-     * @type {any}
-     * @memberof Register201ResponseDataContractTermsPayment
+     * 
+     * @type {WaypointModifierSymbol}
+     * @memberof WaypointModifier
      */
-    'onAccepted': any;
+    'symbol': WaypointModifierSymbol;
     /**
-     * The amount of credits received when the contract is fulfilled.
-     * @type {any}
-     * @memberof Register201ResponseDataContractTermsPayment
+     * The name of the trait.
+     * @type {string}
+     * @memberof WaypointModifier
      */
-    'onFulfilled': any;
+    'name': string;
+    /**
+     * A description of the trait.
+     * @type {string}
+     * @memberof WaypointModifier
+     */
+    'description': string;
 }
+
+
 

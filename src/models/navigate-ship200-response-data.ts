@@ -15,10 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipFuel } from './register201-response-data-ship-fuel';
+import { NavigateShip200ResponseDataEventsInner } from './navigate-ship200-response-data-events-inner';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipNav } from './register201-response-data-ship-nav';
+import { ShipFuel } from './ship-fuel';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipNav } from './ship-nav';
 
 /**
  * 
@@ -28,21 +31,21 @@ import { Register201ResponseDataShipNav } from './register201-response-data-ship
 export interface NavigateShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipFuel}
+     * @type {ShipFuel}
      * @memberof NavigateShip200ResponseData
      */
-    'fuel': Register201ResponseDataShipFuel;
+    'fuel': ShipFuel;
     /**
      * 
-     * @type {Register201ResponseDataShipNav}
+     * @type {ShipNav}
      * @memberof NavigateShip200ResponseData
      */
-    'nav': Register201ResponseDataShipNav;
+    'nav': ShipNav;
     /**
      * 
-     * @type {any}
+     * @type {Array<NavigateShip200ResponseDataEventsInner>}
      * @memberof NavigateShip200ResponseData
      */
-    'events': any;
+    'events': Array<NavigateShip200ResponseDataEventsInner>;
 }
 

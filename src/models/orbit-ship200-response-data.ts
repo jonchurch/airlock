@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipNav } from './register201-response-data-ship-nav';
+import { ShipNav } from './ship-nav';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataShipNav } from './register201-response-data-ship
 export interface OrbitShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipNav}
+     * @type {ShipNav}
      * @memberof OrbitShip200ResponseData
      */
-    'nav': Register201ResponseDataShipNav;
+    'nav': ShipNav;
 }
 

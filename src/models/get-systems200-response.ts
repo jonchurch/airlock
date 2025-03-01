@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
+import { Meta } from './meta';
+// May contain unused imports in some cases
+// @ts-ignore
+import { System } from './system';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { GetSystems200ResponseMeta } from './get-systems200-response-meta';
 export interface GetSystems200Response {
     /**
      * 
-     * @type {any}
+     * @type {Array<System>}
      * @memberof GetSystems200Response
      */
-    'data': any;
+    'data': Array<System>;
     /**
      * 
-     * @type {GetSystems200ResponseMeta}
+     * @type {Meta}
      * @memberof GetSystems200Response
      */
-    'meta': GetSystems200ResponseMeta;
+    'meta': Meta;
 }
 

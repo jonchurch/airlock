@@ -38,8 +38,6 @@ import { ExtractResources201Response } from '../models';
 // @ts-ignore
 import { ExtractResourcesRequest } from '../models';
 // @ts-ignore
-import { ExtractResourcesWithSurveyRequest } from '../models';
-// @ts-ignore
 import { GetMounts200Response } from '../models';
 // @ts-ignore
 import { GetMyShip200Response } from '../models';
@@ -108,6 +106,8 @@ import { ShipRefineRequest } from '../models';
 // @ts-ignore
 import { SiphonResources201Response } from '../models';
 // @ts-ignore
+import { Survey } from '../models';
+// @ts-ignore
 import { TransferCargo200Response } from '../models';
 // @ts-ignore
 import { TransferCargoRequest } from '../models';
@@ -122,11 +122,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint\'s traits.
          * @summary Create Chart
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createChart: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createChart: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('createChart', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/chart`
@@ -160,11 +160,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Ships
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShipShipScan: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createShipShipScan: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('createShipShipScan', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/scan/ships`
@@ -198,11 +198,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Scan for nearby systems, retrieving information on the systems\' distance from the ship and their waypoints. Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Systems
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShipSystemScan: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createShipSystemScan: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('createShipSystemScan', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/scan/systems`
@@ -236,11 +236,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints\' traits.  Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Waypoints
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createShipWaypointScan: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createShipWaypointScan: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('createShipWaypointScan', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/scan/waypoints`
@@ -274,11 +274,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey\'s size. Multiple ships can use the same survey for extraction.  A ship must have the `Surveyor` mount installed in order to use this function.
          * @summary Create Survey
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createSurvey: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createSurvey: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('createSurvey', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/survey`
@@ -312,11 +312,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
          * @summary Dock Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        dockShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        dockShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('dockShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/dock`
@@ -350,12 +350,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.  The survey property is now deprecated. See the `extract/survey` endpoint for more details.
          * @summary Extract Resources
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {ExtractResourcesRequest} [extractResourcesRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        extractResources: async (shipSymbol: any, extractResourcesRequest?: ExtractResourcesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        extractResources: async (shipSymbol: string, extractResourcesRequest?: ExtractResourcesRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('extractResources', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/extract`
@@ -392,12 +392,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
          * @summary Extract Resources with Survey
-         * @param {any} shipSymbol The ship symbol.
-         * @param {ExtractResourcesWithSurveyRequest} [extractResourcesWithSurveyRequest] 
+         * @param {string} shipSymbol The ship symbol.
+         * @param {Survey} [survey] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        extractResourcesWithSurvey: async (shipSymbol: any, extractResourcesWithSurveyRequest?: ExtractResourcesWithSurveyRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        extractResourcesWithSurvey: async (shipSymbol: string, survey?: Survey, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('extractResourcesWithSurvey', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/extract/survey`
@@ -424,7 +424,7 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(extractResourcesWithSurveyRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(survey, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -434,11 +434,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Get the mounts installed on a ship.
          * @summary Get Mounts
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMounts: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMounts: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getMounts', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/mounts`
@@ -472,11 +472,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Retrieve the details of a ship under your agent\'s ownership.
          * @summary Get Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMyShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getMyShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}`
@@ -510,11 +510,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Retrieve the cargo of a ship under your agent\'s ownership.
          * @summary Get Ship Cargo
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyShipCargo: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMyShipCargo: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getMyShipCargo', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/cargo`
@@ -548,12 +548,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Return a paginated list of all of ships under your agent\'s ownership.
          * @summary List Ships
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMyShips: async (page?: any, limit?: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getMyShips: async (page?: number, limit?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/my/ships`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -592,11 +592,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Get the cost of repairing a ship.
          * @summary Get Repair Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRepairShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRepairShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getRepairShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/repair`
@@ -630,11 +630,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Get the amount of value that will be returned when scrapping a ship.
          * @summary Get Scrap Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getScrapShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getScrapShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getScrapShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/scrap`
@@ -668,11 +668,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Retrieve the details of your ship\'s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
          * @summary Get Ship Cooldown
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShipCooldown: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShipCooldown: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getShipCooldown', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/cooldown`
@@ -706,11 +706,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Get the current nav status of a ship.
          * @summary Get Ship Nav
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getShipNav: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getShipNav: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('getShipNav', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/nav`
@@ -744,12 +744,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a `Shipyard` trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
          * @summary Install Mount
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {InstallMountRequest} [installMountRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        installMount: async (shipSymbol: any, installMountRequest?: InstallMountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        installMount: async (shipSymbol: string, installMountRequest?: InstallMountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('installMount', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/mounts/install`
@@ -786,12 +786,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Jettison cargo from your ship\'s cargo hold.
          * @summary Jettison Cargo
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {JettisonRequest} [jettisonRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jettison: async (shipSymbol: any, jettisonRequest?: JettisonRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        jettison: async (shipSymbol: string, jettisonRequest?: JettisonRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('jettison', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/jettison`
@@ -828,12 +828,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
          * @summary Jump Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {JumpShipRequest} [jumpShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        jumpShip: async (shipSymbol: any, jumpShipRequest?: JumpShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        jumpShip: async (shipSymbol: string, jumpShipRequest?: JumpShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('jumpShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/jump`
@@ -870,12 +870,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship\'s current location. Navigating will consume the necessary fuel from the ship\'s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it\'s destination.  To travel between systems, see the ship\'s Warp or Jump actions.
          * @summary Navigate Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {NavigateShipRequest} [navigateShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        navigateShip: async (shipSymbol: any, navigateShipRequest?: NavigateShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        navigateShip: async (shipSymbol: string, navigateShipRequest?: NavigateShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('navigateShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/navigate`
@@ -912,11 +912,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
          * @summary Negotiate Contract
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        negotiateContract: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        negotiateContract: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('negotiateContract', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/negotiate/contract`
@@ -950,11 +950,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
          * @summary Orbit Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        orbitShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        orbitShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('orbitShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/orbit`
@@ -988,12 +988,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
          * @summary Patch Ship Nav
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {PatchShipNavRequest} [patchShipNavRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        patchShipNav: async (shipSymbol: any, patchShipNavRequest?: PatchShipNavRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        patchShipNav: async (shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('patchShipNav', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/nav`
@@ -1030,12 +1030,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Purchase cargo from a market.  The ship must be docked in a waypoint that has `Marketplace` trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the `tradeVolume` value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship\'s cargo hold.
          * @summary Purchase Cargo
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {PurchaseCargoRequest} [purchaseCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        purchaseCargo: async (shipSymbol: any, purchaseCargoRequest?: PurchaseCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        purchaseCargo: async (shipSymbol: string, purchaseCargoRequest?: PurchaseCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('purchaseCargo', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/purchase`
@@ -1110,12 +1110,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the `Marketplace` trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship\'s fuel.  Ships will always be refuel to their frame\'s maximum fuel capacity when using this action.
          * @summary Refuel Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {RefuelShipRequest} [refuelShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refuelShip: async (shipSymbol: any, refuelShipRequest?: RefuelShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        refuelShip: async (shipSymbol: string, refuelShipRequest?: RefuelShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('refuelShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/refuel`
@@ -1152,12 +1152,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Remove a mount from a ship.  The ship must be docked in a waypoint that has the `Shipyard` trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
          * @summary Remove Mount
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {RemoveMountRequest} [removeMountRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeMount: async (shipSymbol: any, removeMountRequest?: RemoveMountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeMount: async (shipSymbol: string, removeMountRequest?: RemoveMountRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('removeMount', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/mounts/remove`
@@ -1194,11 +1194,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the `Shipyard` trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
          * @summary Repair Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        repairShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        repairShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('repairShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/repair`
@@ -1232,11 +1232,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Scrap a ship, removing it from the game and returning a portion of the ship\'s value to the agent. The ship must be docked in a waypoint that has the `Shipyard` trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
          * @summary Scrap Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        scrapShip: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        scrapShip: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('scrapShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/scrap`
@@ -1270,12 +1270,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the `Marketplace` trait in order to use this function.
          * @summary Sell Cargo
-         * @param {any} shipSymbol Symbol of a ship.
+         * @param {string} shipSymbol Symbol of a ship.
          * @param {SellCargoRequest} [sellCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sellCargo: async (shipSymbol: any, sellCargoRequest?: SellCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        sellCargo: async (shipSymbol: string, sellCargoRequest?: SellCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('sellCargo', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/sell`
@@ -1312,12 +1312,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a `Refinery` module that can refine it.  When refining, 100 basic goods will be converted into 10 processed goods.
          * @summary Ship Refine
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {ShipRefineRequest} [shipRefineRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shipRefine: async (shipSymbol: any, shipRefineRequest?: ShipRefineRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        shipRefine: async (shipSymbol: string, shipRefineRequest?: ShipRefineRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('shipRefine', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/refine`
@@ -1354,11 +1354,11 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
          * @summary Siphon Resources
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        siphonResources: async (shipSymbol: any, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        siphonResources: async (shipSymbol: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('siphonResources', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/siphon`
@@ -1392,12 +1392,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body\'s cargo shows the cargo of the transferring ship after the transfer is complete.
          * @summary Transfer Cargo
-         * @param {any} shipSymbol The transferring ship\&#39;s symbol.
+         * @param {string} shipSymbol The transferring ship\&#39;s symbol.
          * @param {TransferCargoRequest} [transferCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        transferCargo: async (shipSymbol: any, transferCargoRequest?: TransferCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        transferCargo: async (shipSymbol: string, transferCargoRequest?: TransferCargoRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('transferCargo', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/transfer`
@@ -1434,12 +1434,12 @@ export const FleetApiAxiosParamCreator = function (configuration?: Configuration
         /**
          * Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the `Warp Drive` module installed. Warping will consume the necessary fuel from the ship\'s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
          * @summary Warp Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {NavigateShipRequest} [navigateShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        warpShip: async (shipSymbol: any, navigateShipRequest?: NavigateShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        warpShip: async (shipSymbol: string, navigateShipRequest?: NavigateShipRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'shipSymbol' is not null or undefined
             assertParamExists('warpShip', 'shipSymbol', shipSymbol)
             const localVarPath = `/my/ships/{shipSymbol}/warp`
@@ -1486,273 +1486,273 @@ export const FleetApiFp = function(configuration?: Configuration) {
         /**
          * Command a ship to chart the waypoint at its current location.  Most waypoints in the universe are uncharted by default. These waypoints have their traits hidden until they have been charted by a ship.  Charting a waypoint will record your agent as the one who created the chart, and all other agents would also be able to see the waypoint\'s traits.
          * @summary Create Chart
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createChart(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateChart201Response>> {
+        async createChart(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateChart201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createChart(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Scan for nearby ships, retrieving information for all ships in range.  Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Ships
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createShipShipScan(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipShipScan201Response>> {
+        async createShipShipScan(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipShipScan201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createShipShipScan(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Scan for nearby systems, retrieving information on the systems\' distance from the ship and their waypoints. Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Systems
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createShipSystemScan(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipSystemScan201Response>> {
+        async createShipSystemScan(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipSystemScan201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createShipSystemScan(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Scan for nearby waypoints, retrieving detailed information on each waypoint in range. Scanning uncharted waypoints will allow you to ignore their uncharted state and will list the waypoints\' traits.  Requires a ship to have the `Sensor Array` mount installed to use.  The ship will enter a cooldown after using this function, during which it cannot execute certain actions.
          * @summary Scan Waypoints
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createShipWaypointScan(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipWaypointScan201Response>> {
+        async createShipWaypointScan(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateShipWaypointScan201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createShipWaypointScan(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Create surveys on a waypoint that can be extracted such as asteroid fields. A survey focuses on specific types of deposits from the extracted location. When ships extract using this survey, they are guaranteed to procure a high amount of one of the goods in the survey.  In order to use a survey, send the entire survey details in the body of the extract request.  Each survey may have multiple deposits, and if a symbol shows up more than once, that indicates a higher chance of extracting that resource.  Your ship will enter a cooldown after surveying in which it is unable to perform certain actions. Surveys will eventually expire after a period of time or will be exhausted after being extracted several times based on the survey\'s size. Multiple ships can use the same survey for extraction.  A ship must have the `Surveyor` mount installed in order to use this function.
          * @summary Create Survey
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createSurvey(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateSurvey201Response>> {
+        async createSurvey(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateSurvey201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createSurvey(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Attempt to dock your ship at its current location. Docking will only succeed if your ship is capable of docking at the time of the request.  Docked ships can access elements in their current location, such as the market or a shipyard, but cannot do actions that require the ship to be above surface such as navigating or extracting.  The endpoint is idempotent - successive calls will succeed even if the ship is already docked.
          * @summary Dock Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async dockShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DockShip200Response>> {
+        async dockShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DockShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.dockShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Extract resources from a waypoint that can be extracted, such as asteroid fields, into your ship. Send an optional survey as the payload to target specific yields.  The ship must be in orbit to be able to extract and must have mining equipments installed that can extract goods, such as the `Gas Siphon` mount for gas-based goods or `Mining Laser` mount for ore-based goods.  The survey property is now deprecated. See the `extract/survey` endpoint for more details.
          * @summary Extract Resources
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {ExtractResourcesRequest} [extractResourcesRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async extractResources(shipSymbol: any, extractResourcesRequest?: ExtractResourcesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExtractResources201Response>> {
+        async extractResources(shipSymbol: string, extractResourcesRequest?: ExtractResourcesRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExtractResources201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.extractResources(shipSymbol, extractResourcesRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Use a survey when extracting resources from a waypoint. This endpoint requires a survey as the payload, which allows your ship to extract specific yields.  Send the full survey object as the payload which will be validated according to the signature. If the signature is invalid, or any properties of the survey are changed, the request will fail.
          * @summary Extract Resources with Survey
-         * @param {any} shipSymbol The ship symbol.
-         * @param {ExtractResourcesWithSurveyRequest} [extractResourcesWithSurveyRequest] 
+         * @param {string} shipSymbol The ship symbol.
+         * @param {Survey} [survey] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async extractResourcesWithSurvey(shipSymbol: any, extractResourcesWithSurveyRequest?: ExtractResourcesWithSurveyRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExtractResources201Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.extractResourcesWithSurvey(shipSymbol, extractResourcesWithSurveyRequest, options);
+        async extractResourcesWithSurvey(shipSymbol: string, survey?: Survey, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ExtractResources201Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.extractResourcesWithSurvey(shipSymbol, survey, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the mounts installed on a ship.
          * @summary Get Mounts
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMounts(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMounts200Response>> {
+        async getMounts(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMounts200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMounts(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve the details of a ship under your agent\'s ownership.
          * @summary Get Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShip200Response>> {
+        async getMyShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMyShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve the cargo of a ship under your agent\'s ownership.
          * @summary Get Ship Cargo
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyShipCargo(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShipCargo200Response>> {
+        async getMyShipCargo(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShipCargo200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMyShipCargo(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Return a paginated list of all of ships under your agent\'s ownership.
          * @summary List Ships
-         * @param {any} [page] What entry offset to request
-         * @param {any} [limit] How many entries to return per page
+         * @param {number} [page] What entry offset to request
+         * @param {number} [limit] How many entries to return per page
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMyShips(page?: any, limit?: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShips200Response>> {
+        async getMyShips(page?: number, limit?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMyShips200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getMyShips(page, limit, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the cost of repairing a ship.
          * @summary Get Repair Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRepairShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRepairShip200Response>> {
+        async getRepairShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRepairShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRepairShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the amount of value that will be returned when scrapping a ship.
          * @summary Get Scrap Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getScrapShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetScrapShip200Response>> {
+        async getScrapShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetScrapShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getScrapShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Retrieve the details of your ship\'s reactor cooldown. Some actions such as activating your jump drive, scanning, or extracting resources taxes your reactor and results in a cooldown.  Your ship cannot perform additional actions until your cooldown has expired. The duration of your cooldown is relative to the power consumption of the related modules or mounts for the action taken.  Response returns a 204 status code (no-content) when the ship has no cooldown.
          * @summary Get Ship Cooldown
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShipCooldown(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipCooldown200Response>> {
+        async getShipCooldown(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipCooldown200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShipCooldown(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Get the current nav status of a ship.
          * @summary Get Ship Nav
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getShipNav(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipNav200Response>> {
+        async getShipNav(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipNav200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getShipNav(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Install a mount on a ship.  In order to install a mount, the ship must be docked and located in a waypoint that has a `Shipyard` trait. The ship also must have the mount to install in its cargo hold.  An installation fee will be deduced by the Shipyard for installing the mount on the ship. 
          * @summary Install Mount
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {InstallMountRequest} [installMountRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async installMount(shipSymbol: any, installMountRequest?: InstallMountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstallMount201Response>> {
+        async installMount(shipSymbol: string, installMountRequest?: InstallMountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InstallMount201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.installMount(shipSymbol, installMountRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Jettison cargo from your ship\'s cargo hold.
          * @summary Jettison Cargo
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {JettisonRequest} [jettisonRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async jettison(shipSymbol: any, jettisonRequest?: JettisonRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Jettison200Response>> {
+        async jettison(shipSymbol: string, jettisonRequest?: JettisonRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Jettison200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.jettison(shipSymbol, jettisonRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Jump your ship instantly to a target connected waypoint. The ship must be in orbit to execute a jump.  A unit of antimatter is purchased and consumed from the market when jumping. The price of antimatter is determined by the market and is subject to change. A ship can only jump to connected waypoints
          * @summary Jump Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {JumpShipRequest} [jumpShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async jumpShip(shipSymbol: any, jumpShipRequest?: JumpShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JumpShip200Response>> {
+        async jumpShip(shipSymbol: string, jumpShipRequest?: JumpShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<JumpShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.jumpShip(shipSymbol, jumpShipRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Navigate to a target destination. The ship must be in orbit to use this function. The destination waypoint must be within the same system as the ship\'s current location. Navigating will consume the necessary fuel from the ship\'s manifest based on the distance to the target waypoint.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at it\'s destination.  To travel between systems, see the ship\'s Warp or Jump actions.
          * @summary Navigate Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {NavigateShipRequest} [navigateShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async navigateShip(shipSymbol: any, navigateShipRequest?: NavigateShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NavigateShip200Response>> {
+        async navigateShip(shipSymbol: string, navigateShipRequest?: NavigateShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NavigateShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.navigateShip(shipSymbol, navigateShipRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Negotiate a new contract with the HQ.  In order to negotiate a new contract, an agent must not have ongoing or offered contracts over the allowed maximum amount. Currently the maximum contracts an agent can have at a time is 1.  Once a contract is negotiated, it is added to the list of contracts offered to the agent, which the agent can then accept.   The ship must be present at any waypoint with a faction present to negotiate a contract with that faction.
          * @summary Negotiate Contract
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async negotiateContract(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NegotiateContract200Response>> {
+        async negotiateContract(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<NegotiateContract200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.negotiateContract(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Attempt to move your ship into orbit at its current location. The request will only succeed if your ship is capable of moving into orbit at the time of the request.  Orbiting ships are able to do actions that require the ship to be above surface such as navigating or extracting, but cannot access elements in their current waypoint, such as the market or a shipyard.  The endpoint is idempotent - successive calls will succeed even if the ship is already in orbit.
          * @summary Orbit Ship
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async orbitShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrbitShip200Response>> {
+        async orbitShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrbitShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.orbitShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Update the nav configuration of a ship.  Currently only supports configuring the Flight Mode of the ship, which affects its speed and fuel consumption.
          * @summary Patch Ship Nav
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {PatchShipNavRequest} [patchShipNavRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async patchShipNav(shipSymbol: any, patchShipNavRequest?: PatchShipNavRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipNav200Response>> {
+        async patchShipNav(shipSymbol: string, patchShipNavRequest?: PatchShipNavRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetShipNav200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.patchShipNav(shipSymbol, patchShipNavRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Purchase cargo from a market.  The ship must be docked in a waypoint that has `Marketplace` trait, and the market must be selling a good to be able to purchase it.  The maximum amount of units of a good that can be purchased in each transaction are denoted by the `tradeVolume` value of the good, which can be viewed by using the Get Market action.  Purchased goods are added to the ship\'s cargo hold.
          * @summary Purchase Cargo
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {PurchaseCargoRequest} [purchaseCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async purchaseCargo(shipSymbol: any, purchaseCargoRequest?: PurchaseCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PurchaseCargo201Response>> {
+        async purchaseCargo(shipSymbol: string, purchaseCargoRequest?: PurchaseCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PurchaseCargo201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.purchaseCargo(shipSymbol, purchaseCargoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1770,105 +1770,105 @@ export const FleetApiFp = function(configuration?: Configuration) {
         /**
          * Refuel your ship by buying fuel from the local market.  Requires the ship to be docked in a waypoint that has the `Marketplace` trait, and the market must be selling fuel in order to refuel.  Each fuel bought from the market replenishes 100 units in your ship\'s fuel.  Ships will always be refuel to their frame\'s maximum fuel capacity when using this action.
          * @summary Refuel Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {RefuelShipRequest} [refuelShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async refuelShip(shipSymbol: any, refuelShipRequest?: RefuelShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RefuelShip200Response>> {
+        async refuelShip(shipSymbol: string, refuelShipRequest?: RefuelShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RefuelShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.refuelShip(shipSymbol, refuelShipRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Remove a mount from a ship.  The ship must be docked in a waypoint that has the `Shipyard` trait, and must have the desired mount that it wish to remove installed.  A removal fee will be deduced from the agent by the Shipyard.
          * @summary Remove Mount
-         * @param {any} shipSymbol The ship\&#39;s symbol.
+         * @param {string} shipSymbol The ship\&#39;s symbol.
          * @param {RemoveMountRequest} [removeMountRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeMount(shipSymbol: any, removeMountRequest?: RemoveMountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveMount201Response>> {
+        async removeMount(shipSymbol: string, removeMountRequest?: RemoveMountRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveMount201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeMount(shipSymbol, removeMountRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Repair a ship, restoring the ship to maximum condition. The ship must be docked at a waypoint that has the `Shipyard` trait in order to use this function. To preview the cost of repairing the ship, use the Get action.
          * @summary Repair Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async repairShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RepairShip200Response>> {
+        async repairShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RepairShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.repairShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Scrap a ship, removing it from the game and returning a portion of the ship\'s value to the agent. The ship must be docked in a waypoint that has the `Shipyard` trait in order to use this function. To preview the amount of value that will be returned, use the Get Ship action.
          * @summary Scrap Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async scrapShip(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScrapShip200Response>> {
+        async scrapShip(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ScrapShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.scrapShip(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Sell cargo in your ship to a market that trades this cargo. The ship must be docked in a waypoint that has the `Marketplace` trait in order to use this function.
          * @summary Sell Cargo
-         * @param {any} shipSymbol Symbol of a ship.
+         * @param {string} shipSymbol Symbol of a ship.
          * @param {SellCargoRequest} [sellCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async sellCargo(shipSymbol: any, sellCargoRequest?: SellCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SellCargo201Response>> {
+        async sellCargo(shipSymbol: string, sellCargoRequest?: SellCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SellCargo201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.sellCargo(shipSymbol, sellCargoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Attempt to refine the raw materials on your ship. The request will only succeed if your ship is capable of refining at the time of the request. In order to be able to refine, a ship must have goods that can be refined and have installed a `Refinery` module that can refine it.  When refining, 100 basic goods will be converted into 10 processed goods.
          * @summary Ship Refine
-         * @param {any} shipSymbol The symbol of the ship.
+         * @param {string} shipSymbol The symbol of the ship.
          * @param {ShipRefineRequest} [shipRefineRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async shipRefine(shipSymbol: any, shipRefineRequest?: ShipRefineRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShipRefine201Response>> {
+        async shipRefine(shipSymbol: string, shipRefineRequest?: ShipRefineRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShipRefine201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.shipRefine(shipSymbol, shipRefineRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Siphon gases, such as hydrocarbon, from gas giants.  The ship must be in orbit to be able to siphon and must have siphon mounts and a gas processor installed.
          * @summary Siphon Resources
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async siphonResources(shipSymbol: any, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SiphonResources201Response>> {
+        async siphonResources(shipSymbol: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SiphonResources201Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.siphonResources(shipSymbol, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Transfer cargo between ships.  The receiving ship must be in the same waypoint as the transferring ship, and it must able to hold the additional cargo after the transfer is complete. Both ships also must be in the same state, either both are docked or both are orbiting.  The response body\'s cargo shows the cargo of the transferring ship after the transfer is complete.
          * @summary Transfer Cargo
-         * @param {any} shipSymbol The transferring ship\&#39;s symbol.
+         * @param {string} shipSymbol The transferring ship\&#39;s symbol.
          * @param {TransferCargoRequest} [transferCargoRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async transferCargo(shipSymbol: any, transferCargoRequest?: TransferCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransferCargo200Response>> {
+        async transferCargo(shipSymbol: string, transferCargoRequest?: TransferCargoRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TransferCargo200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.transferCargo(shipSymbol, transferCargoRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
          * Warp your ship to a target destination in another system. The ship must be in orbit to use this function and must have the `Warp Drive` module installed. Warping will consume the necessary fuel from the ship\'s manifest.  The returned response will detail the route information including the expected time of arrival. Most ship actions are unavailable until the ship has arrived at its destination.
          * @summary Warp Ship
-         * @param {any} shipSymbol The ship symbol.
+         * @param {string} shipSymbol The ship symbol.
          * @param {NavigateShipRequest} [navigateShipRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async warpShip(shipSymbol: any, navigateShipRequest?: NavigateShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WarpShip200Response>> {
+        async warpShip(shipSymbol: string, navigateShipRequest?: NavigateShipRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WarpShip200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.warpShip(shipSymbol, navigateShipRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1960,7 +1960,7 @@ export const FleetApiFactory = function (configuration?: Configuration, basePath
          * @throws {RequiredError}
          */
         extractResourcesWithSurvey(requestParameters: FleetApiExtractResourcesWithSurveyRequest, options?: AxiosRequestConfig): AxiosPromise<ExtractResources201Response> {
-            return localVarFp.extractResourcesWithSurvey(requestParameters.shipSymbol, requestParameters.extractResourcesWithSurveyRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.extractResourcesWithSurvey(requestParameters.shipSymbol, requestParameters.survey, options).then((request) => request(axios, basePath));
         },
         /**
          * Get the mounts installed on a ship.
@@ -2233,10 +2233,10 @@ export const FleetApiFactory = function (configuration?: Configuration, basePath
 export interface FleetApiCreateChartRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiCreateChart
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2247,10 +2247,10 @@ export interface FleetApiCreateChartRequest {
 export interface FleetApiCreateShipShipScanRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiCreateShipShipScan
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2261,10 +2261,10 @@ export interface FleetApiCreateShipShipScanRequest {
 export interface FleetApiCreateShipSystemScanRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiCreateShipSystemScan
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2275,10 +2275,10 @@ export interface FleetApiCreateShipSystemScanRequest {
 export interface FleetApiCreateShipWaypointScanRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiCreateShipWaypointScan
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2289,10 +2289,10 @@ export interface FleetApiCreateShipWaypointScanRequest {
 export interface FleetApiCreateSurveyRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiCreateSurvey
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2303,10 +2303,10 @@ export interface FleetApiCreateSurveyRequest {
 export interface FleetApiDockShipRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiDockShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2317,10 +2317,10 @@ export interface FleetApiDockShipRequest {
 export interface FleetApiExtractResourcesRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiExtractResources
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2338,17 +2338,17 @@ export interface FleetApiExtractResourcesRequest {
 export interface FleetApiExtractResourcesWithSurveyRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiExtractResourcesWithSurvey
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
-     * @type {ExtractResourcesWithSurveyRequest}
+     * @type {Survey}
      * @memberof FleetApiExtractResourcesWithSurvey
      */
-    readonly extractResourcesWithSurveyRequest?: ExtractResourcesWithSurveyRequest
+    readonly survey?: Survey
 }
 
 /**
@@ -2359,10 +2359,10 @@ export interface FleetApiExtractResourcesWithSurveyRequest {
 export interface FleetApiGetMountsRequest {
     /**
      * The ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetMounts
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2373,10 +2373,10 @@ export interface FleetApiGetMountsRequest {
 export interface FleetApiGetMyShipRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetMyShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2387,10 +2387,10 @@ export interface FleetApiGetMyShipRequest {
 export interface FleetApiGetMyShipCargoRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetMyShipCargo
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2401,17 +2401,17 @@ export interface FleetApiGetMyShipCargoRequest {
 export interface FleetApiGetMyShipsRequest {
     /**
      * What entry offset to request
-     * @type {any}
+     * @type {number}
      * @memberof FleetApiGetMyShips
      */
-    readonly page?: any
+    readonly page?: number
 
     /**
      * How many entries to return per page
-     * @type {any}
+     * @type {number}
      * @memberof FleetApiGetMyShips
      */
-    readonly limit?: any
+    readonly limit?: number
 }
 
 /**
@@ -2422,10 +2422,10 @@ export interface FleetApiGetMyShipsRequest {
 export interface FleetApiGetRepairShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetRepairShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2436,10 +2436,10 @@ export interface FleetApiGetRepairShipRequest {
 export interface FleetApiGetScrapShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetScrapShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2450,10 +2450,10 @@ export interface FleetApiGetScrapShipRequest {
 export interface FleetApiGetShipCooldownRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetShipCooldown
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2464,10 +2464,10 @@ export interface FleetApiGetShipCooldownRequest {
 export interface FleetApiGetShipNavRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiGetShipNav
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2478,10 +2478,10 @@ export interface FleetApiGetShipNavRequest {
 export interface FleetApiInstallMountRequest {
     /**
      * The ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiInstallMount
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2499,10 +2499,10 @@ export interface FleetApiInstallMountRequest {
 export interface FleetApiJettisonRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiJettison
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2520,10 +2520,10 @@ export interface FleetApiJettisonRequest {
 export interface FleetApiJumpShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiJumpShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2541,10 +2541,10 @@ export interface FleetApiJumpShipRequest {
 export interface FleetApiNavigateShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiNavigateShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2562,10 +2562,10 @@ export interface FleetApiNavigateShipRequest {
 export interface FleetApiNegotiateContractRequest {
     /**
      * The ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiNegotiateContract
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2576,10 +2576,10 @@ export interface FleetApiNegotiateContractRequest {
 export interface FleetApiOrbitShipRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiOrbitShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2590,10 +2590,10 @@ export interface FleetApiOrbitShipRequest {
 export interface FleetApiPatchShipNavRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiPatchShipNav
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2611,10 +2611,10 @@ export interface FleetApiPatchShipNavRequest {
 export interface FleetApiPurchaseCargoRequest {
     /**
      * The ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiPurchaseCargo
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2646,10 +2646,10 @@ export interface FleetApiPurchaseShipRequest {
 export interface FleetApiRefuelShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiRefuelShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2667,10 +2667,10 @@ export interface FleetApiRefuelShipRequest {
 export interface FleetApiRemoveMountRequest {
     /**
      * The ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiRemoveMount
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2688,10 +2688,10 @@ export interface FleetApiRemoveMountRequest {
 export interface FleetApiRepairShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiRepairShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2702,10 +2702,10 @@ export interface FleetApiRepairShipRequest {
 export interface FleetApiScrapShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiScrapShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2716,10 +2716,10 @@ export interface FleetApiScrapShipRequest {
 export interface FleetApiSellCargoRequest {
     /**
      * Symbol of a ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiSellCargo
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2737,10 +2737,10 @@ export interface FleetApiSellCargoRequest {
 export interface FleetApiShipRefineRequest {
     /**
      * The symbol of the ship.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiShipRefine
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2758,10 +2758,10 @@ export interface FleetApiShipRefineRequest {
 export interface FleetApiSiphonResourcesRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiSiphonResources
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 }
 
 /**
@@ -2772,10 +2772,10 @@ export interface FleetApiSiphonResourcesRequest {
 export interface FleetApiTransferCargoRequest {
     /**
      * The transferring ship\&#39;s symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiTransferCargo
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2793,10 +2793,10 @@ export interface FleetApiTransferCargoRequest {
 export interface FleetApiWarpShipRequest {
     /**
      * The ship symbol.
-     * @type {any}
+     * @type {string}
      * @memberof FleetApiWarpShip
      */
-    readonly shipSymbol: any
+    readonly shipSymbol: string
 
     /**
      * 
@@ -2906,7 +2906,7 @@ export class FleetApi extends BaseAPI {
      * @memberof FleetApi
      */
     public extractResourcesWithSurvey(requestParameters: FleetApiExtractResourcesWithSurveyRequest, options?: AxiosRequestConfig) {
-        return FleetApiFp(this.configuration).extractResourcesWithSurvey(requestParameters.shipSymbol, requestParameters.extractResourcesWithSurveyRequest, options).then((request) => request(this.axios, this.basePath));
+        return FleetApiFp(this.configuration).extractResourcesWithSurvey(requestParameters.shipSymbol, requestParameters.survey, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

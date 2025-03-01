@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetJumpGate200ResponseData } from './get-jump-gate200-response-data';
+import { JumpGate } from './jump-gate';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetJumpGate200ResponseData } from './get-jump-gate200-response-data';
 export interface GetJumpGate200Response {
     /**
      * 
-     * @type {GetJumpGate200ResponseData}
+     * @type {JumpGate}
      * @memberof GetJumpGate200Response
      */
-    'data': GetJumpGate200ResponseData;
+    'data': JumpGate;
 }
 

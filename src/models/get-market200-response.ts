@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetMarket200ResponseData } from './get-market200-response-data';
+import { Market } from './market';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetMarket200ResponseData } from './get-market200-response-data';
 export interface GetMarket200Response {
     /**
      * 
-     * @type {GetMarket200ResponseData}
+     * @type {Market}
      * @memberof GetMarket200Response
      */
-    'data': GetMarket200ResponseData;
+    'data': Market;
 }
 

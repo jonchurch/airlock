@@ -15,16 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataContract } from './register201-response-data-contract';
+import { Contract } from './contract';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataFaction } from './register201-response-data-faction';
+import { Faction } from './faction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShip } from './register201-response-data-ship';
+import { Ship } from './ship';
 
 /**
  * 
@@ -34,33 +34,33 @@ import { Register201ResponseDataShip } from './register201-response-data-ship';
 export interface Register201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof Register201ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {Register201ResponseDataContract}
+     * @type {Contract}
      * @memberof Register201ResponseData
      */
-    'contract': Register201ResponseDataContract;
+    'contract': Contract;
     /**
      * 
-     * @type {Register201ResponseDataFaction}
+     * @type {Faction}
      * @memberof Register201ResponseData
      */
-    'faction': Register201ResponseDataFaction;
+    'faction': Faction;
     /**
      * 
-     * @type {Register201ResponseDataShip}
+     * @type {Ship}
      * @memberof Register201ResponseData
      */
-    'ship': Register201ResponseDataShip;
+    'ship': Ship;
     /**
      * A Bearer token for accessing secured API endpoints.
-     * @type {any}
+     * @type {string}
      * @memberof Register201ResponseData
      */
-    'token': any;
+    'token': string;
 }
 

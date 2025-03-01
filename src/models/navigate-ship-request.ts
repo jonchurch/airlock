@@ -22,9 +22,9 @@
 export interface NavigateShipRequest {
     /**
      * The target destination.
-     * @type {any}
+     * @type {string}
      * @memberof NavigateShipRequest
      */
-    'waypointSymbol': any;
+    'waypointSymbol': string;
 }
 

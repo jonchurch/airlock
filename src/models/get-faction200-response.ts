@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataFaction } from './register201-response-data-faction';
+import { Faction } from './faction';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { Register201ResponseDataFaction } from './register201-response-data-fact
 export interface GetFaction200Response {
     /**
      * 
-     * @type {Register201ResponseDataFaction}
+     * @type {Faction}
      * @memberof GetFaction200Response
      */
-    'data': Register201ResponseDataFaction;
+    'data': Faction;
 }
 

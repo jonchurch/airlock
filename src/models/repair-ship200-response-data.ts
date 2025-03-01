@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetRepairShip200ResponseDataTransaction } from './get-repair-ship200-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { RepairTransaction } from './repair-transaction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShip } from './register201-response-data-ship';
+import { Ship } from './ship';
 
 /**
  * 
@@ -31,21 +31,21 @@ import { Register201ResponseDataShip } from './register201-response-data-ship';
 export interface RepairShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof RepairShip200ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {Register201ResponseDataShip}
+     * @type {Ship}
      * @memberof RepairShip200ResponseData
      */
-    'ship': Register201ResponseDataShip;
+    'ship': Ship;
     /**
      * 
-     * @type {GetRepairShip200ResponseDataTransaction}
+     * @type {RepairTransaction}
      * @memberof RepairShip200ResponseData
      */
-    'transaction': GetRepairShip200ResponseDataTransaction;
+    'transaction': RepairTransaction;
 }
 

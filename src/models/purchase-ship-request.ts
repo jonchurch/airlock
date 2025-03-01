@@ -13,6 +13,9 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipType } from './ship-type';
 
 /**
  * 
@@ -21,34 +24,18 @@
  */
 export interface PurchaseShipRequest {
     /**
-     * Type of ship
-     * @type {any}
+     * 
+     * @type {ShipType}
      * @memberof PurchaseShipRequest
      */
-    'shipType': PurchaseShipRequestShipTypeEnum;
+    'shipType': ShipType;
     /**
      * The symbol of the waypoint you want to purchase the ship at.
-     * @type {any}
+     * @type {string}
      * @memberof PurchaseShipRequest
      */
-    'waypointSymbol': any;
+    'waypointSymbol': string;
 }
 
-export const PurchaseShipRequestShipTypeEnum = {
-    Probe: 'SHIP_PROBE',
-    MiningDrone: 'SHIP_MINING_DRONE',
-    SiphonDrone: 'SHIP_SIPHON_DRONE',
-    Interceptor: 'SHIP_INTERCEPTOR',
-    LightHauler: 'SHIP_LIGHT_HAULER',
-    CommandFrigate: 'SHIP_COMMAND_FRIGATE',
-    Explorer: 'SHIP_EXPLORER',
-    HeavyFreighter: 'SHIP_HEAVY_FREIGHTER',
-    LightShuttle: 'SHIP_LIGHT_SHUTTLE',
-    OreHound: 'SHIP_ORE_HOUND',
-    RefiningFreighter: 'SHIP_REFINING_FREIGHTER',
-    Surveyor: 'SHIP_SURVEYOR'
-} as const;
-
-export type PurchaseShipRequestShipTypeEnum = typeof PurchaseShipRequestShipTypeEnum[keyof typeof PurchaseShipRequestShipTypeEnum];
 
 

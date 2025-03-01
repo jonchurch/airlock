@@ -15,7 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { Cooldown } from './cooldown';
+// May contain unused imports in some cases
+// @ts-ignore
+import { Survey } from './survey';
 
 /**
  * 
@@ -25,15 +28,15 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface CreateSurvey201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof CreateSurvey201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * Surveys created by this action.
-     * @type {any}
+     * @type {Array<Survey>}
      * @memberof CreateSurvey201ResponseData
      */
-    'surveys': any;
+    'surveys': Array<Survey>;
 }
 

@@ -13,30 +13,35 @@
  */
 
 
+// May contain unused imports in some cases
+// @ts-ignore
+import { TradeSymbol } from './trade-symbol';
 
 /**
- * The construction details of a waypoint.
+ * The details of the required construction materials for a given waypoint under construction.
  * @export
- * @interface GetConstruction200ResponseData
+ * @interface ConstructionMaterial
  */
-export interface GetConstruction200ResponseData {
+export interface ConstructionMaterial {
     /**
-     * The symbol of the waypoint.
-     * @type {any}
-     * @memberof GetConstruction200ResponseData
+     * 
+     * @type {TradeSymbol}
+     * @memberof ConstructionMaterial
      */
-    'symbol': any;
+    'tradeSymbol': TradeSymbol;
     /**
-     * The materials required to construct the waypoint.
-     * @type {any}
-     * @memberof GetConstruction200ResponseData
+     * The number of units required.
+     * @type {number}
+     * @memberof ConstructionMaterial
      */
-    'materials': any;
+    'required': number;
     /**
-     * Whether the waypoint has been constructed.
-     * @type {any}
-     * @memberof GetConstruction200ResponseData
+     * The number of units fulfilled toward the required amount.
+     * @type {number}
+     * @memberof ConstructionMaterial
      */
-    'isComplete': any;
+    'fulfilled': number;
 }
+
+
 

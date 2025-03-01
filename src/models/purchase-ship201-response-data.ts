@@ -15,13 +15,13 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { PurchaseShip201ResponseDataTransaction } from './purchase-ship201-response-data-transaction';
+import { Agent } from './agent';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataAgent } from './register201-response-data-agent';
+import { Ship } from './ship';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShip } from './register201-response-data-ship';
+import { ShipyardTransaction } from './shipyard-transaction';
 
 /**
  * 
@@ -31,21 +31,21 @@ import { Register201ResponseDataShip } from './register201-response-data-ship';
 export interface PurchaseShip201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataAgent}
+     * @type {Agent}
      * @memberof PurchaseShip201ResponseData
      */
-    'agent': Register201ResponseDataAgent;
+    'agent': Agent;
     /**
      * 
-     * @type {Register201ResponseDataShip}
+     * @type {Ship}
      * @memberof PurchaseShip201ResponseData
      */
-    'ship': Register201ResponseDataShip;
+    'ship': Ship;
     /**
      * 
-     * @type {PurchaseShip201ResponseDataTransaction}
+     * @type {ShipyardTransaction}
      * @memberof PurchaseShip201ResponseData
      */
-    'transaction': PurchaseShip201ResponseDataTransaction;
+    'transaction': ShipyardTransaction;
 }
 

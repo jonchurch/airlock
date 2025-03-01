@@ -15,10 +15,10 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipFuel } from './register201-response-data-ship-fuel';
+import { ShipFuel } from './ship-fuel';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipNav } from './register201-response-data-ship-nav';
+import { ShipNav } from './ship-nav';
 
 /**
  * 
@@ -28,15 +28,15 @@ import { Register201ResponseDataShipNav } from './register201-response-data-ship
 export interface WarpShip200ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipFuel}
+     * @type {ShipFuel}
      * @memberof WarpShip200ResponseData
      */
-    'fuel': Register201ResponseDataShipFuel;
+    'fuel': ShipFuel;
     /**
      * 
-     * @type {Register201ResponseDataShipNav}
+     * @type {ShipNav}
      * @memberof WarpShip200ResponseData
      */
-    'nav': Register201ResponseDataShipNav;
+    'nav': ShipNav;
 }
 

@@ -15,7 +15,7 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { GetShipyard200ResponseData } from './get-shipyard200-response-data';
+import { Shipyard } from './shipyard';
 
 /**
  * 
@@ -25,9 +25,9 @@ import { GetShipyard200ResponseData } from './get-shipyard200-response-data';
 export interface GetShipyard200Response {
     /**
      * 
-     * @type {GetShipyard200ResponseData}
+     * @type {Shipyard}
      * @memberof GetShipyard200Response
      */
-    'data': GetShipyard200ResponseData;
+    'data': Shipyard;
 }
 

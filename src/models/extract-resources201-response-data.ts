@@ -15,13 +15,16 @@
 
 // May contain unused imports in some cases
 // @ts-ignore
-import { ExtractResources201ResponseDataExtraction } from './extract-resources201-response-data-extraction';
+import { Cooldown } from './cooldown';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCargo } from './register201-response-data-ship-cargo';
+import { Extraction } from './extraction';
 // May contain unused imports in some cases
 // @ts-ignore
-import { Register201ResponseDataShipCooldown } from './register201-response-data-ship-cooldown';
+import { ShipCargo } from './ship-cargo';
+// May contain unused imports in some cases
+// @ts-ignore
+import { ShipConditionEvent } from './ship-condition-event';
 
 /**
  * 
@@ -31,27 +34,27 @@ import { Register201ResponseDataShipCooldown } from './register201-response-data
 export interface ExtractResources201ResponseData {
     /**
      * 
-     * @type {Register201ResponseDataShipCooldown}
+     * @type {Cooldown}
      * @memberof ExtractResources201ResponseData
      */
-    'cooldown': Register201ResponseDataShipCooldown;
+    'cooldown': Cooldown;
     /**
      * 
-     * @type {ExtractResources201ResponseDataExtraction}
+     * @type {Extraction}
      * @memberof ExtractResources201ResponseData
      */
-    'extraction': ExtractResources201ResponseDataExtraction;
+    'extraction': Extraction;
     /**
      * 
-     * @type {Register201ResponseDataShipCargo}
+     * @type {ShipCargo}
      * @memberof ExtractResources201ResponseData
      */
-    'cargo': Register201ResponseDataShipCargo;
+    'cargo': ShipCargo;
     /**
      * 
-     * @type {any}
+     * @type {Array<ShipConditionEvent>}
      * @memberof ExtractResources201ResponseData
      */
-    'events': any;
+    'events': Array<ShipConditionEvent>;
 }
 
